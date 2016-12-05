@@ -14,7 +14,7 @@ public class MyFile {
 
     private static final String IMG_FOLDER = "/data/wwwroot/default/images/";
 
-    private static final String LOCAL_IMG_FOLDER = "/Users/kylin/Desktop/";
+//    private static final String LOCAL_IMG_FOLDER = "/Users/kylin/Desktop/";
 
     /**
      * 保存文件到本地
@@ -38,7 +38,7 @@ public class MyFile {
             String fileName = filePrefix + "." + fileSuffix;
 
             //保存文件的路径
-            String savedFile = LOCAL_IMG_FOLDER + fileName;
+            String savedFile = IMG_FOLDER + fileName;
 
             //保存到硬盘
             file.transferTo(new File(savedFile));
