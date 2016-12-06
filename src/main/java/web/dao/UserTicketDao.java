@@ -1,7 +1,11 @@
 package web.dao;
 
+<<<<<<< HEAD
 import web.model.po.Ticket;
 import web.model.po.UserTicket;
+=======
+import web.model.UserTicket;
+>>>>>>> origin/master
 import web.tools.MyMessage;
 
 import java.util.List;
@@ -21,11 +25,10 @@ public interface UserTicketDao {
     MyMessage addUserTicket(UserTicket userTicket);
 
     /**
-     * 获取一个用户购买的所有餐券
+     * 获取用户购买的所有餐券
      *
-     * @param userId  用户ID
+     * @param userId
      * @return
      */
-    List<Ticket> getUserTicket(int userId);
-
+    List<UserTicket> getUserTicket(int userId);
 }
