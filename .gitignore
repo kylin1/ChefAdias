@@ -33,6 +33,8 @@ GitHub.sublime-settings
 
 # User-specific stuff:
 *.iml
+.idea/
+target/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries
