@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="ChefAdia" />
+        <module name="ChefAdias" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ChefAdia" target="1.8" />
+      <module name="ChefAdias" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

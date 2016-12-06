@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="ChefAdia:war">
+  <artifact type="war" name="ChefAdias:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="ChefAdia-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="ChefAdia:war exploded" />
+      <element id="artifact" artifact-name="ChefAdias:war exploded" />
     </root>
   </artifact>
 </component>
