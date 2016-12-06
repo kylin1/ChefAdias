@@ -13,6 +13,9 @@ import web.model.exceptions.DataConflictException;
 import web.model.exceptions.NotFoundException;
 import web.model.exceptions.ServerException;
 import web.model.exceptions.WrongInputException;
+import web.model.vo.UserInfoVO;
+import web.model.vo.UserVO;
+import web.tools.BeanTool;
 import web.tools.MyConverter;
 import web.tools.MyResponse;
 
@@ -34,24 +37,20 @@ public class UserController {
     public
     @ResponseBody
     String login(HttpServletRequest request) {
-        //获取参数
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         try {
-            User user = this.userService.login(email, password);
-            //登录成功,返回结果
-            return this.getUserResult(user);
+            UserVO user = userService.login(email, password);
+            return MyResponse.success(BeanTool.bean2Map(user));
 
-            //用户邮箱不存在
         } catch (NotFoundException e) {
             e.printStackTrace();
-            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
+            return MyResponse.failure(e.getErrorCode(), e.getMessage());
 
-            //密码不正确
         } catch (WrongInputException e) {
             e.printStackTrace();
-            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
+            return MyResponse.failure(e.getErrorCode(), e.getMessage());
         }
 
     }
@@ -60,21 +59,17 @@ public class UserController {
     public
     @ResponseBody
     String register(HttpServletRequest request) {
-        //获取参数
         String email = request.getParameter("email");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        //调用逻辑层
         try {
-            User newUser = this.userService.register(email, password, username);
-            //注册成功,返回信息
-            return this.getUserResult(newUser);
+            UserVO newUser = userService.register(email, password, username);
+            return MyResponse.success(BeanTool.bean2Map(newUser));
 
-            //逻辑处理异常
-        } catch (DataConflictException e) {
+        } catch (DataConflictException | NotFoundException | WrongInputException e) {
             e.printStackTrace();
-            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
+            return MyResponse.failure(e.getErrorCode(), e.getMessage());
         }
     }
 
@@ -82,16 +77,16 @@ public class UserController {
     public
     @ResponseBody
     String modAddr(HttpServletRequest request) {
-        //获取参数
         String userid = request.getParameter("userid");
         int intId = MyConverter.getInt(userid);
-
         String addr = request.getParameter("addr");
+
         try {
-            this.userService.changeAddress(intId, addr);
-            return MyResponse.success("");
+            userService.changeAddress(intId, addr);
+            return MyResponse.success();
         } catch (NotFoundException e) {
-            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
+            e.printStackTrace();
+            return MyResponse.failure(e.getErrorCode(), e.getMessage());
         }
     }
 
@@ -99,16 +94,16 @@ public class UserController {
     public
     @ResponseBody
     String modPhone(HttpServletRequest request) {
-        //获取参数
         String userid = request.getParameter("userid");
         int intId = MyConverter.getInt(userid);
-
         String phone = request.getParameter("phone");
+
         try {
-            this.userService.changePhone(intId, phone);
-            return MyResponse.success("");
+            userService.changePhone(intId, phone);
+            return MyResponse.success();
+
         } catch (NotFoundException e) {
-            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
+            return MyResponse.failure(e.getErrorCode(), e.getMessage());
         }
     }
 
@@ -117,8 +112,8 @@ public class UserController {
             method = RequestMethod.POST
     )
     @ResponseBody
-    public String changeAvatar(@RequestParam(value = "userid", required = true) String userid,
-                               @RequestParam(value = "avatar", required = true) MultipartFile avatar) {
+    public String changeAvatar(@RequestParam(value = "userid") String userid,
+                               @RequestParam(value = "avatar") MultipartFile avatar) {
         int intId = Integer.parseInt(userid);
         try {
             this.userService.changeAvatar(intId, avatar);
@@ -142,40 +137,12 @@ public class UserController {
         int intId = MyConverter.getInt(userid);
 
         try {
-            User user = this.userService.getUser(intId);
-            return this.getUserInfo(user);
+            UserInfoVO user = userService.getUserInfo(intId);
+            return MyResponse.success(BeanTool.bean2Map(user));
+
         } catch (NotFoundException e) {
             e.printStackTrace();
             return MyResponse.failure(e.getErrorCode(), e.getMessage());
         }
     }
-
-    /**
-     * 根据返回的用户信息提取URL参数返回前端
-     *
-     * @param user
-     * @return
-     */
-    private String getUserResult(User user) {
-        int id = user.getId();
-        String userName = user.getUsername();
-        String avatar = user.getAvatar();
-        Map<String, String> result = new HashMap<>();
-        result.put("userid", Integer.toString(id));
-        result.put("username", userName);
-        result.put("avatar", avatar);
-        return MyResponse.success(result);
-    }
-
-    /**
-     * @param user
-     * @return
-     */
-    private String getUserInfo(User user) {
-        Map<String, String> result = new HashMap<>();
-        result.put("phone", user.getPhone());
-        result.put("addr", user.getAddress());
-        return MyResponse.success(result);
-    }
-
 }

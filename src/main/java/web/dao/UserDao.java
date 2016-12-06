@@ -35,13 +35,13 @@ public interface UserDao {
      */
     User getUser(int id);
 
-   /**
+    /**
      * 验证密码是否正确
      *
      * @param email
      * @return
      */
-   User getUserByMail(String email);
+    User getUserByMail(String email);
 
     /**
      * 注册
@@ -58,7 +58,6 @@ public interface UserDao {
      * @return
      */
     MyMessage updateUser(User user);
-
 
 
 }
