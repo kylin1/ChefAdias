@@ -18,6 +18,13 @@ public interface EasyOrderService {
      */
     EasyOrder getEasyOrder(int userID) throws NotFoundException;
 
+    /**
+     * 添加easy order
+     * @param userID     
+     * @param orderID
+     * @return
+     * @throws NotFoundException
+     */
     MyMessage addEasyOrder(int userID, int orderID) throws NotFoundException;
 
 }
