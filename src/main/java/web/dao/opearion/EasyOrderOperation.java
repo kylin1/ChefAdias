@@ -9,7 +9,9 @@ import web.model.EasyOrder;
  */
 public interface EasyOrderOperation {
 
-    @Select({""})
+    @Select({"select easy.order_id, easy.user_id, o.price, o.create_time as `time`\n" +
+            "from `easy_order` easy,`order` o \n" +
+            "where easy.user_id = #{userId} and o.id = easy.id;"})
     EasyOrder getEasyOrder(int userId);
 
 }

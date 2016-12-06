@@ -13,10 +13,13 @@ public class EasyOrder {
 
     private int user_id;
 
+    //见 FoodList
     private List<OrderItem> food_list;
 
+    //总价
     private double price;
 
+    //下单时间
     private String time;
 
     public List<OrderItem> getFood_list() {
