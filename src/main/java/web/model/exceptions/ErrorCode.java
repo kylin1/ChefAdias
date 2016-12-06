@@ -11,6 +11,7 @@ public class ErrorCode {
 
     //内部错误
     public static final String SERVER = "1111";
+    public static final String JSON = "2222";
 
     //用户名错误
     public static final String WRONG_USERNAME = "0001";

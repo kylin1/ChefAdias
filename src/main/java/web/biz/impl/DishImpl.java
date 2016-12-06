@@ -34,17 +34,12 @@ public class DishImpl implements DishService {
     }
 
     @Override
-    public List<Food> getDishInType(int type) throws NotFoundException {
-        List<FoodType> dishMenus = this.getMenuCategory();
-        for (FoodType oneMenu:dishMenus){
-            //找到目标菜品种类
-            int id = oneMenu.getId();
-            if(id == type){
-                //寻找菜品种类下面的所有菜品信息
-                return foodDao.getFoodOfType(id);
-            }
+    public FoodType getDishInType(int type) throws NotFoundException {
+        FoodType foodType = this.foodTypeDao.getFoodType(type);
+        if(foodType == null){
+            throw new NotFoundException(ErrorCode.NO_TYPE_OF_FOOD);
         }
-        throw new NotFoundException(ErrorCode.NO_TYPE_OF_FOOD);
+        return foodType;
     }
 
     @Override
@@ -52,4 +47,11 @@ public class DishImpl implements DishService {
         return this.foodDao.addFood(food);
     }
 
+    public void setFoodDao(FoodDao foodDao) {
+        this.foodDao = foodDao;
+    }
+
+    public void setFoodTypeDao(FoodTypeDao foodTypeDao) {
+        this.foodTypeDao = foodTypeDao;
+    }
 }

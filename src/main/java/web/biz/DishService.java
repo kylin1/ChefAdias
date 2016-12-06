@@ -35,7 +35,7 @@ public interface DishService {
      * @return
      * @throws NotFoundException
      */
-    List<Food> getDishInType(int type) throws NotFoundException;
+    FoodType getDishInType(int type) throws NotFoundException;
 
     MyMessage addDish(Food food);
 

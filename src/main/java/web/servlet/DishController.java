@@ -18,7 +18,9 @@ import web.tools.MyResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class DishController {
@@ -85,8 +87,31 @@ public class DishController {
         String menuid = request.getParameter("menuid");
         int id = Integer.parseInt(menuid);
         try {
-            List<Food> menus = this.dishManage.getDishInType(id);
-            return MyResponse.success(menus);
+            //获取数据
+            Map<String,Object> result = new HashMap<>();
+            FoodType foodType = this.dishManage.getDishInType(id);
+            List<Food> menus = foodType.getFoodList();
+
+            //改变参数名称
+            List<Map<String,String>> foodList = new ArrayList<>();
+            for (Food food:menus){
+                Map<String,String> oneFood = new HashMap<>();
+                oneFood.put("foodid",Integer.toString(food.getId()));
+                oneFood.put("name",food.getName());
+                oneFood.put("pic",food.getPicture());
+                oneFood.put("price",food.getPrice().toString());
+                oneFood.put("good_num",Integer.toString(food.getLike()));
+                oneFood.put("bad_num",Integer.toString(food.getDislike()));
+                foodList.add(oneFood);
+            }
+
+            //返回参数
+            result.put("list", foodList);
+            result.put("pic",foodType.getPicture());
+            result.put("name",foodType.getName());
+            result.put("num",Integer.toString(foodType.getFoodNum()));
+
+            return MyResponse.success(result);
         } catch (NotFoundException e) {
             e.printStackTrace();
             return MyResponse.failure(e.getErrorCode(),e.getMessage(), new ArrayList<>());
