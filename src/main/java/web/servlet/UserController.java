@@ -167,6 +167,10 @@ public class UserController {
         return MyResponse.success(result);
     }
 
+    /**
+     * @param user
+     * @return
+     */
     private String getUserInfo(User user) {
         Map<String, String> result = new HashMap<>();
         result.put("phone", user.getPhone());

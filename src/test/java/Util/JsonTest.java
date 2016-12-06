@@ -5,10 +5,12 @@ import org.junit.Test;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
 import web.model.OrderItem;
+import web.tools.BeanTool;
 import web.tools.JsonConverter;
 import web.tools.MyResponse;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +39,10 @@ public class JsonTest {
 
         System.out.println(lst.size());
         for (OrderItem order : lst) {
-            System.out.print(order.getFoodid()+"->");
+            System.out.print(order.getFoodid() + "->");
             System.out.println(order.getNum());
         }
     }
-
 
 
     @Test
@@ -62,4 +63,15 @@ public class JsonTest {
         System.out.println(xx);
     }
 
+    @Test
+    public void testBeanTool() {
+        OrderItem item = new OrderItem();
+        item.setPrice(new BigDecimal(100));
+        item.setOrder_id(1);
+        item.setNum(1);
+        item.setFoodid(1);
+        item.setName("food");
+        Map<String, String> map = BeanTool.bean2Map(item);
+        System.out.println(map.toString());
+    }
 }

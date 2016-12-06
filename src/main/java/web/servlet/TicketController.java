@@ -62,7 +62,7 @@ public class TicketController {
         if (myMessage.isSuccess()) {
             return MyResponse.success(null);
         } else {
-            return MyResponse.failure(ErrorCode.SERVER, "未购买成功");
+            return MyResponse.failure(ErrorCode.SERVER, "failure in buying ticket");
         }
     }
 }
