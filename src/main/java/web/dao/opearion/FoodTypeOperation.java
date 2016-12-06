@@ -15,6 +15,9 @@ public interface FoodTypeOperation {
     @Select({"select * from food_type"})
     List<FoodType> getDishMenu();
 
+    @Select({"select * from food_type where `id` = #{id}"})
+    FoodType getFoodType(int id);
+
     @Select({"select count(*) from food where type_id=#{type}"})
     int getDishNumInType(int type);
 }

@@ -50,7 +50,7 @@ public class EasyOrderDaoImpl implements EasyOrderDao {
         return easyOrder;
     }
 
-    public EasyOrder getBasicOfUser(int userId) {
+    private EasyOrder getBasicOfUser(int userId) {
         EasyOrder easyOrder = null;
         try {
             this.session = MybatisUtils.getSession();

@@ -8,21 +8,29 @@ import java.math.BigDecimal;
  */
 public class Food {
 
+    // 食物 ID
     private int id;
 
+    // 食物名
     private String name;
 
+    // 食物照片
     private String picture;
 
+    // 食物价格
     private BigDecimal price;
 
-    private int type_id;
-
-    private String description;
-
+    // 好评数量
     private int like;
 
+    // 差评数量
     private int dislike;
+
+    // 食物所处种类的外键
+    private int type_id;
+
+    // 额外描述信息
+    private String description;
 
     public String getName() {
         return name;

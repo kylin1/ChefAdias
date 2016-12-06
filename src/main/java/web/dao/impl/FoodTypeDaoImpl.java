@@ -4,8 +4,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.FoodTypeDao;
+import web.dao.opearion.FoodOperation;
 import web.dao.opearion.FoodTypeOperation;
 import web.dao.util.MybatisUtils;
+import web.model.Food;
 import web.model.FoodType;
 import web.tools.MyMessage;
 
@@ -22,6 +24,7 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
 
     SqlSession session;
     FoodTypeOperation operation;
+    FoodOperation foodOperation;
 
     @Override
     public List<FoodType> getAllFoodType() {
@@ -50,7 +53,38 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
 
     @Override
     public FoodType getFoodType(int id) {
-        return null;
+        FoodType foodType = null;
+
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(FoodTypeOperation.class);
+            this.foodOperation = this.session.getMapper(FoodOperation.class);
+
+            // 基本分类信息
+            foodType = this.operation.getFoodType(id);
+            // 如果分类不存在,直接返回null
+            if(foodType == null){
+                return null;
+            }
+
+            // 分类里面的菜品数目
+            int num = this.operation.getDishNumInType(id);
+            foodType.setFoodNum(num);
+
+            // 分类里面的菜品详细信息
+            List<Food> listInType = this.foodOperation.getDishOfType(id);
+            foodType.setFoodList(listInType);
+
+            this.session.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+            this.session.close();
+        }
+
+        this.session.close();
+
+        return foodType;
     }
 
     @Override
