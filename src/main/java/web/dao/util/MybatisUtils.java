@@ -3,10 +3,7 @@ package web.dao.util;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import web.dao.opearion.FoodOperation;
-import web.dao.opearion.FoodTypeOperation;
-import web.dao.opearion.PostOperation;
-import web.dao.opearion.UserOperation;
+import web.dao.opearion.*;
 
 import java.io.InputStream;
 
@@ -39,6 +36,8 @@ public class MybatisUtils {
         sessionFactory.getConfiguration().addMapper(FoodTypeOperation.class);
         sessionFactory.getConfiguration().addMapper(FoodOperation.class);
         sessionFactory.getConfiguration().addMapper(UserOperation.class);
+        sessionFactory.getConfiguration().addMapper(EasyOrderOperation.class);
+        sessionFactory.getConfiguration().addMapper(OrderItemOperation.class);
     }
 
 }

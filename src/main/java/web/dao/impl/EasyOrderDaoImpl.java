@@ -1,8 +1,10 @@
 package web.dao.impl;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.EasyOrderDao;
+import web.dao.opearion.EasyOrderOperation;
 import web.model.EasyOrder;
 import web.tools.MyMessage;
 
@@ -13,6 +15,9 @@ import web.tools.MyMessage;
 @Transactional
 @Repository("easyOrderDao")
 public class EasyOrderDaoImpl implements EasyOrderDao {
+
+    SqlSession sqlSession;
+    EasyOrderOperation opeation;
 
     @Override
     public EasyOrder getEasyOrderOfUser(int userId) {

@@ -25,5 +25,5 @@ public interface OrderItemDao {
      * @param orderId 订单id
      * @return
      */
-    List<OrderItem> getaddOrderItemOfOrder(int orderId);
+    List<OrderItem> getOrderItemOfOrder(int orderId);
 }

@@ -1,5 +1,7 @@
 package web.model;
 
+import java.math.BigDecimal;
+
 /**
  * Created by kylin on 04/12/2016.
  * All rights reserved.
@@ -15,8 +17,19 @@ public class OrderItem {
     //食物名
     private String foodName;
 
+    //价格
+    private BigDecimal price;
+
     //数量
     private int food_num;
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
     public String getFoodName() {
         return foodName;
