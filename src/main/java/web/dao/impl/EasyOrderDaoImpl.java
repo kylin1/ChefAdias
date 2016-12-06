@@ -21,7 +21,7 @@ import java.util.List;
 @Repository("easyOrderDao")
 public class EasyOrderDaoImpl implements EasyOrderDao {
 
-    SqlSession sqlSession;
+    SqlSession session;
     EasyOrderOperation operation;
     OrderItemOperation itemOperation;
 
@@ -29,27 +29,97 @@ public class EasyOrderDaoImpl implements EasyOrderDao {
     public EasyOrder getEasyOrderOfUser(int userId) {
         EasyOrder easyOrder = null;
         try {
-            this.sqlSession = MybatisUtils.getSession();
-            this.operation = this.sqlSession.getMapper(EasyOrderOperation.class);
-            this.itemOperation = this.sqlSession.getMapper(OrderItemOperation.class);
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(EasyOrderOperation.class);
+            this.itemOperation = this.session.getMapper(OrderItemOperation.class);
 
             //获取基本信息
             easyOrder = this.operation.getEasyOrder(userId);
+
             //获取里面的list信息
             List<OrderItem> orderItems = this.itemOperation.getOrderItem(userId);
             easyOrder.setFood_list(orderItems);
 
-            this.sqlSession.commit();
+            this.session.commit();
         }catch (Exception ex){
-            this.sqlSession.rollback();
+            ex.printStackTrace();
+            this.session.rollback();
         }finally {
-            this.sqlSession.close();
+            this.session.close();
+        }
+        return easyOrder;
+    }
+
+    public EasyOrder getBasicOfUser(int userId) {
+        EasyOrder easyOrder = null;
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(EasyOrderOperation.class);
+            this.itemOperation = this.session.getMapper(OrderItemOperation.class);
+            easyOrder = this.operation.getEasyOrderBasic(userId);
+            this.session.commit();
+        }catch (Exception ex){
+            ex.printStackTrace();
+            this.session.rollback();
+        }finally {
+            this.session.close();
         }
         return easyOrder;
     }
 
     @Override
     public MyMessage addEasyOrder(EasyOrder easyOrder) {
-        return null;
+        int id = easyOrder.getUser_id();
+        EasyOrder old = this.getBasicOfUser(id);
+        //不存在则新增
+        if(old == null){
+            System.out.println("no");
+            this.insertEasyOrder(easyOrder);
+            return new MyMessage(true);
+            //存在则更新
+        }else{
+            System.out.println("has");
+            this.updateEasyOrder(easyOrder);
+            return new MyMessage(true);
+        }
     }
+
+    /**
+     * 用户无easyOrder则新增
+     *
+     * @param easyOrder
+     */
+    private void insertEasyOrder(EasyOrder easyOrder) {
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(EasyOrderOperation.class);
+            this.operation.insert(easyOrder);
+            this.session.commit();
+        }catch (Exception ex){
+            ex.printStackTrace();
+            this.session.rollback();
+        }finally {
+            this.session.close();
+        }
+    }
+
+    /**
+     * 更新
+     *
+     * @param easyOrder
+     */
+    private void updateEasyOrder(EasyOrder easyOrder) {
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(EasyOrderOperation.class);
+            this.operation.update(easyOrder);
+            this.session.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+        } finally {
+            this.session.close();
+        }
+    }
+
 }

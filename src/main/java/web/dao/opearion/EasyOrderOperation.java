@@ -1,6 +1,8 @@
 package web.dao.opearion;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import web.model.EasyOrder;
 
 /**
@@ -14,4 +16,17 @@ public interface EasyOrderOperation {
             "where easy.user_id = #{userId} and o.id = easy.id;"})
     EasyOrder getEasyOrder(int userId);
 
+    @Select({"select * from `easy_order` where user_id = #{userId}"})
+    EasyOrder getEasyOrderBasic(int userId);
+
+    @Insert({"insert into `easy_order` ( `order_id`, `user_id`) " +
+            " values (#{order_id}, #{user_id})"})
+    void insert(EasyOrder easyOrder);
+
+    @Select({"select * from `easy_order` where id = #{id}"})
+    EasyOrder getEasyOrderOfId(int id);
+
+    @Update({"update `easy_order` set `order_id`=#{order_id} " +
+            "where `user_id`=#{user_id} "})
+    void update(EasyOrder easyOrder);
 }

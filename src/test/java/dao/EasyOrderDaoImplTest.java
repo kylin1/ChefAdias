@@ -17,4 +17,22 @@ public class EasyOrderDaoImplTest {
         EasyOrder easyOrder = dao.getEasyOrderOfUser(1);
         CheckClass.checkObject("EasyOrder",easyOrder);
     }
+
+    @Test
+    public void test2() throws ClassNotFoundException {
+        EasyOrderDaoImpl dao = new EasyOrderDaoImpl();
+        EasyOrder easyOrder = new EasyOrder();
+        easyOrder.setUser_id(1);
+        easyOrder.setOrder_id(1);
+        dao.addEasyOrder(easyOrder);
+    }
+
+
+    @Test
+    public void test3() throws ClassNotFoundException {
+        EasyOrderDaoImpl dao = new EasyOrderDaoImpl();
+
+        EasyOrder easyOrder = dao.getBasicOfUser(1);
+        System.out.println(easyOrder == null);
+    }
 }

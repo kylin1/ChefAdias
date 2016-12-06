@@ -9,6 +9,8 @@ import java.util.List;
  */
 public class EasyOrder {
 
+    private int id;
+
     private int order_id;
 
     private int user_id;
@@ -24,6 +26,14 @@ public class EasyOrder {
 
     public List<OrderItem> getFood_list() {
         return food_list;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setFood_list(List<OrderItem> food_list) {
