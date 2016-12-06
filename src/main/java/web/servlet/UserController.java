@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import web.biz.IUserService;
+import web.biz.UserService;
 import web.model.User;
 import web.model.exceptions.DataConflictException;
 import web.model.exceptions.NotFoundException;
@@ -28,7 +28,7 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
     public

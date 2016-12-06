@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import web.biz.IDishManage;
+import web.biz.DishService;
 import web.model.Food;
 import web.model.FoodType;
 import web.model.exceptions.ErrorCode;
@@ -21,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class DishServlet {
+public class DishController {
 
     @Autowired
-    private IDishManage dishManage;
+    private DishService dishManage;
 
     @RequestMapping(value = "addDish.do", method = RequestMethod.POST)
     public

@@ -3,7 +3,7 @@ package web.biz.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import web.biz.IUserService;
+import web.biz.UserService;
 import web.dao.UserDao;
 import web.model.User;
 import web.model.exceptions.*;
@@ -17,7 +17,7 @@ import java.io.IOException;
  * All rights reserved.
  */
 @Service
-public class UserImpl implements IUserService {
+public class UserImpl implements UserService {
 
     @Autowired
     private UserDao userDao;

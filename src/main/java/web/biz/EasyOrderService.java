@@ -20,10 +20,10 @@ public interface EasyOrderService {
 
     /**
      * 添加easy order
-     * @param userID     
-     * @param orderID
-     * @return
-     * @throws NotFoundException
+     * @param userID 用户ID
+     * @param orderID 订单ID
+     * @return MyMessage
+     * @throws NotFoundException 用户或者订单ID不存在
      */
     MyMessage addEasyOrder(int userID, int orderID) throws NotFoundException;
 

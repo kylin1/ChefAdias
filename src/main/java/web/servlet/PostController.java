@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import web.biz.IPostManage;
+import web.biz.PostService;
 import web.model.communication.Post;
 import web.model.communication.PostBasicInfo;
 import web.model.communication.PostComment;
@@ -23,17 +23,17 @@ import java.util.Map;
  */
 
 @Controller
-public class PostServlet extends HttpServlet {
+public class PostController extends HttpServlet {
 
     @Autowired
-    private IPostManage iPostManage;
+    private PostService postService;
 
     @RequestMapping(value = "getPostList.do", method = RequestMethod.GET)
     public
     @ResponseBody
     Map<String, Object> getPostList() {
         Map<String, Object> map = new HashMap<>();
-        List<String> postList = this.iPostManage.getAllPost();
+        List<String> postList = this.postService.getAllPost();
         map.put("postList", postList);
         return map;
     }
@@ -49,7 +49,7 @@ public class PostServlet extends HttpServlet {
         basicInfo.setAuthor("admin");
         basicInfo.setTitle(postTitle);
         basicInfo.setTopic(postType);
-        this.iPostManage.publish(basicInfo, content);
+        this.postService.publish(basicInfo, content);
         return true;
     }
 
@@ -66,7 +66,7 @@ public class PostServlet extends HttpServlet {
         comment.setAuthor(author);
         comment.setDate(new Date());
         comment.setContent(text);
-        this.iPostManage.comment(postID, comment);
+        this.postService.comment(postID, comment);
         return true;
     }
 
@@ -75,7 +75,7 @@ public class PostServlet extends HttpServlet {
     @ResponseBody
     Map<String, Object> getPostByID(HttpServletRequest request) {
         String id = request.getParameter("postID");
-        Post returnPost = this.iPostManage.getPost(id);
+        Post returnPost = this.postService.getPost(id);
 
         Map<String, Object> map = new HashMap<>();
         if (returnPost != null)

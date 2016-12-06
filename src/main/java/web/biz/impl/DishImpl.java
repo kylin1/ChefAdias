@@ -2,7 +2,7 @@ package web.biz.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import web.biz.IDishManage;
+import web.biz.DishService;
 import web.dao.FoodDao;
 import web.dao.FoodTypeDao;
 import web.model.Food;
@@ -14,7 +14,7 @@ import web.tools.MyMessage;
 import java.util.List;
 
 @Service
-public class DishManage implements IDishManage {
+public class DishImpl implements DishService {
 
     @Autowired
     private FoodDao foodDao;

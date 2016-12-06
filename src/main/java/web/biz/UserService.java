@@ -11,7 +11,7 @@ import web.model.exceptions.WrongInputException;
  * Created by kylin on 03/12/2016.
  * All rights reserved.
  */
-public interface IUserService {
+public interface UserService {
 
     /**
      * 用户登录

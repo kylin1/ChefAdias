@@ -7,14 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web.biz.EasyOrderService;
-import web.biz.IUserService;
 import web.model.EasyOrder;
 import web.model.exceptions.ErrorCode;
 import web.model.exceptions.NotFoundException;
 import web.tools.JsonConverter;
 import web.tools.MyResponse;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +55,7 @@ public class EasyOrderController {
     @RequestMapping(value = "/addEasyOrder", method = RequestMethod.POST)
     @ResponseBody
     public String addEasyOrder(HttpServletRequest request) {
+
         return null;
     }
 }

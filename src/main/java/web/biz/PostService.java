@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by alfred on 16/8/13.
  */
-public interface IPostManage {
+public interface PostService {
     /**
      * 功能：发表
      *

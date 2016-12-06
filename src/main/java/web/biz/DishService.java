@@ -12,7 +12,7 @@ import web.tools.MyMessage;
 
 import java.util.List;
 
-public interface IDishManage {
+public interface DishService {
 
 
     /**

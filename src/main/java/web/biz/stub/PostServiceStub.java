@@ -1,6 +1,6 @@
 package web.biz.stub;
 
-import web.biz.IPostManage;
+import web.biz.PostService;
 import web.model.communication.Post;
 import web.model.communication.PostBasicInfo;
 import web.model.communication.PostComment;
@@ -15,7 +15,7 @@ import java.util.List;
  * All rights reserved.
  */
 
-public class PostManageStub implements IPostManage {
+public class PostServiceStub implements PostService {
     public boolean publish(PostBasicInfo basicInfo, String content) {
         return false;
     }
