@@ -1,8 +1,10 @@
 package web.dao.impl;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.TicketDao;
+import web.dao.opearion.TicketOperation;
 import web.model.Ticket;
 import web.model.UserTicket;
 import web.tools.MyMessage;
@@ -17,7 +19,11 @@ import java.util.List;
 @Repository("ticketDao")
 public class TicketDaoImpl implements TicketDao {
 
+    SqlSession session;
+    TicketOperation operation;
+
     @Override
+    //TODO 逻辑层应该计算剩余今日金额
     public List<Ticket> getTicketOfUser(int userId) {
         return null;
     }

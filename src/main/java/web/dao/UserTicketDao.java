@@ -1,6 +1,5 @@
 package web.dao;
 
-import web.model.Ticket;
 import web.model.UserTicket;
 import web.tools.MyMessage;
 
@@ -21,11 +20,10 @@ public interface UserTicketDao {
     MyMessage addUserTicket(UserTicket userTicket);
 
     /**
-     * 获取一个用户购买的所有餐券
+     * 获取用户购买的所有餐券
      *
-     * @param userId  用户ID
+     * @param userId
      * @return
      */
-    List<Ticket> getUserTicket(int userId);
-
+    List<UserTicket> getUserTicket(int userId);
 }
