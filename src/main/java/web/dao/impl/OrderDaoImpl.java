@@ -3,7 +3,7 @@ package web.dao.impl;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.OrderDao;
-import web.model.Order;
+import web.model.po.Order;
 import web.tools.MyMessage;
 
 import java.util.List;

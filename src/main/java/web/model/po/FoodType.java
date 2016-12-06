@@ -1,4 +1,4 @@
-package web.model;
+package web.model.po;
 
 import java.util.List;
 
@@ -16,20 +16,6 @@ public class FoodType {
 
     //图片 Url
     private String picture;
-
-    //该分类下菜品数量
-    private int foodNum;
-
-    //见表 List
-    private List<Food> foodList;
-
-    public List<Food> getFoodList() {
-        return foodList;
-    }
-
-    public void setFoodList(List<Food> foodList) {
-        this.foodList = foodList;
-    }
 
     public String getName() {
         return name;
@@ -55,11 +41,4 @@ public class FoodType {
         this.id = id;
     }
 
-    public int getFoodNum() {
-        return foodNum;
-    }
-
-    public void setFoodNum(int foodNum) {
-        this.foodNum = foodNum;
-    }
 }

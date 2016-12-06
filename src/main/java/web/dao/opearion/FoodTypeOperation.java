@@ -6,7 +6,7 @@
 package web.dao.opearion;
 
 import org.apache.ibatis.annotations.Select;
-import web.model.FoodType;
+import web.model.po.FoodType;
 
 import java.util.List;
 

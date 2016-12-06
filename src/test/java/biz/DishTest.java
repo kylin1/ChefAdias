@@ -5,8 +5,8 @@ import org.junit.Test;
 import web.biz.impl.DishImpl;
 import web.dao.impl.FoodDaoImpl;
 import web.dao.impl.FoodTypeDaoImpl;
-import web.model.Food;
-import web.model.FoodType;
+import web.model.po.Food;
+import web.model.po.FoodType;
 import web.model.exceptions.NotFoundException;
 import web.tools.MyResponse;
 

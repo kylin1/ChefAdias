@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.biz.EasyOrderService;
 import web.dao.EasyOrderDao;
-import web.model.EasyOrder;
+import web.model.po.EasyOrder;
 import web.model.exceptions.ErrorCode;
 import web.model.exceptions.NotFoundException;
 import web.tools.MyMessage;

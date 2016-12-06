@@ -1,7 +1,7 @@
 package web.biz;
 
-import web.model.ShopOrderItemVO;
-import web.model.ShopOrderVO;
+import web.model.vo.ShopOrderItemVO;
+import web.model.vo.ShopOrderVO;
 import web.tools.MyMessage;
 
 import java.util.List;

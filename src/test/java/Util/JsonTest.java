@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Test;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
-import web.model.OrderItem;
+import web.model.vo.OrderItem;
 import web.tools.BeanTool;
 import web.tools.JsonConverter;
 import web.tools.MyResponse;

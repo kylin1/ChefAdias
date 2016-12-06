@@ -6,10 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web.biz.TicketService;
-import web.model.Ticket;
-import web.model.UserTicket;
+import web.model.po.UserTicket;
 import web.model.exceptions.ErrorCode;
-import web.tools.JsonConverter;
 import web.tools.MyMessage;
 import web.tools.MyResponse;
 

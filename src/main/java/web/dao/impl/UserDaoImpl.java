@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
 import web.dao.opearion.UserOperation;
 import web.dao.util.MybatisUtils;
-import web.model.User;
+import web.model.po.User;
 import web.model.exceptions.DataConflictException;
 import web.model.exceptions.ErrorCode;
 import web.tools.MyMessage;

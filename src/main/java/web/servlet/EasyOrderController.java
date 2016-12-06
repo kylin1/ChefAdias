@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web.biz.EasyOrderService;
-import web.model.EasyOrder;
+import web.model.po.EasyOrder;
 import web.model.exceptions.ErrorCode;
 import web.model.exceptions.NotFoundException;
 import web.tools.JsonConverter;

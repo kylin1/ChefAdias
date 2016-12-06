@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import web.biz.UserService;
-import web.model.User;
+import web.model.po.User;
 import web.model.exceptions.DataConflictException;
 import web.model.exceptions.NotFoundException;
 import web.model.exceptions.ServerException;

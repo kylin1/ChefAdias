@@ -1,4 +1,4 @@
-package web.model.Response;
+package web.model.vo;
 
 import java.math.BigDecimal;
 
@@ -6,9 +6,9 @@ import java.math.BigDecimal;
  * Created by Alan on 2016/12/6.
  */
 public class OrderResponse {
-    String orderid;
-    BigDecimal price;
-    String time;
+    private String orderid;
+    private BigDecimal price;
+    private String time;
 
     public OrderResponse(String orderid, BigDecimal price, String time) {
         this.orderid = orderid;

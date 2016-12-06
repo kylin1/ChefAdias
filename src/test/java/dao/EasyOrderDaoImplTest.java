@@ -2,7 +2,7 @@ package dao;
 
 import org.junit.Test;
 import web.dao.impl.EasyOrderDaoImpl;
-import web.model.EasyOrder;
+import web.model.po.EasyOrder;
 import web.tools.CheckClass;
 
 /**

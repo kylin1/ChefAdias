@@ -1,6 +1,6 @@
 package web.biz;
 
-import web.model.Order;
+import web.model.po.Order;
 import web.tools.MyMessage;
 
 import java.util.List;

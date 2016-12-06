@@ -1,4 +1,4 @@
-package web.model;
+package web.model.po;
 
 /**
  * Created by kylin on 04/12/2016.

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import web.dao.FoodDao;
 import web.dao.opearion.FoodOperation;
 import web.dao.util.MybatisUtils;
-import web.model.Food;
+import web.model.po.Food;
 import web.tools.MyMessage;
 
 import java.util.ArrayList;

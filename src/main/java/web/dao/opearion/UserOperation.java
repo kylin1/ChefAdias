@@ -2,7 +2,7 @@ package web.dao.opearion;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-import web.model.User;
+import web.model.po.User;
 
 import java.util.List;
 

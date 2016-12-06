@@ -4,13 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.biz.TicketService;
 import web.dao.TicketDao;
-import web.model.Ticket;
-import web.model.UserTicket;
+import web.model.po.Ticket;
+import web.model.po.UserTicket;
 import web.tools.MyMessage;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 

@@ -3,7 +3,7 @@ package web.tools;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import web.model.OrderItem;
+import web.model.vo.OrderItem;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -32,9 +32,9 @@ public class JsonConverter {
     }
 
     public static List<OrderItem> getItemList(String input) throws IOException {
-        input = input.replace("foodid","food_id");
-        input = input.replace("num","food_num");
-        JavaType listType = getCollectionType(List.class,OrderItem.class);
+        input = input.replace("foodid", "food_id");
+        input = input.replace("num", "food_num");
+        JavaType listType = getCollectionType(List.class, OrderItem.class);
         return mapper.readValue(input, listType);
     }
 }

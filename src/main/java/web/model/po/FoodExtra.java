@@ -1,4 +1,4 @@
-package web.model;
+package web.model.po;
 
 /**
  * Created by kylin on 04/12/2016.
@@ -6,9 +6,19 @@ package web.model;
  */
 public class FoodExtra {
 
+    private int id;
+
     private int food_id;
 
     private int extra_food_id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getFood_id() {
         return food_id;

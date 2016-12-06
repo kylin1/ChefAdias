@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.biz.OrderService;
 import web.dao.OrderDao;
-import web.model.Order;
+import web.model.po.Order;
 import web.tools.MyMessage;
 
 import java.util.List;

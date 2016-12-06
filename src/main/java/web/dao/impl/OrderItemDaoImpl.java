@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import web.dao.OrderItemDao;
 import web.dao.opearion.OrderItemOperation;
 import web.dao.util.MybatisUtils;
-import web.model.OrderItem;
+import web.model.vo.OrderItem;
 import web.tools.MyMessage;
 
 import java.util.ArrayList;

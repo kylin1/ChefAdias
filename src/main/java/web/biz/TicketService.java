@@ -1,6 +1,6 @@
 package web.biz;
 
-import web.model.UserTicket;
+import web.model.po.UserTicket;
 import web.tools.MyMessage;
 
 /**

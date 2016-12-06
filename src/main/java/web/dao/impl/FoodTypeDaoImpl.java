@@ -7,8 +7,8 @@ import web.dao.FoodTypeDao;
 import web.dao.opearion.FoodOperation;
 import web.dao.opearion.FoodTypeOperation;
 import web.dao.util.MybatisUtils;
-import web.model.Food;
-import web.model.FoodType;
+import web.model.po.Food;
+import web.model.po.FoodType;
 import web.tools.MyMessage;
 
 import java.util.ArrayList;

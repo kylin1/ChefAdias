@@ -1,6 +1,6 @@
 package web.dao;
 
-import web.model.FoodType;
+import web.model.po.FoodType;
 import web.tools.MyMessage;
 
 import java.util.List;

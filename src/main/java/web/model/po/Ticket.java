@@ -1,4 +1,4 @@
-package web.model;
+package web.model.po;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,6 +9,8 @@ import java.util.Date;
  */
 public class Ticket {
 
+    private int id;
+
     private String name;
 
     private String description;
@@ -16,6 +18,14 @@ public class Ticket {
     private Date expire_time;
 
     private BigDecimal daily_upper;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

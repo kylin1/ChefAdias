@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import web.biz.UserService;
 import web.dao.UserDao;
-import web.model.User;
+import web.model.po.User;
 import web.model.exceptions.*;
 import web.tools.MyFile;
 import web.tools.MyMessage;

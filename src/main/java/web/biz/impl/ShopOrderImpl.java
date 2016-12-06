@@ -1,11 +1,9 @@
 package web.biz.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.biz.ShopOrderService;
-import web.dao.OrderDao;
-import web.model.ShopOrderItemVO;
-import web.model.ShopOrderVO;
+import web.model.vo.ShopOrderItemVO;
+import web.model.vo.ShopOrderVO;
 import web.tools.MyMessage;
 
 import java.util.List;
@@ -18,6 +16,7 @@ public class ShopOrderImpl implements ShopOrderService {
 
     @Override
     public ShopOrderVO getOrder(int orderID) {
+
         return null;
     }
 

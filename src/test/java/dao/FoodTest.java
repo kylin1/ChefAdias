@@ -3,7 +3,7 @@ package dao;
 import org.junit.Test;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
-import web.model.Food;
+import web.model.po.Food;
 import web.tools.CheckClass;
 
 import java.math.BigDecimal;

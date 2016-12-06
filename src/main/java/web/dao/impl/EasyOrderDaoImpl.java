@@ -7,8 +7,8 @@ import web.dao.EasyOrderDao;
 import web.dao.opearion.EasyOrderOperation;
 import web.dao.opearion.OrderItemOperation;
 import web.dao.util.MybatisUtils;
-import web.model.EasyOrder;
-import web.model.OrderItem;
+import web.model.po.EasyOrder;
+import web.model.vo.OrderItem;
 import web.tools.MyMessage;
 
 import java.util.List;

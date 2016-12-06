@@ -1,6 +1,6 @@
 package web.dao;
 
-import web.model.Bowl;
+import web.model.po.Bowl;
 import web.tools.MyMessage;
 
 import java.util.List;

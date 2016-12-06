@@ -2,7 +2,7 @@ package dao;
 
 import web.dao.UserDao;
 import web.dao.impl.UserDaoImpl;
-import web.model.User;
+import web.model.po.User;
 import web.model.exceptions.DataConflictException;
 import web.model.exceptions.NotFoundException;
 import web.tools.CheckClass;

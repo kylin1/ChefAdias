@@ -1,6 +1,6 @@
 package web.dao;
 
-import web.model.User;
+import web.model.po.User;
 import web.model.exceptions.DataConflictException;
 import web.tools.MyMessage;
 

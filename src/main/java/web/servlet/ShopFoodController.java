@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import web.biz.ShopFoodService;
 import web.biz.ShopOrderService;
 import web.model.exceptions.ErrorCode;
+import web.tools.JsonConverter;
 import web.tools.MyMessage;
 import web.tools.MyResponse;
 
@@ -32,8 +33,8 @@ public class ShopFoodController {
                           @RequestParam(value = "pic") MultipartFile pic,
                           @RequestParam(value = "typeid") String typeID,
                           @RequestParam(value = "price") double price,
-                          @RequestParam(value = "extra") List<String> foodIDList) {
-        MyMessage myMessage = service.addFood(name, pic, Integer.parseInt(typeID), price, foodIDList);
+                          @RequestParam(value = "extra") String foodIDList) {
+        MyMessage myMessage = service.addFood(name, pic, Integer.parseInt(typeID), price, null);
         if (myMessage.isSuccess()) {
             return MyResponse.success();
         } else {

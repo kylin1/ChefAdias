@@ -1,7 +1,7 @@
 package web.dao;
 
-import web.model.Ticket;
-import web.model.UserTicket;
+import web.model.po.Ticket;
+import web.model.po.UserTicket;
 import web.tools.MyMessage;
 
 import java.util.List;

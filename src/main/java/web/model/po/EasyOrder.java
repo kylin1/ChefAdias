@@ -1,4 +1,4 @@
-package web.model;
+package web.model.po;
 
 import java.util.List;
 
@@ -15,45 +15,12 @@ public class EasyOrder {
 
     private int user_id;
 
-    //见 FoodList
-    private List<OrderItem> food_list;
-
-    //总价
-    private double price;
-
-    //下单时间
-    private String time;
-
-    public List<OrderItem> getFood_list() {
-        return food_list;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setFood_list(List<OrderItem> food_list) {
-        this.food_list = food_list;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public int getOrder_id() {

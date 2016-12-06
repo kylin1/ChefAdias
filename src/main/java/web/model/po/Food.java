@@ -1,4 +1,4 @@
-package web.model;
+package web.model.po;
 
 import java.math.BigDecimal;
 

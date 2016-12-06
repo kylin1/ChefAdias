@@ -3,7 +3,7 @@ package dao;
 import org.junit.Test;
 import web.dao.FoodTypeDao;
 import web.dao.impl.FoodTypeDaoImpl;
-import web.model.FoodType;
+import web.model.po.FoodType;
 import web.tools.CheckClass;
 
 import java.util.List;

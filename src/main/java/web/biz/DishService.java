@@ -5,8 +5,8 @@
 
 package web.biz;
 
-import web.model.Food;
-import web.model.FoodType;
+import web.model.po.Food;
+import web.model.po.FoodType;
 import web.model.exceptions.NotFoundException;
 import web.tools.MyMessage;
 

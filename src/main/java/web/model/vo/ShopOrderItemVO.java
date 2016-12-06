@@ -1,19 +1,26 @@
-package web.model;
+package web.model.vo;
 
 import java.util.List;
 
 /**
  * Created by Alan on 2016/12/6.
  */
-public class ShopOrderVO {
+public class ShopOrderItemVO {
+    private String orderid;
     private String username;
     private String time;
     private String addr;
-    private String phone;
     private int isfinish;
     private String type;
     private double price;
-    private List<OrderItem> food_list;
+
+    public String getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
+    }
 
     public String getUsername() {
         return username;
@@ -37,14 +44,6 @@ public class ShopOrderVO {
 
     public void setAddr(String addr) {
         this.addr = addr;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public int getIsfinish() {
@@ -71,11 +70,4 @@ public class ShopOrderVO {
         this.price = price;
     }
 
-    public List<OrderItem> getFood_list() {
-        return food_list;
-    }
-
-    public void setFood_list(List<OrderItem> food_list) {
-        this.food_list = food_list;
-    }
 }

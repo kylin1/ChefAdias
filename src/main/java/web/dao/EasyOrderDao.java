@@ -1,6 +1,6 @@
 package web.dao;
 
-import web.model.EasyOrder;
+import web.model.po.EasyOrder;
 import web.tools.MyMessage;
 
 /**

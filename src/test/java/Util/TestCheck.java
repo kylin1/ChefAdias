@@ -1,13 +1,11 @@
 package Util;
 
 import org.junit.Test;
-import web.model.Bowl;
-import web.model.Order;
+import web.model.po.Bowl;
+import web.model.po.Order;
 import web.tools.CheckClass;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**

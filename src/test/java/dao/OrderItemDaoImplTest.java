@@ -2,7 +2,7 @@ package dao;
 
 import org.junit.Test;
 import web.dao.impl.OrderItemDaoImpl;
-import web.model.OrderItem;
+import web.model.vo.OrderItem;
 import web.tools.CheckClass;
 
 import java.util.List;

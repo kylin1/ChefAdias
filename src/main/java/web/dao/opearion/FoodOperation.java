@@ -2,7 +2,7 @@ package web.dao.opearion;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-import web.model.Food;
+import web.model.po.Food;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package web.biz;
 
-import web.model.EasyOrder;
+import web.model.po.EasyOrder;
 import web.model.exceptions.NotFoundException;
 import web.tools.MyMessage;
 
