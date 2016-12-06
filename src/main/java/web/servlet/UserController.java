@@ -39,19 +39,19 @@ public class UserController {
         String password = request.getParameter("password");
 
         try {
-            User user = this.userService.login(email,password);
+            User user = this.userService.login(email, password);
             //登录成功,返回结果
             return this.getUserResult(user);
 
             //用户邮箱不存在
         } catch (NotFoundException e) {
             e.printStackTrace();
-            return MyResponse.failure(e.getErrorCode(),e.getMessage(),"");
+            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
 
             //密码不正确
         } catch (WrongInputException e) {
             e.printStackTrace();
-            return MyResponse.failure(e.getErrorCode(),e.getMessage(),"");
+            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
         }
 
     }
@@ -67,14 +67,14 @@ public class UserController {
 
         //调用逻辑层
         try {
-            User newUser = this.userService.register(email,password,username);
+            User newUser = this.userService.register(email, password, username);
             //注册成功,返回信息
             return this.getUserResult(newUser);
 
             //逻辑处理异常
         } catch (DataConflictException e) {
             e.printStackTrace();
-            return MyResponse.failure(e.getErrorCode(),e.getMessage(),"");
+            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
         }
     }
 
@@ -88,10 +88,10 @@ public class UserController {
 
         String addr = request.getParameter("addr");
         try {
-            this.userService.changeAddress(intId,addr);
+            this.userService.changeAddress(intId, addr);
             return MyResponse.success("");
         } catch (NotFoundException e) {
-            return MyResponse.failure(e.getErrorCode(),e.getMessage(),"");
+            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
         }
     }
 
@@ -105,10 +105,10 @@ public class UserController {
 
         String phone = request.getParameter("phone");
         try {
-            this.userService.changePhone(intId,phone);
+            this.userService.changePhone(intId, phone);
             return MyResponse.success("");
         } catch (NotFoundException e) {
-            return MyResponse.failure(e.getErrorCode(),e.getMessage(),"");
+            return MyResponse.failure(e.getErrorCode(), e.getMessage(), "");
         }
     }
 
@@ -118,18 +118,17 @@ public class UserController {
     )
     @ResponseBody
     public String changeAvatar(@RequestParam(value = "userid", required = true) String userid,
-                              @RequestParam(value = "avatar", required = true) MultipartFile avatar,
-                              HttpServletRequest request){
+                               @RequestParam(value = "avatar", required = true) MultipartFile avatar) {
         int intId = Integer.parseInt(userid);
         try {
-            this.userService.changeAvatar(intId,avatar);
+            this.userService.changeAvatar(intId, avatar);
             return MyResponse.success();
         } catch (NotFoundException e) {
             e.printStackTrace();
-            return MyResponse.failure(e.getErrorCode(),e.getMessage());
+            return MyResponse.failure(e.getErrorCode(), e.getMessage());
         } catch (ServerException e) {
             e.printStackTrace();
-            return MyResponse.failure(e.getErrorCode(),e.getMessage());
+            return MyResponse.failure(e.getErrorCode(), e.getMessage());
         }
     }
 
@@ -138,7 +137,7 @@ public class UserController {
             method = RequestMethod.GET
     )
     @ResponseBody
-    public String getInfo(HttpServletRequest request){
+    public String getInfo(HttpServletRequest request) {
         String userid = request.getParameter("userid");
         int intId = MyConverter.getInt(userid);
 
@@ -147,7 +146,7 @@ public class UserController {
             return this.getUserInfo(user);
         } catch (NotFoundException e) {
             e.printStackTrace();
-            return MyResponse.failure(e.getErrorCode(),e.getMessage());
+            return MyResponse.failure(e.getErrorCode(), e.getMessage());
         }
     }
 
@@ -158,21 +157,21 @@ public class UserController {
      * @param user
      * @return
      */
-    private String getUserResult(User user){
+    private String getUserResult(User user) {
         int id = user.getId();
         String userName = user.getUsername();
         String avatar = user.getAvatar();
-        Map<String,String> result = new HashMap<>();
-        result.put("userid",Integer.toString(id));
-        result.put("username",userName);
-        result.put("avatar",avatar);
+        Map<String, String> result = new HashMap<>();
+        result.put("userid", Integer.toString(id));
+        result.put("username", userName);
+        result.put("avatar", avatar);
         return MyResponse.success(result);
     }
 
-    private String getUserInfo(User user){
-        Map<String,String> result = new HashMap<>();
-        result.put("phone",user.getPhone());
-        result.put("addr",user.getAddress());
+    private String getUserInfo(User user) {
+        Map<String, String> result = new HashMap<>();
+        result.put("phone", user.getPhone());
+        result.put("addr", user.getAddress());
         return MyResponse.success(result);
     }
 

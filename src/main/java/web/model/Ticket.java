@@ -1,6 +1,7 @@
 package web.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by kylin on 04/12/2016.
@@ -12,7 +13,7 @@ public class Ticket {
 
     private String description;
 
-    private int expire_day;
+    private Date expire_time;
 
     private BigDecimal daily_upper;
 
@@ -32,13 +33,6 @@ public class Ticket {
         this.description = description;
     }
 
-    public int getExpire_day() {
-        return expire_day;
-    }
-
-    public void setExpire_day(int expire_day) {
-        this.expire_day = expire_day;
-    }
 
     public BigDecimal getDaily_upper() {
         return daily_upper;
@@ -46,5 +40,13 @@ public class Ticket {
 
     public void setDaily_upper(BigDecimal daily_upper) {
         this.daily_upper = daily_upper;
+    }
+
+    public Date getExpire_time() {
+        return expire_time;
+    }
+
+    public void setExpire_time(Date expire_time) {
+        this.expire_time = expire_time;
     }
 }
