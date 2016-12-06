@@ -206,20 +206,3 @@ local.properties
 
 # Code Recommenders
 .recommenders/
-
-
-target/surefire-reports/TEST-Util.TestCheck.xml
-
-*.xml
-
-.idea/workspace.xml
-
-.idea/workspace.xml
-
-target/maven-archiver/pom.properties
-
-*.properties
-
-target/surefire-reports/biz.UserImplTest.txt
-
-target/maven-archiver/pom.properties
