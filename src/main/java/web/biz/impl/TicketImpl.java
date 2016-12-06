@@ -20,7 +20,13 @@ public class TicketImpl implements TicketService {
     @Override
     public UserTicket getTicketInfo(int userId) {
         List<Ticket> ticketList = dao.getTicketOfUser(userId);
-        
+        //list size为1
+        Ticket ticket = ticketList.get(0);
+
+        UserTicket userTicket = new UserTicket();
+        userTicket.setRemain(ticket.getDaily_upper());
+
+//        userTicket.setExpireTime();
         return null;
     }
 
