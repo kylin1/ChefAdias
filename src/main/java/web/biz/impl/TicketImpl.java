@@ -6,7 +6,12 @@ import web.biz.TicketService;
 import web.dao.TicketDao;
 import web.model.Ticket;
 import web.model.UserTicket;
+import web.tools.MyMessage;
 
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,8 +19,10 @@ import java.util.List;
  */
 @Service
 public class TicketImpl implements TicketService {
+    private static final double UPPER_BOUND = 80;
     @Autowired
-    TicketDao dao;
+    private TicketDao dao;
+
 
     @Override
     public UserTicket getTicketInfo(int userId) {
@@ -25,13 +32,19 @@ public class TicketImpl implements TicketService {
 
         UserTicket userTicket = new UserTicket();
         userTicket.setRemain(ticket.getDaily_upper());
+        userTicket.setExpireTime(ticket.getExpire_time());
 
-//        userTicket.setExpireTime();
-        return null;
+        return userTicket;
     }
 
     @Override
-    public boolean buyTicket(int userId, int ticketId) {
-        return false;
+    public MyMessage buyTicket(int userId, int ticketId) {
+        UserTicket userTicket = new UserTicket();
+        userTicket.setUser_id(userId);
+        userTicket.setTicket_id(ticketId);
+        userTicket.setRemain(new BigDecimal(UPPER_BOUND));
+        userTicket.setBought_time(new Date());
+
+        return dao.addTicket(userTicket);
     }
 }

@@ -10,6 +10,7 @@ import web.model.Ticket;
 import web.model.UserTicket;
 import web.model.exceptions.ErrorCode;
 import web.tools.JsonConverter;
+import web.tools.MyMessage;
 import web.tools.MyResponse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,8 +58,8 @@ public class TicketController {
         int intUserID = Integer.parseInt(userID);
         int intTickID = Integer.parseInt(tickID);
 
-        boolean isSuccess = service.buyTicket(intUserID, intTickID);
-        if (isSuccess) {
+        MyMessage myMessage = service.buyTicket(intUserID, intTickID);
+        if (myMessage.isSuccess()) {
             return MyResponse.success(null);
         } else {
             return MyResponse.failure(ErrorCode.SERVER, "未购买成功");

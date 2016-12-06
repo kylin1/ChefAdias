@@ -55,11 +55,11 @@ drop table if exists `food_list`;
 create table `food_list`(
 	`id` int(11) not null auto_increment,
 	`order_id` int(11) not null,
-	`food_id` int(11) not null,
-	`food_num` int(11) not null default '1',
+	`foodid` int(11) not null,
+	`num` int(11) not null default '1',
 	primary key(`id`),
 
-CONSTRAINT `food_list_ibfk_1` FOREIGN KEY (`food_id`) 
+CONSTRAINT `food_list_ibfk_1` FOREIGN KEY (`foodid`)
 	REFERENCES `food` (`id`) 
 	ON DELETE CASCADE ON UPDATE CASCADE,
 
@@ -128,11 +128,11 @@ CONSTRAINT `user_ticket_ibfk_2` FOREIGN KEY (`ticket_id`)
 drop table if exists `food_extra`;
 create table `food_extra`(
 	`id` int(11) not null auto_increment,
-	`food_id` int(11) not null,
+	`foodid` int(11) not null,
 	`extra_food_id` int(11) not null,
 	primary key(`id`),
 
-CONSTRAINT `food_extra_ibfk_1` FOREIGN KEY (`food_id`) 
+CONSTRAINT `food_extra_ibfk_1` FOREIGN KEY (`foodid`)
 	REFERENCES `food` (`id`) 
 	ON DELETE CASCADE ON UPDATE CASCADE,
 

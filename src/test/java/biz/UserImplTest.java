@@ -19,16 +19,16 @@ public class UserImplTest {
 
     private UserImpl service;
 
-    public UserImplTest(){
+    public UserImplTest() {
         this.dao = new UserDaoImpl();
         this.service = new UserImpl();
         this.service.setUserDao(dao);
     }
 
     @Test
-    public void login(){
+    public void login() {
         try {
-            User user = this.service.login("1111@163.com","123123");
+            User user = this.service.login("1111@163.com", "123123");
             System.out.println(user.getId());
         } catch (NotFoundException e) {
             e.printStackTrace();
@@ -38,9 +38,9 @@ public class UserImplTest {
     }
 
     @Test
-    public void register(){
+    public void register() {
         try {
-            User user = this.service.register("1111@163.com","123123","Kylin666");
+            User user = this.service.register("1111@163.com", "123123", "Kylin666");
             System.out.println(user.getId());
         } catch (DataConflictException e) {
             e.printStackTrace();
@@ -48,10 +48,10 @@ public class UserImplTest {
     }
 
     @Test
-    public void testChangeString(){
+    public void testChangeString() {
         try {
-            this.service.changeAddress(5,"1123123 addr");
-            this.service.changePhone(5,"new phone");
+            this.service.changeAddress(5, "1123123 addr");
+            this.service.changePhone(5, "new phone");
         } catch (NotFoundException e) {
             e.printStackTrace();
         }

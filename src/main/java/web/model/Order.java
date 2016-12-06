@@ -10,6 +10,9 @@ import java.util.List;
  */
 public class Order {
 
+    //订单ID
+    private int order_id;
+
     //用户 ID
     private int user_id;
 
@@ -85,5 +88,13 @@ public class Order {
 
     public void setOrderItemList(List<OrderItem> orderItemList) {
         this.orderItemList = orderItemList;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 }

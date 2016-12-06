@@ -38,4 +38,9 @@ public class OrderImpl implements OrderService {
     public Order getOrder(int orderId) {
         return this.dao.getOrder(orderId);
     }
+
+    @Override
+    public MyMessage comment(int userID, int foodID, int comment) {
+        return null;
+    }
 }

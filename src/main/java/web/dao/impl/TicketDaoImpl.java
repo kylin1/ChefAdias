@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.TicketDao;
 import web.model.Ticket;
+import web.model.UserTicket;
 import web.tools.MyMessage;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class TicketDaoImpl implements TicketDao {
     }
 
     @Override
-    public MyMessage addTicket(Ticket newTicket) {
+    public MyMessage addTicket(UserTicket newTicket) {
         return null;
     }
 

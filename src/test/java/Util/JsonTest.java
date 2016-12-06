@@ -37,8 +37,8 @@ public class JsonTest {
 
         System.out.println(lst.size());
         for (OrderItem order : lst) {
-            System.out.print(order.getFood_id()+"->");
-            System.out.println(order.getFood_num());
+            System.out.print(order.getFoodid()+"->");
+            System.out.println(order.getNum());
         }
     }
 

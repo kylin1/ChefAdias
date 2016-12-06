@@ -6,6 +6,8 @@ import web.model.Order;
 import web.tools.CheckClass;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -19,7 +21,7 @@ public class TestCheck {
         Bowl bowl = new Bowl();
         bowl.setIs_return(1);
         bowl.setUser_id(1);
-        CheckClass.checkObject("Bowl",bowl);
+        CheckClass.checkObject("Bowl", bowl);
     }
 
     @Test
@@ -29,6 +31,6 @@ public class TestCheck {
         order.setCreate_time(new Date());
         order.setPrice(new BigDecimal("123.23"));
 
-        CheckClass.checkObject("Order",order);
+        CheckClass.checkObject("Order", order);
     }
 }
