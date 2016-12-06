@@ -34,8 +34,7 @@ public class DishController {
     String addDish(@RequestParam(value = "name", required = false) String name,
                    @RequestParam(value = "type", required = false) String intType,
                    @RequestParam(value = "price", required = false) String price,
-                   @RequestParam(value = "file", required = false) MultipartFile picture,
-                   HttpServletRequest request) {
+                   @RequestParam(value = "file", required = false) MultipartFile picture) {
 
         try {
             int type = Integer.parseInt(intType);
