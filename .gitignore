@@ -220,3 +220,4 @@ local.properties
 .idea/artifacts/ChefAdia_war.xml
 
 .idea/artifacts/ChefAdia_war_exploded.xml
+src/main/resources/

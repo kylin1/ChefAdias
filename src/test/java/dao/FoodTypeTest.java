@@ -18,6 +18,7 @@ public class FoodTypeTest {
 
     @Test
     public void testAll() throws ClassNotFoundException {
+        //test change
         List<FoodType> list = dao.getAllFoodType();
         for (FoodType foodType : list){
             CheckClass.checkObject("FoodType",foodType);
