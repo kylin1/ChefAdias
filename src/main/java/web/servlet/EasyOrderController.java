@@ -22,6 +22,7 @@ import java.util.Map;
  * Created by Alan on 2016/12/5.
  * All rights reserved.
  */
+@RequestMapping("menu")
 @Controller
 public class EasyOrderController {
     @Autowired
