@@ -12,16 +12,16 @@ public class OrderItem {
     private int order_id;
 
     //食物 ID
-    private int food_id;
+    private int foodid;
 
     //食物名
-    private String foodName;
+    private String name;
 
     //价格
     private BigDecimal price;
 
     //数量
-    private int food_num;
+    private int num;
 
     public BigDecimal getPrice() {
         return price;
@@ -31,12 +31,12 @@ public class OrderItem {
         this.price = price;
     }
 
-    public String getFoodName() {
-        return foodName;
+    public String getName() {
+        return name;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getOrder_id() {
@@ -47,19 +47,19 @@ public class OrderItem {
         this.order_id = order_id;
     }
 
-    public int getFood_id() {
-        return food_id;
+    public int getFoodid() {
+        return foodid;
     }
 
-    public void setFood_id(int food_id) {
-        this.food_id = food_id;
+    public void setFoodid(int foodid) {
+        this.foodid = foodid;
     }
 
-    public int getFood_num() {
-        return food_num;
+    public int getNum() {
+        return num;
     }
 
-    public void setFood_num(int food_num) {
-        this.food_num = food_num;
+    public void setNum(int num) {
+        this.num = num;
     }
 }

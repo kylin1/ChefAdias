@@ -1,6 +1,7 @@
 package web.biz;
 
 import web.model.UserTicket;
+import web.tools.MyMessage;
 
 /**
  * Created by kylin on 05/12/2016.
@@ -21,7 +22,7 @@ public interface TicketService {
      *
      * @param userId
      * @param ticketId
-     * @return
+     * @return MyMessage
      */
-    boolean buyTicket(int userId, int ticketId);
+    MyMessage buyTicket(int userId, int ticketId);
 }

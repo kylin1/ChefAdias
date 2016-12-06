@@ -1,6 +1,7 @@
 package web.dao;
 
 import web.model.Ticket;
+import web.model.UserTicket;
 import web.tools.MyMessage;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public interface TicketDao {
     List<Ticket> getAllTicket();
 
     //为餐厅提供的CURD方法
-    MyMessage addTicket(Ticket newTicket);
+    MyMessage addTicket(UserTicket newTicket);
 
     MyMessage updateTicket(Ticket ticket);
 

@@ -1,6 +1,7 @@
 package web.biz;
 
 import web.model.Order;
+import web.tools.MyMessage;
 
 import java.util.List;
 
@@ -29,9 +30,19 @@ public interface OrderService {
     /**
      * 获取订单内容
      *
-     * @param  orderId
+     * @param orderId
      * @return
      */
     Order getOrder(int orderId);
+
+    /**
+     * 评价菜品
+     *
+     * @param userID  用户ID
+     * @param foodID  食物ID
+     * @param comment 评论 1好/0不好
+     * @return MyMessage
+     */
+    MyMessage comment(int userID, int foodID, int comment);
 
 }

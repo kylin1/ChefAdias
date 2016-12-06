@@ -30,7 +30,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     public
     @ResponseBody
     String login(HttpServletRequest request) {
@@ -56,7 +56,7 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "register.do", method = RequestMethod.POST)
+    @RequestMapping(value = "register", method = RequestMethod.POST)
     public
     @ResponseBody
     String register(HttpServletRequest request) {
@@ -78,7 +78,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/modAddr", method = RequestMethod.POST)
+    @RequestMapping(value = "modAddr", method = RequestMethod.POST)
     public
     @ResponseBody
     String modAddr(HttpServletRequest request) {
@@ -95,7 +95,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/modPhone", method = RequestMethod.POST)
+    @RequestMapping(value = "modPhone", method = RequestMethod.POST)
     public
     @ResponseBody
     String modPhone(HttpServletRequest request) {
@@ -113,7 +113,7 @@ public class UserController {
     }
 
     @RequestMapping(
-            value = "/modAva",
+            value = "modAva",
             method = RequestMethod.POST
     )
     @ResponseBody
@@ -133,7 +133,7 @@ public class UserController {
     }
 
     @RequestMapping(
-            value = "/getInfo",
+            value = "getInfo",
             method = RequestMethod.GET
     )
     @ResponseBody
