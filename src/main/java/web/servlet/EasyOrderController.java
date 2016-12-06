@@ -10,6 +10,8 @@ import web.biz.EasyOrderService;
 import web.model.po.EasyOrder;
 import web.model.exceptions.ErrorCode;
 import web.model.exceptions.NotFoundException;
+import web.model.vo.EasyOrderVO;
+import web.tools.BeanTool;
 import web.tools.JsonConverter;
 import web.tools.MyMessage;
 import web.tools.MyResponse;
@@ -22,7 +24,7 @@ import java.util.Map;
  * Created by Alan on 2016/12/5.
  * All rights reserved.
  */
-@RequestMapping("menu")
+@RequestMapping("user")
 @Controller
 public class EasyOrderController {
     @Autowired
@@ -35,22 +37,12 @@ public class EasyOrderController {
         int intUserID = Integer.parseInt(userID);
 
         try {
-            EasyOrder easyOrder = service.getEasyOrder(intUserID);
-            try {
-                Map<String, String> resultMap = new HashMap<>();
-                String foodListJson = JsonConverter.jsonOfObject(easyOrder.getFood_list());
-                resultMap.put("food_list", foodListJson);
-                resultMap.put("price", easyOrder.getPrice() + "");
-                resultMap.put("time", easyOrder.getTime());
-                return MyResponse.success(resultMap);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-                return MyResponse.failure(ErrorCode.SERVER, e.getMessage());
-            }
+            EasyOrderVO easyOrderVO = service.getEasyOrder(intUserID);
+            return MyResponse.success(BeanTool.bean2Map(easyOrderVO));
 
         } catch (NotFoundException e) {
             e.printStackTrace();
-            return MyResponse.failure(ErrorCode.SERVER, e.getMessage());
+            return MyResponse.failure(ErrorCode.SERVER, "fail to obtain easy order");
         }
     }
 

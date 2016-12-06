@@ -28,6 +28,7 @@ import java.util.Map;
  * All rights reserved.
  */
 @Controller
+@RequestMapping("user")
 public class UserController {
 
     @Autowired

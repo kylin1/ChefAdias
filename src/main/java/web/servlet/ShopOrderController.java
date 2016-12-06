@@ -54,7 +54,7 @@ public class ShopOrderController {
         int intOrderID = Integer.parseInt(orderID);
 
         ShopOrderVO shopOrderVO = service.getOrder(intOrderID);
-        Map<String, String> shopOrderMap = BeanTool.bean2Map(shopOrderVO);
+        Map<String, Object> shopOrderMap = BeanTool.bean2Map(shopOrderVO);
         if (shopOrderMap != null) {
             return MyResponse.success(shopOrderMap);
         } else {

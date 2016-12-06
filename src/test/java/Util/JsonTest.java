@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Test;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
+import web.model.vo.EasyOrderVO;
+import web.model.vo.FoodListVO;
 import web.model.vo.OrderItem;
 import web.tools.BeanTool;
 import web.tools.JsonConverter;
@@ -11,6 +13,7 @@ import web.tools.MyResponse;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +23,6 @@ import java.util.Map;
  * All rights reserved.
  */
 public class JsonTest {
-
     @Test
     public void testJson() throws JsonProcessingException {
         FoodDao dishDao = new FoodDaoImpl();
@@ -65,13 +67,18 @@ public class JsonTest {
 
     @Test
     public void testBeanTool() {
-        OrderItem item = new OrderItem();
-        item.setPrice(new BigDecimal(100));
-        item.setOrder_id(1);
-        item.setNum(1);
-        item.setFoodid(1);
-        item.setName("food");
-        Map<String, String> map = BeanTool.bean2Map(item);
-        System.out.println(map.toString());
+        FoodListVO foodListVO1 = new FoodListVO("1", "food1", new BigDecimal(1), 1),
+                foodListVO2 = new FoodListVO("2", "food2", new BigDecimal(2), 1);
+        List<FoodListVO> foodListVOList = new ArrayList<>();
+        foodListVOList.add(foodListVO1);
+        foodListVOList.add(foodListVO2);
+
+        EasyOrderVO easyOrderVO = new EasyOrderVO(foodListVOList, new BigDecimal(3), "2016-11-02");
+        Map<String, String> map = BeanTool.bean2Map(easyOrderVO);
+        if (map != null) {
+            System.out.println(map.toString());
+        } else {
+            System.out.println("map is null");
+        }
     }
 }

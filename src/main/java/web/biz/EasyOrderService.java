@@ -2,6 +2,7 @@ package web.biz;
 
 import web.model.po.EasyOrder;
 import web.model.exceptions.NotFoundException;
+import web.model.vo.EasyOrderVO;
 import web.tools.MyMessage;
 
 /**
@@ -16,11 +17,12 @@ public interface EasyOrderService {
      * @return EasyOrder
      * @throws NotFoundException 用户ID不存在
      */
-    EasyOrder getEasyOrder(int userID) throws NotFoundException;
+    EasyOrderVO getEasyOrder(int userID) throws NotFoundException;
 
     /**
      * 添加easy order
-     * @param userID 用户ID
+     *
+     * @param userID  用户ID
      * @param orderID 订单ID
      * @return MyMessage
      * @throws NotFoundException 用户或者订单ID不存在
