@@ -15,18 +15,15 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/file")
 public class PictureController {
 
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    private String fildUpload(@RequestParam(value = "name", required = false) String name,
-                              @RequestParam(value = "password", required = false) String password,
-                              @RequestParam(value = "file", required = false) MultipartFile file,
-                              HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    private String fildUpload(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
         String savedFilePath = MyFile.saveFile(file);
         System.out.println("newFile=" + savedFilePath);
         return "showPicture";
     }
 
     //因为我的JSP在WEB-INF目录下面，浏览器无法直接访问
-    @RequestMapping(value = "/forward")
+    @RequestMapping(value = "forward")
     private String forward() {
         return "uploadPicture";
     }

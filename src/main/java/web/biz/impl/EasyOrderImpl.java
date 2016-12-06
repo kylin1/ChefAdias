@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import web.biz.EasyOrderService;
 import web.dao.EasyOrderDao;
 import web.model.EasyOrder;
+import web.model.exceptions.ErrorCode;
 import web.model.exceptions.NotFoundException;
 import web.tools.MyMessage;
 
@@ -13,15 +14,17 @@ import web.tools.MyMessage;
  */
 @Service
 public class EasyOrderImpl implements EasyOrderService {
-//    @Autowired
-//    EasyOrderDao dao;
+    @Autowired
+    EasyOrderDao dao;
 
     @Override
     public EasyOrder getEasyOrder(int userID) throws NotFoundException {
-        EasyOrder easyOrder = new EasyOrder();
-        easyOrder.setPrice(100.3);
-        return easyOrder;
-//        return dao.getEasyOrderOfUser(userID);
+        EasyOrder easyOrder = dao.getEasyOrderOfUser(userID);
+        if (easyOrder == null) {
+            throw new NotFoundException(ErrorCode.SERVER);
+        } else {
+            return easyOrder;
+        }
     }
 
     @Override

@@ -23,6 +23,5 @@ public interface TicketService {
      * @param ticketId
      * @return
      */
-    boolean butTicket(int userId, int ticketId);
-
+    boolean buyTicket(int userId, int ticketId);
 }

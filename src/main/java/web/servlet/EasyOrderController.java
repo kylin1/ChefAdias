@@ -11,6 +11,7 @@ import web.model.EasyOrder;
 import web.model.exceptions.ErrorCode;
 import web.model.exceptions.NotFoundException;
 import web.tools.JsonConverter;
+import web.tools.MyMessage;
 import web.tools.MyResponse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,7 @@ public class EasyOrderController {
     @Autowired
     private EasyOrderService service;
 
-    @RequestMapping(value = "/getEasyOrder", method = RequestMethod.GET)
+    @RequestMapping(value = "getEasyOrder", method = RequestMethod.GET)
     @ResponseBody
     public String getEasyOrder(HttpServletRequest request) {
         String userID = request.getParameter("userid");
@@ -52,10 +53,25 @@ public class EasyOrderController {
         }
     }
 
-    @RequestMapping(value = "/addEasyOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "modEasyOrder", method = RequestMethod.POST)
     @ResponseBody
-    public String addEasyOrder(HttpServletRequest request) {
+    public String modEasyOrder(HttpServletRequest request) {
+        String userID = request.getParameter("userid");
+        String orderID = request.getParameter("orderid");
 
-        return null;
+        int intUserID = Integer.parseInt(userID);
+        int intOrderID = Integer.parseInt(orderID);
+
+        try {
+            MyMessage myMessage = service.addEasyOrder(intUserID, intOrderID);
+            if (myMessage.isSuccess()) {
+                return MyResponse.success(null);
+            } else {
+                return MyResponse.failure(ErrorCode.SERVER, "修改失败");
+            }
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+            return MyResponse.failure(ErrorCode.SERVER, e.getMessage());
+        }
     }
 }
