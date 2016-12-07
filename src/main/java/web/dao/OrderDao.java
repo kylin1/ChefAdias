@@ -28,6 +28,16 @@ public interface OrderDao {
     List<Order> getOrderOfUser(int userID);
 
     /**
+     * 按天获取指定用户的订单历史
+     *
+     * @param startDate 日期 YYYY-MM-dd
+     * @param endDate 日期 YYYY-MM-dd
+     * @return
+     */
+    List<Order> getOrderInDay(int userId, String startDate,String endDate);
+
+
+    /**
      * 按天获取订单历史,日期的开闭是[startDate, endDate)
      *
      * 如果想获取一天的数据,startDate为目标日期,endDate为后一天

@@ -61,9 +61,24 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public List<Order> getOrderInDay(int userId, String startDate, String endDate) {
+        List<Order> list = new ArrayList<>();
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(OrderOperation.class);
+            list = this.operation.getOrderOfUserInDay(userId, startDate, endDate);
+            this.session.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+        } finally {
+            this.session.close();
+        }
+        return list;
+    }
+
+    @Override
     public List<Order> getOrderInDay(String startDate, String endDate) {
-
-
         List<Order> list = new ArrayList<>();
         try {
             this.session = MybatisUtils.getSession();

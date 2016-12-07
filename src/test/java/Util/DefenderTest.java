@@ -11,6 +11,8 @@ public class DefenderTest {
 
     @Test
     public void testDate(){
-        InputDefender.checkDate("123");
+        assert !InputDefender.checkDate("123");
+        assert !InputDefender.checkDate("2015-123-23");
+        assert InputDefender.checkDate("2015-12-03");
     }
 }

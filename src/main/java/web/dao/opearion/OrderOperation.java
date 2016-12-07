@@ -32,4 +32,10 @@ public interface OrderOperation {
 
     @Update({"update `order` set `is_finish`=#{state} where `id`=#{orderId} "})
     void updateState(int orderId, int state);
+
+    @Select({"select * from `order` o " +
+            "where o.`user_id` = #{userId} and o.`create_time` >= #{startDate} " +
+            "   and o.`create_time` < #{endDate}"})
+    List<Order> getOrderOfUserInDay(@Param("userId")int userId,
+                                    @Param("startDate")String startDate, @Param("endDate")String endDate);
 }
