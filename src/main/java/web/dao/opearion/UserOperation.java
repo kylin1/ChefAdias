@@ -24,8 +24,8 @@ public interface UserOperation {
     @Select({"select * from user where email = #{email}"})
     User getUserByMail(String email);
 
-    @Insert({"insert into user(username,password,email,avatar,address,phone)"+
-            " values(#{username},#{password},#{email},#{avatar},#{address},#{phone})"})
+    @Insert({"insert into user(username,password,email,address,phone)"+
+            " values(#{username},#{password},#{email},#{address},#{phone})"})
     void save(User user);
 
     @Insert({"update user set username=#{username},password=#{password},email=#{email}," +

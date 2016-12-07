@@ -2,8 +2,13 @@ package Util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Test;
+import web.biz.impl.UserImpl;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
+import web.dao.impl.UserDaoImpl;
+import web.model.exceptions.DataConflictException;
+import web.model.exceptions.NotFoundException;
+import web.model.exceptions.WrongInputException;
 import web.model.vo.*;
 import web.tools.BeanTool;
 import web.tools.JsonListConverter;
@@ -71,6 +76,17 @@ public class JsonTest {
         result.put("avatar", "ava");
         String xx = MyResponse.success(result);
         System.out.println(xx);
+    }
+
+
+    @Test
+    public void testRegister2() throws WrongInputException, NotFoundException, DataConflictException {
+        UserImpl userService = new UserImpl();
+        userService.setUserDao(new UserDaoImpl());
+        UserVO newUser = userService.register("123", "123", "name");
+        Map<String, Object> map = BeanTool.bean2Map(newUser);
+        System.out.println(map.size());
+
     }
 
 //    @Test
