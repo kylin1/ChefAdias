@@ -1,6 +1,7 @@
 package web.dao.opearion;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import web.model.po.Order;
@@ -19,8 +20,12 @@ public interface OrderOperation {
             "#{bowl_info},#{user_id},#{create_time},)"})
     void save(Order order);
 
-    @Select({"select * from `order` where user_id = #{user_id}"})
+    @Select({"select * from `order` where user_id = #{userID}"})
     List<Order> getOrderOfUser(int userID);
+
+    @Select({"select * from `order` o " +
+            "where o.`create_time` >= #{startDate} and o.`create_time` < #{endDate}"})
+    List<Order> getOrderInDay(@Param("startDate")String startDate, @Param("endDate")String endDate);
 
     @Select({"select * from `order` where id = #{id}"})
     Order getOrder(int id);
