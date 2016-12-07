@@ -49,4 +49,11 @@ public class FoodTest {
     }
 
 
+    @Test
+    public void testFood() throws ClassNotFoundException {
+//        List<Food> list = dishDao.getFoodOfType(2);
+        Food food = dishDao.getFood(1);
+        CheckClass.checkObject("Food",food);
+    }
+
 }

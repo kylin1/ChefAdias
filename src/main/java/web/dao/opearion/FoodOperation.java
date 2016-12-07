@@ -17,6 +17,9 @@ public interface FoodOperation {
     @Select({"select * from food"})
     List<Food> getAllFood();
 
+    @Select({"select * from food where id = #{id}"})
+    Food getFood(int id);
+
     //like 是关键字,坑!
     @Insert({"insert into food(name,picture,price,type_id,`description`,`like`,dislike)" +
             " values(#{name},#{picture},#{price},#{type_id},#{description},#{like},#{dislike})"})
@@ -31,4 +34,6 @@ public interface FoodOperation {
 
     @Delete({"delete from `food` where `id`=#{id} "})
     void delete(int id);
+
+
 }

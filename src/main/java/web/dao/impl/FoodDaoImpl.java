@@ -44,7 +44,19 @@ public class FoodDaoImpl implements FoodDao {
 
     @Override
     public Food getFood(int id) {
-        return null;
+        Food food = null;
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(FoodOperation.class);
+            food = this.operation.getFood(id);
+            this.session.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+        } finally {
+            this.session.close();
+        }
+        return food;
     }
 
     @Override
