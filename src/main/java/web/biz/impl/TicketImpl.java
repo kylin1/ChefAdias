@@ -7,11 +7,17 @@ import web.dao.OrderDao;
 import web.dao.TicketDao;
 import web.dao.UserTicketDao;
 import web.model.po.Order;
+import web.model.po.Ticket;
 import web.model.po.UserTicket;
 import web.model.vo.TickInfoVO;
 import web.tools.MyMessage;
+import web.tools.MyResponse;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -33,12 +39,15 @@ public class TicketImpl implements TicketService {
         //UserTicketDAO
         List<UserTicket> ticketList = userTicketDao.getUserTicket(userId);
         //list size为1
-        UserTicket ticket = ticketList.get(0);
-        Date expireTime = ticket.getExpire_time();
-        int tickID = ticket.getTicket_id();
+        UserTicket userTicket = ticketList.get(0);
+        Date expireTime = userTicket.getExpire_time();
+        DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String expire_time = format.format(expireTime);
+        int tickID = userTicket.getTicket_id();
 
         //TicketDAO
-
+        Ticket ticket = ticketDao.getTicket(tickID);
+        BigDecimal dailyUpper = ticket.getDaily_upper();
 
         //OrderDAO
         List<Order> orderList = orderDao.getOrderOfUser(userId);
@@ -49,7 +58,7 @@ public class TicketImpl implements TicketService {
                 dailySum = dailySum.add(order.getPrice());
             }
         }
-        return null;
+        return new TickInfoVO(dailyUpper.subtract(dailySum), expire_time);
     }
 
     @Override
@@ -58,6 +67,11 @@ public class TicketImpl implements TicketService {
         userTicket.setUser_id(userId);
         userTicket.setTicket_id(ticketId);
 
-        return null;
+        Calendar ca = Calendar.getInstance();
+        ca.add(Calendar.DATE, 30);
+        Date nextMonthDate = ca.getTime();
+        userTicket.setExpire_time(nextMonthDate);
+
+        return userTicketDao.addUserTicket(userTicket);
     }
 }
