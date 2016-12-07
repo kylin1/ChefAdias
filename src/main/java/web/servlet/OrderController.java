@@ -62,7 +62,7 @@ public class OrderController {
             //设置参数
             order.setUser_id(intUserId);
             order.setCreate_time(dateTime);
-            order.setOrderItemList(lst);
+//            order.setOrderItemList(lst);
             order.setPrice(decimalPrice);
             order.setTicket_info(useTicket);
             order.setBowl_info(useBowl);
@@ -121,14 +121,15 @@ public class OrderController {
         Map<String, String> orderMap = new HashMap<>();
         orderMap.put("price", order.getPrice() + "");
         orderMap.put("time", format.format(order.getCreate_time()));
-        List<OrderItem> orderItemList = order.getOrderItemList();
-        try {
-            orderMap.put("food_list", JsonConverter.jsonOfObject(orderItemList));
-            return MyResponse.success(orderMap);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return MyResponse.failure(ErrorCode.SERVER, "获取订单失败");
-        }
+//        List<OrderItem> orderItemList = order.getOrderItemList();
+//        try {
+////            orderMap.put("food_list", JsonConverter.jsonOfObject(orderItemList));
+//            return MyResponse.success(orderMap);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//            return MyResponse.failure(ErrorCode.SERVER, "获取订单失败");
+//        }
+        return null;
     }
 
 

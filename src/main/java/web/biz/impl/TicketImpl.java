@@ -5,14 +5,11 @@ import org.springframework.stereotype.Service;
 import web.biz.TicketService;
 import web.dao.OrderDao;
 import web.dao.TicketDao;
-import web.model.po.Order;
-import web.model.po.Ticket;
+import web.dao.UserTicketDao;
 import web.model.po.UserTicket;
 import web.model.vo.TickInfoVO;
 import web.tools.MyMessage;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,20 +23,23 @@ public class TicketImpl implements TicketService {
     @Autowired
     private OrderDao orderDao;
 
+    @Autowired
+    private UserTicketDao userTicketDao;
+
 
     @Override
     public TickInfoVO getTicketInfo(int userId) {
-        List<Ticket> ticketList = ticketDao.getTicketOfUser(userId);
+        List<UserTicket> ticketList = userTicketDao.getUserTicket(userId);
         //list size为1
-        Ticket ticket = ticketList.get(0);
-        BigDecimal dailyUpper = ticket.getDaily_upper();
-        Date expireTime = ticket.getExpire_time();
-
-        List<Order> orderList = orderDao.getOrderOfUser(userId);
-        for(Order order:orderList){
-            Date createTime = order.getCreate_time();
-            createTime.compareTo(expireTime);
-        }
+        UserTicket ticket = ticketList.get(0);
+//        BigDecimal dailyUpper = ticket.getDaily_upper();
+//        Date expireTime = ticket.getExpire_time();
+//
+//        List<Order> orderList = orderDao.getOrderOfUser(userId);
+//        for(Order order:orderList){
+//            Date createTime = order.getCreate_time();
+//            createTime.compareTo(expireTime);
+//        }
 
 
         return null;
