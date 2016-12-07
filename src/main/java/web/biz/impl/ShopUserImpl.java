@@ -52,9 +52,11 @@ public class ShopUserImpl implements ShopUserService {
             //BowlDAO
             List<Bowl> bowlList = bowlDao.getBowlOfUser(userID);
             int bowlCondition = 0;
-            if (bowlList.size() != 0) {
-                Bowl bowl = bowlList.get(0);
-                bowlCondition = bowl.getIs_return();
+            if (bowlList != null) {
+                if (bowlList.size() != 0) {
+                    Bowl bowl = bowlList.get(0);
+                    bowlCondition = bowl.getIs_return();
+                }
             }
 
             //OrderDAO
