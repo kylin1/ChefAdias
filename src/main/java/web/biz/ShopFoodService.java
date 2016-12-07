@@ -34,13 +34,15 @@ public interface ShopFoodService {
     /**
      * 修改食物信息
      *
-     * @param name       食物名
-     * @param pic        食物图片
-     * @param price      食物单价
-     * @param foodIDList 额外食物ID列表
+     * @param foodID      食物ID
+     * @param name        食物名
+     * @param pic         食物图片
+     * @param price       食物单价
+     * @param foodIDList  额外食物ID列表
+     * @param description 介绍
      * @return MyMessage
      */
-    MyMessage modFood(String name, MultipartFile pic, double price, List<String> foodIDList);
+    MyMessage modFood(int foodID, String name, MultipartFile pic, BigDecimal price, List<String> foodIDList, String description);
 
     /**
      * 创建分类

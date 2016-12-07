@@ -1,5 +1,6 @@
 package web.model.vo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -12,7 +13,17 @@ public class ShopOrderItemVO {
     private String addr;
     private int isfinish;
     private String type;
-    private double price;
+    private BigDecimal price;
+
+    public ShopOrderItemVO(String orderid, String username, String time, String addr, int isfinish, String type, BigDecimal price) {
+        this.orderid = orderid;
+        this.username = username;
+        this.time = time;
+        this.addr = addr;
+        this.isfinish = isfinish;
+        this.type = type;
+        this.price = price;
+    }
 
     public String getOrderid() {
         return orderid;
@@ -62,11 +73,11 @@ public class ShopOrderItemVO {
         this.type = type;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

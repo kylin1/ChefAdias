@@ -70,17 +70,64 @@ public class ShopFoodController {
             method = RequestMethod.POST
     )
     @ResponseBody
-    public String modFood(@RequestParam(value = "name") String name,
+    public String modFood(@RequestParam(value = "foodid") String foodID,
+                          @RequestParam(value = "name") String name,
                           @RequestParam(value = "pic") MultipartFile pic,
-                          @RequestParam(value = "price") double price,
+                          @RequestParam(value = "price") String price,
+                          @RequestParam(value = "description") String description,
                           @RequestParam(value = "extra") String foodIDJsonList) {
         JsonListConverter<String> jsonListConverter = new JsonListConverter<>();
         List<String> foodIDList = jsonListConverter.getList(foodIDJsonList, String.class);
-        MyMessage myMessage = service.modFood(name, pic, price, foodIDList);
+        MyMessage myMessage = service.modFood(Integer.parseInt(foodID), name, pic, MyConverter.getBigDecimal(price), foodIDList, description);
         if (myMessage.isSuccess()) {
             return MyResponse.success();
         } else {
             return MyResponse.failure(ErrorCode.SERVER, "fail to modify food");
+        }
+    }
+
+    @RequestMapping(
+            value = "addType",
+            method = RequestMethod.POST
+    )
+    @ResponseBody
+    public String addType(@RequestParam(value = "name") String name, @RequestParam(value = "pic") MultipartFile pic) {
+        MyMessage myMessage = service.addType(name, pic);
+        if (myMessage.isSuccess()) {
+            return MyResponse.success();
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to add type");
+        }
+    }
+
+    @RequestMapping(
+            value = "deleteType",
+            method = RequestMethod.GET
+    )
+    @ResponseBody
+    public String deleteType(HttpServletRequest request) {
+        String typeID = request.getParameter("typeid");
+        int intTypeID = Integer.parseInt(typeID);
+
+        MyMessage myMessage = service.deleteFood(intTypeID);
+        if (myMessage.isSuccess()) {
+            return MyResponse.success();
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to delete type");
+        }
+    }
+
+    @RequestMapping(
+            value = "modType",
+            method = RequestMethod.POST
+    )
+    @ResponseBody
+    public String modType(@RequestParam(value = "typeid") String typeID, @RequestParam(value = "name") String name, @RequestParam(value = "pic") MultipartFile pic) {
+        MyMessage myMessage = service.modType(Integer.parseInt(typeID), name, pic);
+        if (myMessage.isSuccess()) {
+            return MyResponse.success();
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to modify type");
         }
     }
 }
