@@ -15,6 +15,9 @@ public class AddOrderVO {
     int bowl_info;
     int pay_type;
 
+    public AddOrderVO() {
+    }
+
     public AddOrderVO(int userid, String time, List<OrderItemVO> food_list, BigDecimal price, int ticket_info, int bowl_info, int pay_type) {
         this.userid = userid;
         this.time = time;

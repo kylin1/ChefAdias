@@ -3,6 +3,7 @@ package web.servlet;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,33 +38,32 @@ public class OrderController {
             method = RequestMethod.POST
     )
     @ResponseBody
-    public String addOrder(HttpServletRequest request) {
-        String userid = request.getParameter("userid");
-        String time = request.getParameter("time");
-        String food_list = request.getParameter("food_list");
-        String price = request.getParameter("price");
-        String ticket_info = request.getParameter("ticket_info");
-        String bowl_info = request.getParameter("bowl_info");
-        String pay_type = request.getParameter("pay_type");
+    public String addOrder(@RequestBody AddOrderVO addOrderVO) {
+//        String userid = request.getParameter("userid");
+//        String time = request.getParameter("time");
+//        String food_list = request.getParameter("food_list");
+//        String price = request.getParameter("price");
+//        String ticket_info = request.getParameter("ticket_info");
+//        String bowl_info = request.getParameter("bowl_info");
+//        String pay_type = request.getParameter("pay_type");
 
-        try {
-            //类型转换
-            int intUserId = MyConverter.getInt(userid);
-            BigDecimal decimalPrice = MyConverter.getBigDecimal(price);
-            JsonListConverter<OrderItemVO> jsonListConverter = new JsonListConverter<>();
-            List<OrderItemVO> orderItemList = jsonListConverter.getList(food_list, OrderItemVO.class);
-            int useTicket = MyConverter.getInt(ticket_info);
-            int useBowl = MyConverter.getInt(bowl_info);
-            int payType = MyConverter.getInt(pay_type);
-
-            //新增订单
-            service.addOrder(new AddOrderVO(intUserId, time, orderItemList, decimalPrice, useTicket, useBowl, payType));
+        //类型转换
+//            int intUserId = MyConverter.getInt(userid);
+//            BigDecimal decimalPrice = MyConverter.getBigDecimal(price);
+//            JsonListConverter<OrderItemVO> jsonListConverter = new JsonListConverter<>();
+//            List<OrderItemVO> orderItemList = jsonListConverter.getList(food_list, OrderItemVO.class);
+//            int useTicket = MyConverter.getInt(ticket_info);
+//            int useBowl = MyConverter.getInt(bowl_info);
+//            int payType = MyConverter.getInt(pay_type);
+//
+        //新增订单
+        MyMessage myMessage = service.addOrder(addOrderVO);
+        if (myMessage.isSuccess()) {
             return MyResponse.success();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MyResponse.failure(ErrorCode.SERVER, "下单失败");
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to add order");
         }
+
     }
 
     @RequestMapping(
