@@ -15,7 +15,4 @@ public interface OrderItemOperation {
             " where list.order_id = #{orderId} and f.id = list.food_id;"})
     List<OrderItem> getOrderItem(int orderId);
 
-
-
-
 }

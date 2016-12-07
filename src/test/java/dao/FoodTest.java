@@ -56,4 +56,36 @@ public class FoodTest {
         CheckClass.checkObject("Food",food);
     }
 
+//    @Test
+    public void testAddFood() throws ClassNotFoundException {
+        Food food = new Food();
+        food.setDescription("test");
+        food.setDislike(11);
+        food.setLike(2);
+        food.setName("test name");
+        food.setPicture("pic");
+        food.setPrice(new BigDecimal("12.3"));
+        food.setType_id(2);
+        dishDao.addFood(food);
+    }
+
+//    @Test
+    public void testUpdateFood() throws ClassNotFoundException {
+        Food food = dishDao.getFood(15);
+        food.setDescription("test 333");
+        food.setDislike(1331);
+        food.setLike(3332);
+        food.setName("test name  223332");
+        food.setPicture("pic 223332");
+        food.setPrice(new BigDecimal("12333.3"));
+        food.setType_id(3);
+        dishDao.updateFood(food);
+    }
+
+//    @Test
+    public void delete() throws ClassNotFoundException {
+        dishDao.deleteFood(15);
+    }
+
+
 }

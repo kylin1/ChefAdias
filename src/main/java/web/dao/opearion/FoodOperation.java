@@ -20,20 +20,19 @@ public interface FoodOperation {
     @Select({"select * from food where id = #{id}"})
     Food getFood(int id);
 
+    @Select({"select * from food where type_id =#{type}"})
+    List<Food> getDishOfType(int type);
+
     //like 是关键字,坑!
     @Insert({"insert into food(name,picture,price,type_id,`description`,`like`,dislike)" +
             " values(#{name},#{picture},#{price},#{type_id},#{description},#{like},#{dislike})"})
     void save(Food food);
 
-    @Select({"select * from food where type_id =#{type}"})
-    List<Food> getDishOfType(int type);
-
-    @Update({"update ``food` set `id`=#{id}, `type_id`=#{type_id}, `price`=#{price}, " +
-            "`description`=#{description}, `dislike`=#{dislike}, `name`=#{name} where `id`=#{id} "})
+    @Update({"update `food` set `type_id`=#{type_id}, `price`=#{price}, `picture`=#{picture}, " +
+            "`description`=#{description},`like`=#{like}, `dislike`=#{dislike}, `name`=#{name} where `id`=#{id} "})
     void update(Food food);
 
     @Delete({"delete from `food` where `id`=#{id} "})
     void delete(int id);
-
 
 }

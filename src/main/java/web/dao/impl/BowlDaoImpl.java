@@ -16,8 +16,8 @@ import java.util.List;
 @Repository("bowlDao")
 
 public class BowlDaoImpl implements BowlDao {
-    @Override
 
+    @Override
     public List<Bowl> getBowlOfUser(int userId) {
         return null;
     }
