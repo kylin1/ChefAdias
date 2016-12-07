@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import web.biz.TicketService;
 import web.model.po.UserTicket;
 import web.model.exceptions.ErrorCode;
+import web.model.vo.TickInfoVO;
+import web.tools.BeanTool;
 import web.tools.MyMessage;
 import web.tools.MyResponse;
 
@@ -34,9 +36,7 @@ public class TicketController {
         String userID = request.getParameter("userid");
         int intUserID = Integer.parseInt(userID);
 
-//        UserTicket userTicket = service.getTicketInfo(intUserID);
-
-        return MyResponse.success();
+        return MyResponse.success(BeanTool.bean2Map(service.getTicketInfo(intUserID)));
     }
 
     @RequestMapping(
