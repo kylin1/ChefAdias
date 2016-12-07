@@ -75,11 +75,21 @@ public class ShopUserImpl implements ShopUserService {
 
     @Override
     public List<UserVO> searchUser(String username) {
-        return null;
+        List<User> userList = userDao.searchUser(username);
+        List<UserVO> userVOList = new ArrayList<>();
+        for (User user : userList) {
+            UserVO userVO = new UserVO(user.getId() + "", user.getUsername(), user.getAvatar());
+            userVOList.add(userVO);
+        }
+        return userVOList;
     }
 
     @Override
     public MyMessage setBowl(int userID, int state) {
-        return null;
+        List<Bowl> bowlList = bowlDao.getBowlOfUser(userID);
+        Bowl bowl = bowlList.get(0);
+        bowl.setIs_return(state);
+
+        return bowlDao.updateBowl(bowl);
     }
 }
