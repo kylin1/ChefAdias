@@ -61,6 +61,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public List<Order> getOrderInDay(String date) {
+        return null;
+    }
+
+    @Override
     public Order getOrder(int id) {
         Order order = null;
         try {

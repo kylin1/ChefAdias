@@ -2,7 +2,6 @@ package web.model.po;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by kylin on 04/12/2016.
@@ -22,6 +21,7 @@ public class Order {
     //总价
     private BigDecimal price;
 
+    //是否送到
     private int isFinish;
 
     //是否使用月票 0 未使用/1 使用

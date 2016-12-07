@@ -19,6 +19,14 @@ public interface TicketDao {
      */
     List<Ticket> getAllTicket();
 
+    /**
+     * 根据ID获取餐券
+     *
+     * @param id
+     * @return
+     */
+    Ticket getTicket(int id);
+
     //为餐厅提供的CURD方法
     MyMessage addTicket(UserTicket newTicket);
 

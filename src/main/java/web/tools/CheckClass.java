@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
  */
 public class CheckClass {
 
-    private static final String modelPath = "web.model.";
+    private static final String modelPath = "web.model.po.";
 
     public static void checkObject(String className, Object object) throws ClassNotFoundException {
         //使用反射技术完成对象属性的输出

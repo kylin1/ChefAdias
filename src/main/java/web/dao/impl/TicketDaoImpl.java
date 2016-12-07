@@ -28,6 +28,11 @@ public class TicketDaoImpl implements TicketDao {
     }
 
     @Override
+    public Ticket getTicket(int id) {
+        return null;
+    }
+
+    @Override
     public MyMessage addTicket(UserTicket newTicket) {
         return null;
     }
