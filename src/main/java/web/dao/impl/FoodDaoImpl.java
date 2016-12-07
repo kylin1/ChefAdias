@@ -80,11 +80,35 @@ public class FoodDaoImpl implements FoodDao {
 
     @Override
     public MyMessage deleteFood(int id) {
-        return null;
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(FoodOperation.class);
+            this.operation.delete(id);
+            this.session.commit();
+            return new MyMessage(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+            return new MyMessage(false,1,ex.getMessage());
+        } finally {
+            this.session.close();
+        }
     }
 
     @Override
     public MyMessage updateFood(Food food) {
-        return null;
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(FoodOperation.class);
+            this.operation.update(food);
+            this.session.commit();
+            return new MyMessage(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+            return new MyMessage(false,1,ex.getMessage());
+        } finally {
+            this.session.close();
+        }
     }
 }

@@ -1,7 +1,9 @@
 package web.dao.opearion;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import web.model.po.Food;
 
 import java.util.List;
@@ -22,4 +24,11 @@ public interface FoodOperation {
 
     @Select({"select * from food where type_id =#{type}"})
     List<Food> getDishOfType(int type);
+
+    @Update({"update ``food` set `id`=#{id}, `type_id`=#{type_id}, `price`=#{price}, " +
+            "`description`=#{description}, `dislike`=#{dislike}, `name`=#{name} where `id`=#{id} "})
+    void update(Food food);
+
+    @Delete({"delete from `food` where `id`=#{id} "})
+    void delete(int id);
 }
