@@ -4,9 +4,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserTicketDao;
-import web.model.po.UserTicket;
-import web.dao.opearion.TicketOperation;
+import web.dao.opearion.UserTicketOperation;
 import web.dao.util.MybatisUtils;
+import web.model.po.UserTicket;
 import web.tools.MyMessage;
 
 import java.util.ArrayList;
@@ -22,14 +22,14 @@ public class UserTicketDaoImpl implements UserTicketDao{
 
     SqlSession sqlSession;
 
-    TicketOperation operation;
+    UserTicketOperation operation;
 
     @Override
     public MyMessage addUserTicket(UserTicket userTicket) {
         try {
             this.sqlSession = MybatisUtils.getSession();
-            this.operation = this.sqlSession.getMapper(TicketOperation.class);
-            this.operation.insert(userTicket);
+            this.operation = this.sqlSession.getMapper(UserTicketOperation.class);
+            this.operation.insertUserTicket(userTicket);
             this.sqlSession.commit();
         }catch (Exception ex){
             ex.printStackTrace();
@@ -45,7 +45,7 @@ public class UserTicketDaoImpl implements UserTicketDao{
         List<UserTicket> list = new ArrayList<>();
         try {
             this.sqlSession = MybatisUtils.getSession();
-            this.operation = this.sqlSession.getMapper(TicketOperation.class);
+            this.operation = this.sqlSession.getMapper(UserTicketOperation.class);
             list = this.operation.getUserTicket(userId);
             this.sqlSession.commit();
         }catch (Exception ex){

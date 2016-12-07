@@ -1,9 +1,11 @@
 package web.dao.opearion;
 
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-import web.model.po.UserTicket;
+import org.apache.ibatis.annotations.Update;
+import web.model.po.Ticket;
 
 import java.util.List;
 
@@ -13,22 +15,20 @@ import java.util.List;
  */
 public interface TicketOperation {
 
+    @Select({"select * from `ticket` "})
+    List<Ticket> getAllTicket();
 
-    /**
-     * 得到用户购买的餐券,过期日期
-     *
-     * @param userId
-     * @return
-     */
-    @Select({"select * from `user_ticket` where `user_id` = #{userId}"})
-    List<UserTicket> getUserTicket(int userId);
+    @Select({"select * from `ticket` where `id` = #{id}"})
+    Ticket getTicket(int id);
 
-    /**
-     * 购买餐券
-     *
-     * @param userTicket
-     */
-    @Insert({"insert into `user_ticket` (`expire_time`, `user_id`, `ticket_id`) " +
-            "values (#{expire_time},#{user_id},#{ticket_id})"})
-    void insert(UserTicket userTicket);
+    @Insert({"insert into `ticket` ( `expire_day`, `daily_upper`, `name`, `description`) " +
+            "values ( #{expire_day}, #{daily_upper}, #{name}, #{description} )"})
+    void insertTicket(Ticket ticket);
+
+    @Update({"update `ticket` set `expire_day`=#{expire_day}, `daily_upper`=#{daily_upper}, " +
+            "`name`=#{name}, `description`=#{description} where `id`=#{id} "})
+    void update(Ticket ticket);
+
+    @Delete({"delete from `ticket` where `id`=#{id}"})
+    void delete(int id);
 }

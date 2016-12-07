@@ -15,17 +15,17 @@ public class Ticket {
     private String description;
 
     // 有效的时间,例如30天
-    private int expire_time;
+    private int expire_day;
 
     // 每日上限
     private BigDecimal daily_upper;
 
-    public int getExpire_time() {
-        return expire_time;
+    public int getExpire_day() {
+        return expire_day;
     }
 
-    public void setExpire_time(int expire_time) {
-        this.expire_time = expire_time;
+    public void setExpire_day(int expire_day) {
+        this.expire_day = expire_day;
     }
 
     public int getId() {
