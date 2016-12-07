@@ -61,7 +61,7 @@ public class JsonTest {
 
 //    @Test
     public void testJsonFail() throws JsonProcessingException {
-        FoodDao dishDao = new FoodDaogImpl();
+        FoodDao dishDao = new FoodDaoImpl();
         String result = MyResponse.failure("0001", "not found", dishDao.getAllFood());
         System.out.println(result);
 
