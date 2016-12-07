@@ -1,7 +1,7 @@
 package web.dao.opearion;
 
 import org.apache.ibatis.annotations.Select;
-import web.model.vo.OrderItem;
+import web.model.po.OrderItem;
 
 import java.util.List;
 

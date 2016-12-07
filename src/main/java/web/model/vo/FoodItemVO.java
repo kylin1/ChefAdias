@@ -3,6 +3,7 @@ package web.model.vo;
 import java.math.BigDecimal;
 
 /**
+ * 用户食物列表item
  * Created by Alan on 2016/12/7.
  */
 public class FoodItemVO {

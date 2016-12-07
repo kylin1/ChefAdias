@@ -1,7 +1,7 @@
 package dao;
 
 import web.dao.impl.OrderItemDaoImpl;
-import web.model.vo.OrderItem;
+import web.model.po.OrderItem;
 import web.tools.CheckClass;
 
 import java.util.List;

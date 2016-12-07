@@ -1,5 +1,7 @@
 package web.model.vo;
 
+import web.model.po.OrderItem;
+
 import java.util.List;
 
 /**

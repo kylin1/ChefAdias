@@ -1,6 +1,10 @@
 package web.biz;
 
 import web.model.po.Order;
+import web.model.vo.AddOrderVO;
+import web.model.vo.OrderItemVO;
+import web.model.vo.UserOrderItemVO;
+import web.model.vo.UserOrderVO;
 import web.tools.MyMessage;
 
 import java.util.List;
@@ -17,7 +21,7 @@ public interface OrderService {
      * @param order
      * @return
      */
-    boolean addOrder(Order order);
+    MyMessage addOrder(AddOrderVO order);
 
     /**
      * 获取个人订单列表
@@ -25,7 +29,7 @@ public interface OrderService {
      * @param userId
      * @return
      */
-    List<Order> getOrderList(int userId);
+    List<UserOrderItemVO> getOrderList(int userId);
 
     /**
      * 获取订单内容
@@ -33,7 +37,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    Order getOrder(int orderId);
+    UserOrderVO getOrder(int orderId);
 
     /**
      * 评价菜品

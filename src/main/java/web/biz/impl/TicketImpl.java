@@ -36,12 +36,12 @@ public class TicketImpl implements TicketService {
 
     @Override
     public TickInfoVO getTicketInfo(int userId) {
+        DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         //UserTicketDAO
         List<UserTicket> ticketList = userTicketDao.getUserTicket(userId);
         //list size为1
         UserTicket userTicket = ticketList.get(0);
         Date expireTime = userTicket.getExpire_time();
-        DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         String expire_time = format.format(expireTime);
         int tickID = userTicket.getTicket_id();
 
@@ -50,13 +50,14 @@ public class TicketImpl implements TicketService {
         BigDecimal dailyUpper = ticket.getDaily_upper();
 
         //OrderDAO
-        List<Order> orderList = orderDao.getOrderOfUser(userId);
+        Date today = new Date();
+        Calendar ca = Calendar.getInstance();
+        ca.add(Calendar.DATE, 1);
+        Date tomorrow = ca.getTime();
+        List<Order> orderList = orderDao.getOrderInDay(userId, format.format(today), format.format(tomorrow));
         BigDecimal dailySum = new BigDecimal(0);
         for (Order order : orderList) {
-            Date createTime = order.getCreate_time();
-            if (createTime.compareTo(expireTime) == 0) {
-                dailySum = dailySum.add(order.getPrice());
-            }
+            dailySum = dailySum.add(order.getPrice());
         }
         return new TickInfoVO(dailyUpper.subtract(dailySum), expire_time);
     }

@@ -33,41 +33,6 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
-    // FIXME: 2016/12/7 这个addDish不应该放在这里
-    @RequestMapping(value = "addDish", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    String addDish(@RequestParam(value = "name", required = false) String name,
-                   @RequestParam(value = "type", required = false) String intType,
-                   @RequestParam(value = "price", required = false) String price,
-                   @RequestParam(value = "file", required = false) MultipartFile picture) {
-
-        try {
-            int type = Integer.parseInt(intType);
-            Food dish = new Food();
-
-            dish.setName(name);
-
-            String path = MyFile.saveFile(picture);
-            dish.setPicture(path);
-            dish.setPrice(new BigDecimal(price));
-
-            dish.setLike(0);
-            dish.setDislike(0);
-            dish.setType_id(type);
-
-            MyMessage myMessage = dishService.addDish(dish);
-            if (myMessage.isSuccess()) {
-                return MyResponse.success();
-            } else {
-                return MyResponse.failure(ErrorCode.SERVER, "fail to add dish");
-            }
-
-        } catch (Exception ex) {
-            return MyResponse.failure(ErrorCode.SERVER, ex.getMessage());
-        }
-    }
-
     @RequestMapping(
             value = {"allDish"},
             method = {RequestMethod.GET}

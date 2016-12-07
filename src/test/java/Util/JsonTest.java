@@ -3,7 +3,7 @@ package Util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
-import web.model.vo.OrderItem;
+import web.model.po.OrderItem;
 import web.tools.JsonConverter;
 import web.tools.MyResponse;
 

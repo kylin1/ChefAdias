@@ -3,6 +3,7 @@ package web.model.vo;
 import java.util.List;
 
 /**
+ *
  * Created by Alan on 2016/12/7.
  */
 public class FoodVO {

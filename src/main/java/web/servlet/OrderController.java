@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web.biz.OrderService;
 import web.model.po.Order;
-import web.model.vo.OrderItem;
-import web.model.vo.OrderResponse;
+import web.model.vo.AddOrderVO;
+import web.model.vo.OrderItemVO;
 import web.model.exceptions.ErrorCode;
-import web.tools.JsonConverter;
-import web.tools.MyConverter;
-import web.tools.MyResponse;
+import web.model.vo.UserOrderItemVO;
+import web.model.vo.UserOrderVO;
+import web.tools.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -27,6 +26,7 @@ import java.util.*;
  * All rights reserved.
  */
 @Controller
+@RequestMapping("menu")
 public class OrderController {
 
     @Autowired
@@ -38,7 +38,6 @@ public class OrderController {
     )
     @ResponseBody
     public String addOrder(HttpServletRequest request) {
-        //读取参数
         String userid = request.getParameter("userid");
         String time = request.getParameter("time");
         String food_list = request.getParameter("food_list");
@@ -48,31 +47,20 @@ public class OrderController {
         String pay_type = request.getParameter("pay_type");
 
         try {
-            Order order = new Order();
-
             //类型转换
             int intUserId = MyConverter.getInt(userid);
-            Date dateTime = MyConverter.getDate(time);
-            List<OrderItem> lst = JsonConverter.getItemList(food_list);
             BigDecimal decimalPrice = MyConverter.getBigDecimal(price);
+            JsonListConverter<OrderItemVO> jsonListConverter = new JsonListConverter<>();
+            List<OrderItemVO> orderItemList = jsonListConverter.getList(food_list, OrderItemVO.class);
             int useTicket = MyConverter.getInt(ticket_info);
             int useBowl = MyConverter.getInt(bowl_info);
-            int payOnline = MyConverter.getInt(pay_type);
-
-            //设置参数
-            order.setUser_id(intUserId);
-            order.setCreate_time(dateTime);
-//            order.setOrderItemList(lst);
-            order.setPrice(decimalPrice);
-            order.setTicket_info(useTicket);
-            order.setBowl_info(useBowl);
-            order.setPay_type(payOnline);
+            int payType = MyConverter.getInt(pay_type);
 
             //新增订单
-            this.service.addOrder(order);
+            service.addOrder(new AddOrderVO(intUserId, time, orderItemList, decimalPrice, useTicket, useBowl, payType));
             return MyResponse.success();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return MyResponse.failure(ErrorCode.SERVER, "下单失败");
         }
@@ -87,22 +75,12 @@ public class OrderController {
         String userID = request.getParameter("userid");
         int intUserID = Integer.parseInt(userID);
 
-        List<Order> orderList = service.getOrderList(intUserID);
-        List<OrderResponse> orderResponses = new ArrayList<>();
-        for (Order order : orderList) {
-            String orderID = order.getOrder_id() + "";
-            BigDecimal price = order.getPrice();
-            Date date = order.getCreate_time();
-            DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-            OrderResponse response = new OrderResponse(orderID, price, format.format(date));
-            orderResponses.add(response);
-        }
-
+        List<UserOrderItemVO> userOrderItemList = service.getOrderList(intUserID);
         try {
-            return MyResponse.success(JsonConverter.jsonOfObject(orderResponses));
+            return MyResponse.success(JsonConverter.jsonOfObject(userOrderItemList));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            return MyResponse.failure(ErrorCode.SERVER, "获取订单失败");
+            return MyResponse.failure(ErrorCode.SERVER, "fail to obtain order list");
         }
     }
 
@@ -115,21 +93,7 @@ public class OrderController {
         String orderID = request.getParameter("orderid");
         int intOrderID = Integer.parseInt(orderID);
 
-        Order order = service.getOrder(intOrderID);
-
-        DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-        Map<String, String> orderMap = new HashMap<>();
-        orderMap.put("price", order.getPrice() + "");
-        orderMap.put("time", format.format(order.getCreate_time()));
-//        List<OrderItem> orderItemList = order.getOrderItemList();
-//        try {
-////            orderMap.put("food_list", JsonConverter.jsonOfObject(orderItemList));
-//            return MyResponse.success(orderMap);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//            return MyResponse.failure(ErrorCode.SERVER, "获取订单失败");
-//        }
-        return null;
+        return MyResponse.success(BeanTool.bean2Map(service.getOrder(intOrderID)));
     }
 
 
@@ -145,6 +109,12 @@ public class OrderController {
         int intUserID = Integer.parseInt(userID);
         int intFoodID = Integer.parseInt(foodID);
         int intComment = Integer.parseInt(comment);
-        return null;
+
+        MyMessage myMessage = service.comment(intUserID, intFoodID, intComment);
+        if (myMessage.isSuccess()) {
+            return MyResponse.success();
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to comment");
+        }
     }
 }

@@ -1,6 +1,6 @@
 package web.dao;
 
-import web.model.vo.OrderItem;
+import web.model.po.OrderItem;
 import web.tools.MyMessage;
 
 import java.util.List;

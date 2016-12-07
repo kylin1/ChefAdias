@@ -3,7 +3,7 @@ package web.tools;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import web.model.vo.OrderItem;
+import web.model.po.OrderItem;
 
 import java.io.IOException;
 import java.util.Collection;
