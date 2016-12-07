@@ -16,7 +16,7 @@ public class BowlDaoTest {
 
     private BowlDao dao = new BowlDaoImpl();
 
-    @Test
+//    @Test
     public void add(){
         Bowl bowl = new Bowl();
         bowl.setUser_id(3);
@@ -24,7 +24,7 @@ public class BowlDaoTest {
         dao.addBowl(bowl);
     }
 
-    @Test
+//    @Test
     public void update(){
         Bowl bowl = new Bowl();
         bowl.setUser_id(3);
@@ -32,7 +32,7 @@ public class BowlDaoTest {
         dao.updateBowl(bowl);
     }
 
-    @Test
+//    @Test
     public void get() throws ClassNotFoundException {
         List<Bowl> bowlList = dao.getBowlOfUser(1);
         System.out.println(bowlList.size());

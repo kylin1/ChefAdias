@@ -35,7 +35,7 @@ public class FoodTest {
         }
     }
 
-    @Test
+//    @Test
     public void testFoodOfType() throws ClassNotFoundException {
 //        List<Food> list = dishDao.getFoodOfType(2);
         List<Food> list = dishDao.getAllFood();
@@ -49,7 +49,7 @@ public class FoodTest {
     }
 
 
-    @Test
+//    @Test
     public void testFood() throws ClassNotFoundException {
 //        List<Food> list = dishDao.getFoodOfType(2);
         Food food = dishDao.getFood(1);

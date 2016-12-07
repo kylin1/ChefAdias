@@ -9,7 +9,7 @@ import web.tools.InputDefender;
  */
 public class DefenderTest {
 
-    @Test
+//    @Test
     public void testDate(){
         assert !InputDefender.checkDate("123");
         assert !InputDefender.checkDate("2015-123-23");

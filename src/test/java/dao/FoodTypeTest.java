@@ -16,7 +16,7 @@ public class FoodTypeTest {
 
     private FoodTypeDao  dao = new FoodTypeDaoImpl();
 
-    @Test
+//    @Test
     public void testAll() throws ClassNotFoundException {
         //test change
         List<FoodType> list = dao.getAllFoodType();

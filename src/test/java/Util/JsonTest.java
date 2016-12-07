@@ -1,7 +1,6 @@
 package Util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.junit.Test;
 import web.biz.impl.UserImpl;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
@@ -62,13 +61,13 @@ public class JsonTest {
 
 //    @Test
     public void testJsonFail() throws JsonProcessingException {
-        FoodDao dishDao = new FoodDaoImpl();
+        FoodDao dishDao = new FoodDaogImpl();
         String result = MyResponse.failure("0001", "not found", dishDao.getAllFood());
         System.out.println(result);
 
     }
 
-    @Test
+//    @Test
     public void testLogin() {
         Map<String, String> result = new HashMap<>();
         result.put("userid", "123");

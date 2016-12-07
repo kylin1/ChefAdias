@@ -17,7 +17,7 @@ public class TicketDaoTest {
 
     private TicketDao dao = new TicketDaoImpl();
 
-    @Test
+//    @Test
     public void get() throws ClassNotFoundException {
         List<Ticket> list = dao.getAllTicket();
         for (Ticket ticket:list){
@@ -25,7 +25,7 @@ public class TicketDaoTest {
         }
     }
 
-    @Test
+//    @Test
     public void add(){
         Ticket ticket = new Ticket();
         ticket.setName("monthly ticket");
@@ -35,7 +35,7 @@ public class TicketDaoTest {
         dao.addTicket(ticket);
     }
 
-    @Test
+//    @Test
     public void update(){
         Ticket ticket = dao.getTicket(1);
         ticket.setName("monthly ticket");
@@ -45,7 +45,7 @@ public class TicketDaoTest {
         dao.updateTicket(ticket);
     }
 
-    @Test
+//    @Test
     public void delete(){
         dao.deleteTicket(5);
     }
