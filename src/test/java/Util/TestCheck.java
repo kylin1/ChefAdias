@@ -1,6 +1,5 @@
 package Util;
 
-import org.junit.Test;
 import web.model.po.Bowl;
 import web.model.po.Order;
 import web.tools.CheckClass;
@@ -14,7 +13,7 @@ import java.util.Date;
  */
 public class TestCheck {
 
-    @Test
+//    @Test
     public void test() throws IllegalAccessException, ClassNotFoundException {
         Bowl bowl = new Bowl();
         bowl.setIs_return(1);
@@ -22,7 +21,7 @@ public class TestCheck {
         CheckClass.checkObject("Bowl", bowl);
     }
 
-    @Test
+//    @Test
     public void testOrder() throws IllegalAccessException, ClassNotFoundException {
         Order order = new Order();
         order.setUser_id(123);

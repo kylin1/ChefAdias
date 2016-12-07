@@ -22,7 +22,7 @@ public class Order {
     private BigDecimal price;
 
     //是否送到
-    private int isFinish;
+    private int is_finish;
 
     //是否使用月票 0 未使用/1 使用
     private int ticket_info;
@@ -32,6 +32,7 @@ public class Order {
 
     //0 货到付款 1 在线付款
     private int pay_type;
+
 
     public int getOrder_id() {
         return order_id;
@@ -65,12 +66,12 @@ public class Order {
         this.price = price;
     }
 
-    public int getIsFinish() {
-        return isFinish;
+    public int getIs_finish() {
+        return is_finish;
     }
 
-    public void setIsFinish(int isFinish) {
-        this.isFinish = isFinish;
+    public void setIs_finish(int is_finish) {
+        this.is_finish = is_finish;
     }
 
     public int getTicket_info() {

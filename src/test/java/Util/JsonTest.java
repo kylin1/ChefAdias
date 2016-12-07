@@ -1,7 +1,6 @@
 package Util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.junit.Test;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
 import web.model.vo.OrderItem;
@@ -18,7 +17,7 @@ import java.util.Map;
  * All rights reserved.
  */
 public class JsonTest {
-    @Test
+//    @Test
     public void testJson() throws JsonProcessingException {
         FoodDao dishDao = new FoodDaoImpl();
         String result = MyResponse.success(dishDao.getAllFood());
@@ -26,7 +25,7 @@ public class JsonTest {
 
     }
 
-    @Test
+//    @Test
     public void testconvert() throws IOException {
         String input = "[{\"foodid\":\"2\",\"num\":1}," +
                 "{\"foodid\":\"3\",\"num\":1}," +
@@ -42,7 +41,7 @@ public class JsonTest {
     }
 
 
-    @Test
+//    @Test
     public void testJsonFail() throws JsonProcessingException {
         FoodDao dishDao = new FoodDaoImpl();
         String result = MyResponse.failure("0001", "not found", dishDao.getAllFood());
@@ -50,7 +49,7 @@ public class JsonTest {
 
     }
 
-    @Test
+//    @Test
     public void testLogin() {
         Map<String, String> result = new HashMap<>();
         result.put("userid", "123");

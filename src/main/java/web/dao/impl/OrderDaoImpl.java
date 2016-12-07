@@ -117,9 +117,9 @@ public class OrderDaoImpl implements OrderDao {
             this.session = MybatisUtils.getSession();
             this.operation = this.session.getMapper(OrderOperation.class);
             if(isArrived){
-                this.operation.updateState(orderId,1);
+                this.operation.updateState(1,orderId);
             }else{
-                this.operation.updateState(orderId,0);
+                this.operation.updateState(0,orderId);
             }
             this.session.commit();
             return new MyMessage(true);

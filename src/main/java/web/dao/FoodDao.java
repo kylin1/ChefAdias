@@ -11,7 +11,20 @@ import java.util.List;
  */
 public interface FoodDao {
 
+    /**
+     * 获取所有事物
+     *
+     * @return
+     */
     List<Food> getAllFood();
+
+    /**
+     * 获取一个菜品
+     *
+     * @param id
+     * @return
+     */
+    Food getFood(int id);
 
     /**
      * 获取一种菜品的信息列表

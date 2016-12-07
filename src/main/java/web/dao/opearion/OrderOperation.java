@@ -16,8 +16,8 @@ public interface OrderOperation {
 
     @Insert({"insert into `order` ( `is_finish`, `ticket_info`, `price`, `pay_type`, " +
             "`bowl_info`, `user_id`, `create_time`) " +
-            "values (#{is_finish},#{ticket_info},#{price},#{pay_type}," +
-            "#{bowl_info},#{user_id},#{create_time},)"})
+            " values (#{is_finish},#{ticket_info},#{price},#{pay_type}," +
+            "#{bowl_info},#{user_id},#{create_time})"})
     void save(Order order);
 
     @Select({"select * from `order` where user_id = #{userID}"})
@@ -31,7 +31,7 @@ public interface OrderOperation {
     Order getOrder(int id);
 
     @Update({"update `order` set `is_finish`=#{state} where `id`=#{orderId} "})
-    void updateState(int orderId, int state);
+    void updateState(@Param("state")int state, @Param("orderId")int orderId);
 
     @Select({"select * from `order` o " +
             "where o.`user_id` = #{userId} and o.`create_time` >= #{startDate} " +

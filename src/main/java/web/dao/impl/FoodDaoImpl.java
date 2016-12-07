@@ -43,6 +43,11 @@ public class FoodDaoImpl implements FoodDao {
     }
 
     @Override
+    public Food getFood(int id) {
+        return null;
+    }
+
+    @Override
     public List<Food> getFoodOfType(int foodType) {
         List<Food> result = new ArrayList<>();
         try {
