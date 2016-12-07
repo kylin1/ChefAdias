@@ -34,4 +34,5 @@ public class ShopUserController {
         List<ShopUserVO> userList = service.getUserList();
         return MyResponse.success(userList);
     }
+
 }
