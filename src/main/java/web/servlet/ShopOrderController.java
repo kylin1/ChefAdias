@@ -38,12 +38,7 @@ public class ShopOrderController {
         String date = request.getParameter("date");
         List<ShopOrderItemVO> orderList = service.getOrderList(date);
 
-        try {
-            return MyResponse.success(JsonConverter.jsonOfObject(orderList));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return MyResponse.failure(ErrorCode.SERVER, "failure in obtaining order list");
-        }
+        return MyResponse.success(orderList);
     }
 
     @RequestMapping(

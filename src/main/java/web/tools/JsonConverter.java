@@ -20,7 +20,7 @@ public class JsonConverter {
 
 
     /**
-     * JSON转换辅助函数
+     * List转JsonList
      *
      * @param object 输入
      * @return JSON字符串结果
@@ -30,12 +30,4 @@ public class JsonConverter {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(object);
     }
-
-    public static List<OrderItem> getItemList(String input) throws IOException {
-        input = input.replace("foodid", "food_id");
-        input = input.replace("num", "food_num");
-        JavaType listType = getCollectionType(List.class, OrderItem.class);
-        return mapper.readValue(input, listType);
-    }
-
 }

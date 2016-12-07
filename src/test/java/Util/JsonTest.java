@@ -1,14 +1,17 @@
 package Util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import org.junit.Test;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
 import web.model.po.OrderItem;
-import web.model.vo.EasyOrderVO;
-import web.model.vo.FoodItemVO;
+import web.model.vo.*;
 import web.tools.BeanTool;
 import web.tools.JsonConverter;
+import web.tools.JsonListConverter;
 import web.tools.MyResponse;
 
 import java.io.IOException;
@@ -32,15 +35,26 @@ public class JsonTest {
     }
 
     @Test
-    public void testconvert() throws IOException {
+    public void testList2JsonList() {
+        FoodItemVO foodItemVO1 = new FoodItemVO("1", "food1", new BigDecimal(1), 1),
+                foodItemVO2 = new FoodItemVO("2", "food2", new BigDecimal(2), 1);
+        List<FoodItemVO> foodListVOItem = new ArrayList<>();
+        foodListVOItem.add(foodItemVO1);
+        foodListVOItem.add(foodItemVO2);
+
+        System.out.println(MyResponse.success(foodListVOItem));
+    }
+
+    @Test
+    public void testJsonList2List() {
         String input = "[{\"foodid\":\"2\",\"num\":1}," +
                 "{\"foodid\":\"3\",\"num\":1}," +
                 "{\"foodid\":\"4\",\"num\":1}]";
 
-        List<OrderItem> lst = JsonConverter.getItemList(input);
+        JsonListConverter<OrderItemVO> jsonListConverter = new JsonListConverter<>();
+        List<OrderItemVO> lst = jsonListConverter.getList(input, OrderItemVO.class);
 
-        System.out.println(lst.size());
-        for (OrderItem order : lst) {
+        for (OrderItemVO order : lst) {
             System.out.print(order.getFoodid() + "->");
             System.out.println(order.getNum());
         }
@@ -76,9 +90,17 @@ public class JsonTest {
         EasyOrderVO easyOrderVO = new EasyOrderVO(foodListVOItem, new BigDecimal(3), "2016-11-02");
         Map<String, Object> map = BeanTool.bean2Map(easyOrderVO);
         if (map != null) {
-            System.out.println(map.toString());
+            System.out.println(MyResponse.success(map));
         } else {
             System.out.println("map is null");
         }
+    }
+
+    @Test
+    public void testBeanConverter() {
+        ShopUserExtraVO shopUserExtraVO = new ShopUserExtraVO(1, "1", new BigDecimal(1), "a", "102");
+        ShopUserVO shopUserVO = new ShopUserVO("1", "alan", "x.jpg", shopUserExtraVO);
+        System.out.println(MyResponse.success(shopUserVO));
+        System.out.println(MyResponse.success(shopUserExtraVO));
     }
 }

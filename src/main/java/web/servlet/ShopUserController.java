@@ -32,12 +32,6 @@ public class ShopUserController {
     @ResponseBody
     public String getUserList() {
         List<ShopUserVO> userList = service.getUserList();
-        try {
-            return MyResponse.success(JsonConverter.jsonOfObject(userList));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return MyResponse.failure(ErrorCode.SERVER, "fail to load user list");
-        }
+        return MyResponse.success(userList);
     }
-
 }

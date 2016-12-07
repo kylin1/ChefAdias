@@ -76,12 +76,7 @@ public class OrderController {
         int intUserID = Integer.parseInt(userID);
 
         List<UserOrderItemVO> userOrderItemList = service.getOrderList(intUserID);
-        try {
-            return MyResponse.success(JsonConverter.jsonOfObject(userOrderItemList));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return MyResponse.failure(ErrorCode.SERVER, "fail to obtain order list");
-        }
+        return MyResponse.success(userOrderItemList);
     }
 
     @RequestMapping(

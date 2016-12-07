@@ -7,6 +7,10 @@ public class OrderItemVO {
     String foodid;
     int num;
 
+    public OrderItemVO() {
+
+    }
+
     public OrderItemVO(String foodid, int num) {
         this.foodid = foodid;
         this.num = num;
