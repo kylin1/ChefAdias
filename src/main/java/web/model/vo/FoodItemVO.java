@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 /**
  * Created by Alan on 2016/12/7.
  */
-public class FoodListVO {
+public class FoodItemVO {
     private String foodid;
     private String name;
     private BigDecimal price;
     private int num;
 
-    public FoodListVO(String foodid, String name, BigDecimal price, int num) {
+    public FoodItemVO(String foodid, String name, BigDecimal price, int num) {
         this.foodid = foodid;
         this.name = name;
         this.price = price;

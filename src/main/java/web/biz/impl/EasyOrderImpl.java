@@ -9,10 +9,9 @@ import web.dao.OrderItemDao;
 import web.model.po.EasyOrder;
 import web.model.exceptions.ErrorCode;
 import web.model.exceptions.NotFoundException;
-import web.model.po.Food;
 import web.model.po.Order;
 import web.model.vo.EasyOrderVO;
-import web.model.vo.FoodListVO;
+import web.model.vo.FoodItemVO;
 import web.model.vo.OrderItem;
 import web.tools.MyMessage;
 
@@ -46,13 +45,13 @@ public class EasyOrderImpl implements EasyOrderService {
         //OrderItemDAO
         List<OrderItem> orderItemList = orderItemDao.getOrderItemOfOrder(intOrderID);
         BigDecimal sumPrice = new BigDecimal(0);
-        List<FoodListVO> foodList = new ArrayList<>();
+        List<FoodItemVO> foodList = new ArrayList<>();
         for (OrderItem orderItem : orderItemList) {
-            FoodListVO foodListVO =
-                    new FoodListVO(orderItem.getFoodid() + "", orderItem.getName(),
+            FoodItemVO foodItemVO =
+                    new FoodItemVO(orderItem.getFoodid() + "", orderItem.getName(),
                             orderItem.getPrice(), orderItem.getNum());
             sumPrice = sumPrice.add(orderItem.getPrice());
-            foodList.add(foodListVO);
+            foodList.add(foodItemVO);
         }
 
         //OrderDAO

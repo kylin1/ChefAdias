@@ -1,6 +1,7 @@
 package web.biz;
 
 import web.model.po.UserTicket;
+import web.model.vo.TickInfoVO;
 import web.tools.MyMessage;
 
 /**
@@ -15,7 +16,7 @@ public interface TicketService {
      * @param userId
      * @return
      */
-    UserTicket getTicketInfo(int userId);
+    TickInfoVO getTicketInfo(int userId);
 
     /**
      * 购买餐券

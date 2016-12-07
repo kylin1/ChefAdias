@@ -34,15 +34,9 @@ public class TicketController {
         String userID = request.getParameter("userid");
         int intUserID = Integer.parseInt(userID);
 
-        UserTicket userTicket = service.getTicketInfo(intUserID);
-        BigDecimal remain = userTicket.getRemain();
-        String expire = userTicket.getExpireTime().toString();
+//        UserTicket userTicket = service.getTicketInfo(intUserID);
 
-        Map<String, String> tickMap = new HashMap<>();
-        tickMap.put("remain_money", remain + "");
-        tickMap.put("expire", expire);
-
-        return MyResponse.success(tickMap);
+        return MyResponse.success();
     }
 
     @RequestMapping(

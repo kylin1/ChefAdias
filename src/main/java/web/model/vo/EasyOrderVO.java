@@ -7,21 +7,21 @@ import java.util.List;
  * Created by Alan on 2016/12/7.
  */
 public class EasyOrderVO {
-    List<FoodListVO> food_list;
+    List<FoodItemVO> food_list;
     BigDecimal price;
     String time;
 
-    public EasyOrderVO(List<FoodListVO> food_list, BigDecimal price, String time) {
+    public EasyOrderVO(List<FoodItemVO> food_list, BigDecimal price, String time) {
         this.food_list = food_list;
         this.price = price;
         this.time = time;
     }
 
-    public List<FoodListVO> getFood_list() {
+    public List<FoodItemVO> getFood_list() {
         return food_list;
     }
 
-    public void setFood_list(List<FoodListVO> food_list) {
+    public void setFood_list(List<FoodItemVO> food_list) {
         this.food_list = food_list;
     }
 

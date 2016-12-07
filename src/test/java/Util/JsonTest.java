@@ -5,7 +5,7 @@ import org.junit.Test;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
 import web.model.vo.EasyOrderVO;
-import web.model.vo.FoodListVO;
+import web.model.vo.FoodItemVO;
 import web.model.vo.OrderItem;
 import web.tools.BeanTool;
 import web.tools.JsonConverter;
@@ -67,13 +67,13 @@ public class JsonTest {
 
     @Test
     public void testBeanTool() {
-        FoodListVO foodListVO1 = new FoodListVO("1", "food1", new BigDecimal(1), 1),
-                foodListVO2 = new FoodListVO("2", "food2", new BigDecimal(2), 1);
-        List<FoodListVO> foodListVOList = new ArrayList<>();
-        foodListVOList.add(foodListVO1);
-        foodListVOList.add(foodListVO2);
+        FoodItemVO foodItemVO1 = new FoodItemVO("1", "food1", new BigDecimal(1), 1),
+                foodItemVO2 = new FoodItemVO("2", "food2", new BigDecimal(2), 1);
+        List<FoodItemVO> foodListVOItem = new ArrayList<>();
+        foodListVOItem.add(foodItemVO1);
+        foodListVOItem.add(foodItemVO2);
 
-        EasyOrderVO easyOrderVO = new EasyOrderVO(foodListVOList, new BigDecimal(3), "2016-11-02");
+        EasyOrderVO easyOrderVO = new EasyOrderVO(foodListVOItem, new BigDecimal(3), "2016-11-02");
         Map<String, String> map = BeanTool.bean2Map(easyOrderVO);
         if (map != null) {
             System.out.println(map.toString());
