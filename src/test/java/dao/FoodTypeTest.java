@@ -24,4 +24,25 @@ public class FoodTypeTest {
             CheckClass.checkObject("FoodType",foodType);
         }
     }
+
+//    @Test
+    public void add() throws ClassNotFoundException {
+        FoodType type = new FoodType();
+        type.setName("mew");
+        type.setPicture("pic");
+        this.dao.addFoodType(type);
+    }
+
+//    @Test
+    public void update() throws ClassNotFoundException {
+        FoodType type = dao.getFoodType(6);
+        type.setPicture("222");
+        type.setName("222333");
+        this.dao.updateFoodType(type);
+    }
+
+//    @Test
+    public void delete() throws ClassNotFoundException {
+        this.dao.deleteFoodType(5);
+    }
 }

@@ -79,11 +79,11 @@ public class JsonTest {
     }
 
 
-    @Test
+//    @Test
     public void testRegister2() throws WrongInputException, NotFoundException, DataConflictException {
         UserImpl userService = new UserImpl();
         userService.setUserDao(new UserDaoImpl());
-        UserVO newUser = userService.register("123", "123", "name");
+        UserVO newUser = userService.register("123123", "123", "name");
         Map<String, Object> map = BeanTool.bean2Map(newUser);
         System.out.println(map.size());
 

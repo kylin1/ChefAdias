@@ -88,16 +88,58 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
 
     @Override
     public MyMessage addFoodType(FoodType newFoodType) {
-        return null;
+        MyMessage myMessage = null;
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(FoodTypeOperation.class);
+            this.operation.save(newFoodType);
+            this.session.commit();
+            myMessage =  new MyMessage(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+            myMessage = new MyMessage(false, 0, ex.getMessage());
+        } finally {
+            this.session.close();
+        }
+        return myMessage;
     }
 
     @Override
     public MyMessage deleteFoodType(int id) {
-        return null;
+        MyMessage myMessage = null;
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(FoodTypeOperation.class);
+            this.operation.delete(id);
+            this.session.commit();
+            myMessage =  new MyMessage(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+            myMessage = new MyMessage(false, 0, ex.getMessage());
+        } finally {
+            this.session.close();
+        }
+        return myMessage;
     }
 
     @Override
     public MyMessage updateFoodType(FoodType foodType) {
-        return null;
+        MyMessage myMessage = null;
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(FoodTypeOperation.class);
+            this.operation.update(foodType);
+            this.session.commit();
+            myMessage =  new MyMessage(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+            myMessage = new MyMessage(false, 0, ex.getMessage());
+        } finally {
+            this.session.close();
+        }
+        return myMessage;
     }
 }
