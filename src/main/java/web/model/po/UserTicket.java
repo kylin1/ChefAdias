@@ -1,6 +1,5 @@
 package web.model.po;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -13,6 +12,7 @@ public class UserTicket {
 
     private int ticket_id;
 
+    // 过期日期
     private Date expire_time;
 
     public int getUser_id() {

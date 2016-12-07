@@ -1,11 +1,6 @@
 package web.dao;
 
-<<<<<<< HEAD
-import web.model.po.Ticket;
 import web.model.po.UserTicket;
-=======
-import web.model.UserTicket;
->>>>>>> origin/master
 import web.tools.MyMessage;
 
 import java.util.List;

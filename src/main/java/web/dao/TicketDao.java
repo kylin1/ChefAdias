@@ -13,14 +13,6 @@ import java.util.List;
 public interface TicketDao {
 
     /**
-     * 获取个人餐券信息
-     *
-     * @param userId 用户ID
-     * @return
-     */
-    List<Ticket> getTicketOfUser(int userId);
-
-    /**
      * 获取餐厅当前提供的所有餐券列表
      *
      * @return

@@ -8,10 +8,7 @@ import web.dao.opearion.EasyOrderOperation;
 import web.dao.opearion.OrderItemOperation;
 import web.dao.util.MybatisUtils;
 import web.model.po.EasyOrder;
-import web.model.vo.OrderItem;
 import web.tools.MyMessage;
-
-import java.util.List;
 
 /**
  * Created by kylin on 06/12/2016.
@@ -36,9 +33,9 @@ public class EasyOrderDaoImpl implements EasyOrderDao {
             //获取基本信息
             easyOrder = this.operation.getEasyOrder(userId);
 
-            //获取里面的list信息
-            List<OrderItem> orderItems = this.itemOperation.getOrderItem(userId);
-            easyOrder.setFood_list(orderItems);
+//            //获取里面的list信息
+//            List<OrderItem> orderItems = this.itemOperation.getOrderItem(userId);
+//            easyOrder.setFood_list(orderItems);
 
             this.session.commit();
         }catch (Exception ex){

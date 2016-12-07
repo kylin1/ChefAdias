@@ -4,14 +4,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserTicketDao;
-<<<<<<< HEAD
-import web.model.po.Ticket;
 import web.model.po.UserTicket;
-=======
 import web.dao.opearion.TicketOperation;
 import web.dao.util.MybatisUtils;
-import web.model.UserTicket;
->>>>>>> origin/master
 import web.tools.MyMessage;
 
 import java.util.ArrayList;

@@ -7,7 +7,6 @@ import web.dao.FoodTypeDao;
 import web.dao.opearion.FoodOperation;
 import web.dao.opearion.FoodTypeOperation;
 import web.dao.util.MybatisUtils;
-import web.model.po.Food;
 import web.model.po.FoodType;
 import web.tools.MyMessage;
 
@@ -40,12 +39,12 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
             this.session.rollback();
             this.session.close();
         }
-
-        for (FoodType foodType:list){
-            int id = foodType.getId();
-            int num = this.operation.getDishNumInType(id);
-            foodType.setFoodNum(num);
-        }
+//
+//        for (FoodType foodType:list){
+//            int id = foodType.getId();
+//            int num = this.operation.getDishNumInType(id);
+//            foodType.setFoodNum(num);
+//        }
         this.session.close();
 
         return list;
@@ -67,13 +66,13 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
                 return null;
             }
 
-            // 分类里面的菜品数目
-            int num = this.operation.getDishNumInType(id);
-            foodType.setFoodNum(num);
-
-            // 分类里面的菜品详细信息
-            List<Food> listInType = this.foodOperation.getDishOfType(id);
-            foodType.setFoodList(listInType);
+//            // 分类里面的菜品数目
+//            int num = this.operation.getDishNumInType(id);
+//            foodType.setFoodNum(num);
+//
+//            // 分类里面的菜品详细信息
+//            List<Food> listInType = this.foodOperation.getDishOfType(id);
+//            foodType.setFoodList(listInType);
 
             this.session.commit();
         } catch (Exception ex) {

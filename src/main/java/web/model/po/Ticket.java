@@ -1,7 +1,6 @@
 package web.model.po;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * Created by kylin on 04/12/2016.
@@ -15,9 +14,19 @@ public class Ticket {
 
     private String description;
 
-    private Date expire_time;
+    // 有效的时间,例如30天
+    private int expire_time;
 
+    // 每日上限
     private BigDecimal daily_upper;
+
+    public int getExpire_time() {
+        return expire_time;
+    }
+
+    public void setExpire_time(int expire_time) {
+        this.expire_time = expire_time;
+    }
 
     public int getId() {
         return id;
@@ -52,11 +61,4 @@ public class Ticket {
         this.daily_upper = daily_upper;
     }
 
-    public Date getExpire_time() {
-        return expire_time;
-    }
-
-    public void setExpire_time(Date expire_time) {
-        this.expire_time = expire_time;
-    }
 }
