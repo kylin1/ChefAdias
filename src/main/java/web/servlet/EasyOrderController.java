@@ -24,8 +24,8 @@ import java.util.Map;
  * Created by Alan on 2016/12/5.
  * All rights reserved.
  */
-@RequestMapping("user")
 @Controller
+@RequestMapping("user")
 public class EasyOrderController {
     @Autowired
     private EasyOrderService service;

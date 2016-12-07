@@ -103,14 +103,12 @@ public class OrderController {
     )
     @ResponseBody
     public String comment(HttpServletRequest request) {
-        String userID = request.getParameter("userid");
         String foodID = request.getParameter("foodid");
         String comment = request.getParameter("comment");
-        int intUserID = Integer.parseInt(userID);
         int intFoodID = Integer.parseInt(foodID);
         int intComment = Integer.parseInt(comment);
 
-        MyMessage myMessage = service.comment(intUserID, intFoodID, intComment);
+        MyMessage myMessage = service.comment(intFoodID, intComment);
         if (myMessage.isSuccess()) {
             return MyResponse.success();
         } else {

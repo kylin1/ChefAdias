@@ -6,6 +6,7 @@ import web.biz.OrderService;
 import web.dao.FoodDao;
 import web.dao.OrderDao;
 import web.dao.OrderItemDao;
+import web.model.po.Food;
 import web.model.po.Order;
 import web.model.po.OrderItem;
 import web.model.vo.*;
@@ -39,7 +40,7 @@ public class OrderImpl implements OrderService {
         Order order = new Order();
         order.setUser_id(addOrderVO.getUserid());
         order.setCreate_time(MyConverter.getDate(addOrderVO.getTime()));
-        order.setIsFinish(0);
+        order.setIs_finish(0);
         order.setBowl_info(addOrderVO.getBowl_info());
         order.setPrice(addOrderVO.getPrice());
         order.setPay_type(addOrderVO.getPay_type());
@@ -50,13 +51,14 @@ public class OrderImpl implements OrderService {
         List<OrderItemVO> orderItemList = addOrderVO.getFood_list();
         for (OrderItemVO orderItemVO : orderItemList) {
             String foodID = orderItemVO.getFoodid();
+            int intFoodID = Integer.parseInt(foodID);
+            Food food = foodDao.getFood(intFoodID);
             int num = orderItemVO.getNum();
-            //TODO 缺少FoodDAO对于foodInfo（name,price）的操作
-            BigDecimal price = new BigDecimal(0);
-            String name = "";
+            BigDecimal price = food.getPrice();
+            String name = food.getName();
 
             OrderItem orderItem = new OrderItem();
-            orderItem.setFoodid(Integer.parseInt(foodID));
+            orderItem.setFoodid(intFoodID);
             orderItem.setNum(num);
             orderItem.setName(name);
             orderItem.setPrice(price);
@@ -103,8 +105,13 @@ public class OrderImpl implements OrderService {
     }
 
     @Override
-    public MyMessage comment(int userID, int foodID, int comment) {
-        //TODO 缺少comment的DAO操作
-        return null;
+    public MyMessage comment(int foodID, int comment) {
+        Food food = foodDao.getFood(foodID);
+        if (comment == 0) {
+            food.setDislike(food.getDislike() + 1);
+        } else {
+            food.setLike(food.getLike() + 1);
+        }
+        return foodDao.updateFood(food);
     }
 }
