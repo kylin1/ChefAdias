@@ -1,22 +1,40 @@
 package web.biz.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import web.biz.ShopFoodService;
+import web.dao.FoodDao;
+import web.model.po.Food;
 import web.tools.MyMessage;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * Created by Alan on 2016/12/6.
  */
+@Service
 public class ShopFoodImpl implements ShopFoodService {
+
+    @Autowired
+    private FoodDao foodDao;
+
     @Override
-    public MyMessage addFood(String name, MultipartFile pic, int typeID, double price, List<String> foodIDList) {
+    public MyMessage addFood(String name, MultipartFile pic, int typeID, BigDecimal price, List<String> foodIDList, String description) {
+        Food food = new Food();
+        food.setName(name);
+        food.setType_id(typeID);
+        food.setPrice(price);
+        food.setLike(0);
+        food.setDislike(0);
+        food.setDescription(description);
+//        foodDao.addFood()
         return null;
     }
 
     @Override
-    public MyMessage deleteFood(String foodID) {
+    public MyMessage deleteFood(int foodID) {
         return null;
     }
 
@@ -36,7 +54,7 @@ public class ShopFoodImpl implements ShopFoodService {
     }
 
     @Override
-    public MyMessage modType(String typeID, String name, MultipartFile pic) {
+    public MyMessage modType(int typeID, String name, MultipartFile pic) {
         return null;
     }
 }

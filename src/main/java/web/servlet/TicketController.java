@@ -23,6 +23,7 @@ import java.util.Map;
  * All rights reserved.
  */
 @Controller
+@RequestMapping("menu")
 public class TicketController {
     @Autowired
     private TicketService service;

@@ -1,27 +1,29 @@
 package web.model.vo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
- * Created by Alan on 2016/12/6.
+ * 用户订单详情界面
+ * Created by Alan on 2016/12/7.
  */
-public class OrderResponse {
-    private String orderid;
+public class UserOrderVO {
+    private List<FoodItemVO> food_list;
     private BigDecimal price;
     private String time;
 
-    public OrderResponse(String orderid, BigDecimal price, String time) {
-        this.orderid = orderid;
+    public UserOrderVO(List<FoodItemVO> food_list, BigDecimal price, String time) {
+        this.food_list = food_list;
         this.price = price;
         this.time = time;
     }
 
-    public String getOrderid() {
-        return orderid;
+    public List<FoodItemVO> getFood_list() {
+        return food_list;
     }
 
-    public void setOrderid(String orderid) {
-        this.orderid = orderid;
+    public void setFood_list(List<FoodItemVO> food_list) {
+        this.food_list = food_list;
     }
 
     public BigDecimal getPrice() {

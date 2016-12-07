@@ -3,13 +3,17 @@ package web.model.vo;
 import java.math.BigDecimal;
 
 /**
+ * 用户食物列表item
  * Created by Alan on 2016/12/7.
  */
 public class FoodItemVO {
-    private String foodid;
-    private String name;
-    private BigDecimal price;
-    private int num;
+    String foodid;
+    String name;
+    BigDecimal price;
+    int num;
+
+    public FoodItemVO() {
+    }
 
     public FoodItemVO(String foodid, String name, BigDecimal price, int num) {
         this.foodid = foodid;

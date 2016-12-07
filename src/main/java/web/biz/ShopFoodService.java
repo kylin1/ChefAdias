@@ -3,6 +3,7 @@ package web.biz;
 import org.springframework.web.multipart.MultipartFile;
 import web.tools.MyMessage;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -12,14 +13,15 @@ public interface ShopFoodService {
     /**
      * 商家上传食物情况
      *
-     * @param name       食物名
-     * @param pic        食物图片
-     * @param typeID     食物类别ID
-     * @param price      食物单价
-     * @param foodIDList 额外食物ID列表
+     * @param name        食物名
+     * @param pic         食物图片
+     * @param typeID      食物类别ID
+     * @param price       食物单价
+     * @param foodIDList  额外食物ID列表
+     * @param description 简介
      * @return MyMessage
      */
-    MyMessage addFood(String name, MultipartFile pic, int typeID, double price, List<String> foodIDList);
+    MyMessage addFood(String name, MultipartFile pic, int typeID, BigDecimal price, List<String> foodIDList, String description);
 
     /**
      * 商家删除食物
@@ -27,7 +29,7 @@ public interface ShopFoodService {
      * @param foodID 食物ID
      * @return MyMessage
      */
-    MyMessage deleteFood(String foodID);
+    MyMessage deleteFood(int foodID);
 
     /**
      * 修改食物信息
@@ -65,6 +67,6 @@ public interface ShopFoodService {
      * @param pic    分类图片
      * @return MyMessage
      */
-    MyMessage modType(String typeID, String name, MultipartFile pic);
-    
+    MyMessage modType(int typeID, String name, MultipartFile pic);
+
 }

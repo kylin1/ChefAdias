@@ -2,6 +2,7 @@ package web.servlet;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,7 @@ import java.util.Map;
  * 商户订单
  * Created by Alan on 2016/12/6.
  */
+@Controller
 @RequestMapping("shop")
 public class ShopOrderController {
     @Autowired
@@ -36,12 +38,7 @@ public class ShopOrderController {
         String date = request.getParameter("date");
         List<ShopOrderItemVO> orderList = service.getOrderList(date);
 
-        try {
-            return MyResponse.success(JsonConverter.jsonOfObject(orderList));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return MyResponse.failure(ErrorCode.SERVER, "failure in obtaining order list");
-        }
+        return MyResponse.success(orderList);
     }
 
     @RequestMapping(

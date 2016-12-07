@@ -12,7 +12,7 @@ import web.model.exceptions.NotFoundException;
 import web.model.po.Order;
 import web.model.vo.EasyOrderVO;
 import web.model.vo.FoodItemVO;
-import web.model.vo.OrderItem;
+import web.model.po.OrderItem;
 import web.tools.MyMessage;
 
 import java.math.BigDecimal;
