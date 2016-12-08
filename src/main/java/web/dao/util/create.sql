@@ -54,7 +54,7 @@ create table `order`(
 drop table if exists `food_list`;
 create table `food_list`(
 	`id` int(11) not null auto_increment,
-	`order_id` int(11) not null,
+	`id` int(11) not null,
 	`food_id` int(11) not null,
 	`food_num` int(11) not null default '1',
 	primary key(`id`),
@@ -63,7 +63,7 @@ CONSTRAINT `food_list_ibfk_1` FOREIGN KEY (`food_id`)
 	REFERENCES `food` (`id`) 
 	ON DELETE CASCADE ON UPDATE CASCADE,
 
-CONSTRAINT `food_list_ibfk_2` FOREIGN KEY (`order_id`) 
+CONSTRAINT `food_list_ibfk_2` FOREIGN KEY (`id`)
 	REFERENCES `order` (`id`) 
 	ON DELETE CASCADE ON UPDATE CASCADE
 ) engine = InnoDB auto_increment=1 default charset=utf8;
@@ -71,7 +71,7 @@ CONSTRAINT `food_list_ibfk_2` FOREIGN KEY (`order_id`)
 drop table if exists `easy_order`;
 create table `easy_order`(
 	`id` int(11) not null auto_increment,
-	`order_id` int(11) not null,
+	`id` int(11) not null,
 	`user_id` int(11) not null,
 	primary key(`id`),
 
@@ -79,7 +79,7 @@ create table `easy_order`(
 	REFERENCES `user` (`id`) 
 	ON DELETE CASCADE ON UPDATE CASCADE,
 
-	CONSTRAINT `easy_order_ibfk_2` FOREIGN KEY (`order_id`) 
+	CONSTRAINT `easy_order_ibfk_2` FOREIGN KEY (`id`)
 	REFERENCES `order` (`id`) 
 	ON DELETE CASCADE ON UPDATE CASCADE
 ) engine = InnoDB auto_increment=1 default charset=utf8;

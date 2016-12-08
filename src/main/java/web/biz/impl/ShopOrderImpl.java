@@ -99,7 +99,7 @@ public class ShopOrderImpl implements ShopOrderService {
             List<Order> orderList = orderDao.getOrderInDay(sdf2.format(today), sdf2.format(tomorrow));
 
             for (Order order : orderList) {
-                int orderID = order.getOrder_id();
+                int orderID = order.getId();
                 int userID = order.getUser_id();
                 User user = userDao.getUser(userID);
                 String username = user.getUsername();

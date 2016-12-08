@@ -1,5 +1,6 @@
 package dao;
 
+import org.junit.Test;
 import web.dao.impl.OrderDaoImpl;
 import web.model.po.Order;
 import web.tools.CheckClass;
@@ -32,7 +33,7 @@ public class OrderDaoTest {
         }
     }
 
-//    @Test
+    @Test
     public void getOrder() throws ClassNotFoundException {
         OrderDaoImpl dao = new OrderDaoImpl();
         Order order = dao.getOrder(1);
