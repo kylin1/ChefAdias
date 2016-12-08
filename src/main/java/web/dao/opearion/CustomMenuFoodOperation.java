@@ -12,7 +12,7 @@ import java.util.List;
  * Created by kylin on 08/12/2016.
  * All rights reserved.
  */
-public interface CustomMenuOperation {
+public interface CustomMenuFoodOperation {
 
     @Select({"select * from `custom_menu_food`"})
     List<CustomMenuFood> getAll();

@@ -44,7 +44,7 @@ public class MybatisUtils {
         sessionFactory.getConfiguration().addMapper(UserOperation.class);
         sessionFactory.getConfiguration().addMapper(UserTicketOperation.class);
 
-        sessionFactory.getConfiguration().addMapper(CustomMenuOperation.class);
+        sessionFactory.getConfiguration().addMapper(CustomMenuFoodOperation.class);
 
     }
 

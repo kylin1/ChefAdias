@@ -1,7 +1,7 @@
 package dao;
 
-import web.dao.CustomMenuDao;
-import web.dao.impl.CustomMenuDaoImpl;
+import web.dao.CustomMenuFoodDao;
+import web.dao.impl.CustomMenuFoodDaoImpl;
 import web.model.po.CustomMenuFood;
 import web.tools.CheckClass;
 
@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  */
 public class CustomMennFoodTest {
 
-    private CustomMenuDao dao = new CustomMenuDaoImpl();
+    private CustomMenuFoodDao dao = new CustomMenuFoodDaoImpl();
 
 //    @Test
     public void get() throws ClassNotFoundException {
