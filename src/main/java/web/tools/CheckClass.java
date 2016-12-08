@@ -21,7 +21,8 @@ public class CheckClass {
             //取出属性名称
             String field = field1.toString().substring(field1.toString().lastIndexOf(".")+1);
             try {
-                System.out.println(field+" --> "+field1.get(object));
+                System.out.print(field+" --> ");
+                System.out.println(field1.get(object));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
