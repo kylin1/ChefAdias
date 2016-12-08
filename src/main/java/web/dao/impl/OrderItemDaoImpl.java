@@ -20,26 +20,40 @@ import java.util.List;
 @Repository("orderItemDao")
 public class OrderItemDaoImpl implements OrderItemDao {
 
-    private SqlSession sqlSession;
+    private SqlSession session;
     private OrderItemOperation operation;
 
     @Override
     public MyMessage addOrderItem(OrderItem orderItem) {
-        return null;
+        MyMessage myMessage = null;
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(OrderItemOperation.class);
+            this.operation.insert(orderItem);
+            this.session.commit();
+            myMessage =  new MyMessage(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+            myMessage = new MyMessage(false, 0, ex.getMessage());
+        } finally {
+            this.session.close();
+        }
+        return myMessage;
     }
 
     @Override
     public List<OrderItem> getOrderItemOfOrder(int orderId) {
         List<OrderItem> list = new ArrayList<>();
         try {
-            this.sqlSession = MybatisUtils.getSession();
-            this.operation = this.sqlSession.getMapper(OrderItemOperation.class);
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(OrderItemOperation.class);
             list = this.operation.getOrderItem(orderId);
-            this.sqlSession.commit();
+            this.session.commit();
         }catch (Exception ex){
-            this.sqlSession.rollback();
+            this.session.rollback();
         }finally {
-            this.sqlSession.close();
+            this.session.close();
         }
         return list;
     }

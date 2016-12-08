@@ -1,5 +1,6 @@
 package dao;
 
+import org.junit.Test;
 import web.dao.impl.EasyOrderDaoImpl;
 import web.model.po.EasyOrder;
 import web.tools.CheckClass;
@@ -10,10 +11,10 @@ import web.tools.CheckClass;
  */
 public class EasyOrderDaoImplTest {
 
-//    @Test
+    @Test
     public void test() throws ClassNotFoundException {
         EasyOrderDaoImpl dao = new EasyOrderDaoImpl();
-        EasyOrder easyOrder = dao.getEasyOrderOfUser(1);
+        EasyOrder easyOrder = dao.getEasyOrderOfUser(2);
         CheckClass.checkObject("EasyOrder",easyOrder);
     }
 

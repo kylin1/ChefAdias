@@ -1,5 +1,6 @@
 package web.dao.opearion;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import web.model.po.OrderItem;
 
@@ -11,8 +12,10 @@ import java.util.List;
  */
 public interface OrderItemOperation {
 
-    @Select({"select list.order_id,list.food_id,f.`name` as foodName,f.price,list.food_num from `food_list` list,`food` f\n" +
-            " where list.order_id = #{orderId} and f.id = list.food_id;"})
+    @Select({"select * from `food_list` where `order_id` = #{orderId} "})
     List<OrderItem> getOrderItem(int orderId);
 
+    @Insert({"insert into `food_list` ( `order_id`, `food_id`, `food_num`) " +
+            " values ( #{order_id}, #{food_id}, #{food_num})"})
+    void insert(OrderItem orderItem);
 }

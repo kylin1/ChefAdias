@@ -39,6 +39,7 @@ public class MybatisUtils {
         sessionFactory.getConfiguration().addMapper(OrderOperation.class);
         sessionFactory.getConfiguration().addMapper(TicketOperation.class);
         sessionFactory.getConfiguration().addMapper(BowlOperation.class);
+        sessionFactory.getConfiguration().addMapper(OrderItemOperation.class);
     }
 
 }

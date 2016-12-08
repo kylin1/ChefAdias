@@ -22,32 +22,9 @@ public class EasyOrderDaoImpl implements EasyOrderDao {
     EasyOrderOperation operation;
     OrderItemOperation itemOperation;
 
+
     @Override
     public EasyOrder getEasyOrderOfUser(int userId) {
-        EasyOrder easyOrder = null;
-        try {
-            this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(EasyOrderOperation.class);
-            this.itemOperation = this.session.getMapper(OrderItemOperation.class);
-
-            //获取基本信息
-            easyOrder = this.operation.getEasyOrder(userId);
-
-//            //获取里面的list信息
-//            List<OrderItem> orderItems = this.itemOperation.getOrderItem(userId);
-//            easyOrder.setFood_list(orderItems);
-
-            this.session.commit();
-        }catch (Exception ex){
-            ex.printStackTrace();
-            this.session.rollback();
-        }finally {
-            this.session.close();
-        }
-        return easyOrder;
-    }
-
-    private EasyOrder getBasicOfUser(int userId) {
         EasyOrder easyOrder = null;
         try {
             this.session = MybatisUtils.getSession();
@@ -67,7 +44,7 @@ public class EasyOrderDaoImpl implements EasyOrderDao {
     @Override
     public MyMessage addEasyOrder(EasyOrder easyOrder) {
         int id = easyOrder.getUser_id();
-        EasyOrder old = this.getBasicOfUser(id);
+        EasyOrder old = this.getEasyOrderOfUser(id);
         //不存在则新增
         if(old == null){
             System.out.println("no");

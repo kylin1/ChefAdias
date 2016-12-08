@@ -46,7 +46,9 @@ public class OrderDaoTest {
         Order order = new Order();
         order.setUser_id(1);
         order.setCreate_time(new Date());
+
         order.setPrice(new BigDecimal("33.8"));
+
         order.setIs_finish(1);
         order.setTicket_info(1);
         order.setBowl_info(1);
