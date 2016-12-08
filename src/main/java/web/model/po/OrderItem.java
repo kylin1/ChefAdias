@@ -14,30 +14,8 @@ public class OrderItem {
     //食物 ID
     private int foodid;
 
-    //食物名
-    private String name;
-
-    //价格
-    private BigDecimal price;
-
     //数量
     private int num;
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getOrder_id() {
         return order_id;

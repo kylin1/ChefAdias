@@ -3,9 +3,11 @@ package web.biz.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.biz.ShopOrderService;
+import web.dao.FoodDao;
 import web.dao.OrderDao;
 import web.dao.OrderItemDao;
 import web.dao.UserDao;
+import web.model.po.Food;
 import web.model.po.Order;
 import web.model.po.OrderItem;
 import web.model.po.User;
@@ -39,6 +41,9 @@ public class ShopOrderImpl implements ShopOrderService {
     @Autowired
     OrderItemDao orderItemDao;
 
+    @Autowired
+    FoodDao foodDao;
+
     @Override
     public ShopOrderVO getOrder(int orderID) {
         //OrderDAO
@@ -56,9 +61,10 @@ public class ShopOrderImpl implements ShopOrderService {
         List<FoodItemVO> foodItemVOList = new ArrayList<>();
         BigDecimal sum = new BigDecimal(0);
         for (OrderItem orderItem : orderItemList) {
-            FoodItemVO vo = new FoodItemVO(orderItem.getFoodid() + "", orderItem.getName(), orderItem.getPrice(), orderItem.getNum());
+            Food food = foodDao.getFood(orderItem.getFoodid());
+            FoodItemVO vo = new FoodItemVO(orderItem.getFoodid() + "", food.getName(), food.getPrice(), orderItem.getNum());
             foodItemVOList.add(vo);
-            sum = sum.add(orderItem.getPrice());
+            sum = sum.add(food.getPrice());
         }
 
         int type = order.getPay_type();
@@ -82,7 +88,8 @@ public class ShopOrderImpl implements ShopOrderService {
 
     @Override
     public List<ShopOrderItemVO> getOrderList(String dateStr) {
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMdd"),
+                sdf2 = new SimpleDateFormat("YYYY-MM-dd");
         Date today = null;
         List<ShopOrderItemVO> shopOrderItemVOList = new ArrayList<>();
         try {
@@ -90,7 +97,7 @@ public class ShopOrderImpl implements ShopOrderService {
             Calendar ca = Calendar.getInstance();
             ca.add(Calendar.DATE, 1);
             Date tomorrow = ca.getTime();
-            List<Order> orderList = orderDao.getOrderInDay(sdf.format(today), sdf.format(tomorrow));
+            List<Order> orderList = orderDao.getOrderInDay(sdf2.format(today), sdf2.format(tomorrow));
 
             for (Order order : orderList) {
                 int orderID = order.getOrder_id();

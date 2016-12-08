@@ -54,14 +54,10 @@ public class OrderImpl implements OrderService {
             int intFoodID = Integer.parseInt(foodID);
             Food food = foodDao.getFood(intFoodID);
             int num = orderItemVO.getNum();
-            BigDecimal price = food.getPrice();
-            String name = food.getName();
 
             OrderItem orderItem = new OrderItem();
             orderItem.setFoodid(intFoodID);
             orderItem.setNum(num);
-            orderItem.setName(name);
-            orderItem.setPrice(price);
             MyMessage orderItemMessage = orderItemDao.addOrderItem(orderItem);
             if (!orderItemMessage.isSuccess()) {
                 return orderItemMessage;
@@ -96,9 +92,10 @@ public class OrderImpl implements OrderService {
         List<FoodItemVO> foodItemVOList = new ArrayList<>();
         BigDecimal sum = new BigDecimal(0);
         for (OrderItem orderItem : orderItemList) {
-            FoodItemVO vo = new FoodItemVO(orderItem.getFoodid() + "", orderItem.getName(), orderItem.getPrice(), orderItem.getNum());
+            Food food = foodDao.getFood(orderItem.getFoodid());
+            FoodItemVO vo = new FoodItemVO(orderItem.getFoodid() + "", food.getName(), food.getPrice(), orderItem.getNum());
             foodItemVOList.add(vo);
-            sum = sum.add(orderItem.getPrice());
+            sum = sum.add(food.getPrice());
         }
 
         return new UserOrderVO(foodItemVOList, sum, time);

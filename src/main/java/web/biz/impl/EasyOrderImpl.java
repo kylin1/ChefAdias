@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.biz.EasyOrderService;
 import web.dao.EasyOrderDao;
+import web.dao.FoodDao;
 import web.dao.OrderDao;
 import web.dao.OrderItemDao;
 import web.model.po.EasyOrder;
 import web.model.exceptions.ErrorCode;
 import web.model.exceptions.NotFoundException;
+import web.model.po.Food;
 import web.model.po.Order;
 import web.model.vo.EasyOrderVO;
 import web.model.vo.FoodItemVO;
@@ -32,6 +34,8 @@ public class EasyOrderImpl implements EasyOrderService {
     OrderItemDao orderItemDao;
     @Autowired
     OrderDao orderDao;
+    @Autowired
+    FoodDao foodDao;
 
     @Override
     public EasyOrderVO getEasyOrder(int userID) throws NotFoundException {
@@ -47,10 +51,11 @@ public class EasyOrderImpl implements EasyOrderService {
         BigDecimal sumPrice = new BigDecimal(0);
         List<FoodItemVO> foodList = new ArrayList<>();
         for (OrderItem orderItem : orderItemList) {
+            Food food = foodDao.getFood(orderItem.getFoodid());
             FoodItemVO foodItemVO =
-                    new FoodItemVO(orderItem.getFoodid() + "", orderItem.getName(),
-                            orderItem.getPrice(), orderItem.getNum());
-            sumPrice = sumPrice.add(orderItem.getPrice());
+                    new FoodItemVO(orderItem.getFoodid() + "", food.getName(),
+                            food.getPrice(), orderItem.getNum());
+            sumPrice = sumPrice.add(food.getPrice());
             foodList.add(foodItemVO);
         }
 
