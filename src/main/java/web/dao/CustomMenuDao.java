@@ -3,6 +3,8 @@ package web.dao;
 import web.model.po.CustomMenuFood;
 import web.tools.MyMessage;
 
+import java.util.List;
+
 /**
  * 自定义菜单数据层接口
  *
@@ -10,6 +12,13 @@ import web.tools.MyMessage;
  * All rights reserved.
  */
 public interface CustomMenuDao {
+
+    /**
+     * 获取自定义菜单价格
+     *
+     * @return
+     */
+    List<CustomMenuFood> getCustomMenuFood();
 
     //商家的CURD方法
     CustomMenuFood get(int mmenu_foodid);

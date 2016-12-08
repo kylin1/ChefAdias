@@ -6,11 +6,16 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import web.model.po.CustomMenuFood;
 
+import java.util.List;
+
 /**
  * Created by kylin on 08/12/2016.
  * All rights reserved.
  */
 public interface CustomMenuOperation {
+
+    @Select({"select * from `custom_menu_food`"})
+    List<CustomMenuFood> getAll();
 
     @Select({"select * from `custom_menu_food` where id=#{mmenu_foodid}"})
     CustomMenuFood get(int mmenu_foodid);
@@ -25,4 +30,5 @@ public interface CustomMenuOperation {
 
     @Delete({"delete from `custom_menu_food` where id=#{mmenu_foodid}"})
     void delete(int mmenu_foodid);
+
 }

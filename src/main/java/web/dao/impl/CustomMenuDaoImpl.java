@@ -9,6 +9,8 @@ import web.dao.util.MybatisUtils;
 import web.model.po.CustomMenuFood;
 import web.tools.MyMessage;
 
+import java.util.List;
+
 /**
  * Created by kylin on 08/12/2016.
  * All rights reserved.
@@ -19,6 +21,23 @@ public class CustomMenuDaoImpl implements CustomMenuDao {
 
     SqlSession session;
     CustomMenuOperation operation;
+
+    @Override
+    public List<CustomMenuFood> getCustomMenuFood() {
+        List<CustomMenuFood> list = null;
+        try {
+            this.session = MybatisUtils.getSession();
+            this.operation = this.session.getMapper(CustomMenuOperation.class);
+            list = this.operation.getAll();
+            this.session.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+        } finally {
+            this.session.close();
+        }
+        return list;
+    }
 
     @Override
     public CustomMenuFood get(int mmenu_foodid) {

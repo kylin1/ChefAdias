@@ -41,7 +41,7 @@ public class FoodTypeTest {
         this.dao.updateFoodType(type);
     }
 
-//    @Test
+    @Test
     public void delete() throws ClassNotFoundException {
         this.dao.deleteFoodType(5);
     }

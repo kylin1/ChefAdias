@@ -14,7 +14,7 @@ public class EasyOrderDaoImplTest {
     @Test
     public void test() throws ClassNotFoundException {
         EasyOrderDaoImpl dao = new EasyOrderDaoImpl();
-        EasyOrder easyOrder = dao.getEasyOrderOfUser(2);
+        EasyOrder easyOrder = dao.getEasyOrderOfUser(3);
         CheckClass.checkObject("EasyOrder",easyOrder);
     }
 

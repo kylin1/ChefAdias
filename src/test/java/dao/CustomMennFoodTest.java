@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.CustomMenuDao;
 import web.dao.impl.CustomMenuDaoImpl;
 import web.model.po.CustomMenuFood;
@@ -16,7 +15,7 @@ public class CustomMennFoodTest {
 
     private CustomMenuDao dao = new CustomMenuDaoImpl();
 
-    @Test
+//    @Test
     public void get() throws ClassNotFoundException {
         CustomMenuFood customMenuFood = dao.get(1);
         CheckClass.checkObject("CustomMenuFood", customMenuFood);
@@ -30,7 +29,7 @@ public class CustomMennFoodTest {
 //        }
 //    }
 
-    @Test
+//    @Test
     public void add() {
         CustomMenuFood food = new CustomMenuFood();
         food.setName("test");
@@ -39,7 +38,7 @@ public class CustomMennFoodTest {
         dao.add(food);
     }
 
-    @Test
+//    @Test
     public void update() {
         CustomMenuFood food = dao.get(5);
         food.setName("test234");
@@ -48,7 +47,7 @@ public class CustomMennFoodTest {
         dao.update(food);
     }
 
-    @Test
+//    @Test
     public void delete() {
         dao.delete(5);
     }

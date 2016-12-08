@@ -32,7 +32,7 @@ public class BowlDaoTest {
         dao.updateBowl(bowl);
     }
 
-//    @Test
+    @Test
     public void get() throws ClassNotFoundException {
         List<Bowl> bowlList = dao.getBowlOfUser(1);
         System.out.println(bowlList.size());

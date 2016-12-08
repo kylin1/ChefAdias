@@ -17,11 +17,11 @@ public class FoodTest {
 
     private FoodDao dishDao = new FoodDaoImpl();
 
-//    @Test
+    @Test
     public void testAll(){
-        for(int i = 1;i<=4;i++){
+//        for(int i = 1;i<=4;i++){
             Food food = new Food();
-            food.setName("pizza");
+            food.setName("中文测试pizza");
             food.setPicture("http://139.196.179.145/images/pizza.jpg");
             food.setPrice(new BigDecimal("8"));
 
@@ -32,11 +32,11 @@ public class FoodTest {
             food.setDislike(3);
 
             dishDao.addFood(food);
-        }
+//        }
     }
 
-//    @Test
-    public void testFoodOfType() throws ClassNotFoundException {
+    @Test
+    public void getAllFood() throws ClassNotFoundException {
 //        List<Food> list = dishDao.getFoodOfType(2);
         List<Food> list = dishDao.getAllFood();
         this.printFoodList(list);
