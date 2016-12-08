@@ -32,15 +32,18 @@ public class MybatisUtils {
         InputStream is = MybatisUtils.class.getResourceAsStream(resource);
         //构建sqlSession的工厂
         sessionFactory = new SqlSessionFactoryBuilder().build(is);
+        sessionFactory.getConfiguration().addMapper(BowlOperation.class);
         sessionFactory.getConfiguration().addMapper(EasyOrderOperation.class);
-        sessionFactory.getConfiguration().addMapper(FoodTypeOperation.class);
+        sessionFactory.getConfiguration().addMapper(FoodExtraOperation.class);
         sessionFactory.getConfiguration().addMapper(FoodOperation.class);
-        sessionFactory.getConfiguration().addMapper(UserOperation.class);
+        sessionFactory.getConfiguration().addMapper(FoodTypeOperation.class);
+
+        sessionFactory.getConfiguration().addMapper(OrderItemOperation.class);
         sessionFactory.getConfiguration().addMapper(OrderOperation.class);
         sessionFactory.getConfiguration().addMapper(TicketOperation.class);
-        sessionFactory.getConfiguration().addMapper(BowlOperation.class);
-        sessionFactory.getConfiguration().addMapper(OrderItemOperation.class);
-        sessionFactory.getConfiguration().addMapper(FoodExtraOperation.class);
+        sessionFactory.getConfiguration().addMapper(UserOperation.class);
+        sessionFactory.getConfiguration().addMapper(UserTicketOperation.class);
+
     }
 
 }
