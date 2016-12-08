@@ -18,7 +18,6 @@ import java.util.List;
  */
 @Transactional
 @Repository("bowlDao")
-
 public class BowlDaoImpl implements BowlDao {
     
     SqlSession session;

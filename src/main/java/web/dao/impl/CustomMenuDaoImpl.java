@@ -3,34 +3,30 @@ package web.dao.impl;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import web.dao.FoodExtraDao;
-import web.dao.opearion.FoodExtraOperation;
+import web.dao.CustomMenuDao;
+import web.dao.opearion.CustomMenuOperation;
 import web.dao.util.MybatisUtils;
-import web.model.po.FoodExtra;
+import web.model.po.CustomMenuFood;
 import web.tools.MyMessage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by kylin on 08/12/2016.
  * All rights reserved.
  */
 @Transactional
-@Repository("foodExtraDao")
-public class FoodExtraDaoImpl implements FoodExtraDao {
+@Repository("customMenuDao")
+public class CustomMenuDaoImpl implements CustomMenuDao {
 
     SqlSession session;
-
-    FoodExtraOperation operation;
+    CustomMenuOperation operation;
 
     @Override
-    public List<FoodExtra> getExtraOfMainFood(int mainFoodId) {
-        List<FoodExtra>  list = new ArrayList<>();
+    public CustomMenuFood get(int mmenu_foodid) {
+        CustomMenuFood food = null;
         try {
             this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(FoodExtraOperation.class);
-            list = this.operation.getExtraFood(mainFoodId);
+            this.operation = this.session.getMapper(CustomMenuOperation.class);
+            food = this.operation.get(mmenu_foodid);
             this.session.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -38,16 +34,16 @@ public class FoodExtraDaoImpl implements FoodExtraDao {
         } finally {
             this.session.close();
         }
-        return list;
+        return food;
     }
 
     @Override
-    public MyMessage addExtraFood(FoodExtra foodExtra) {
+    public MyMessage add(CustomMenuFood customMenuFood) {
         MyMessage myMessage = null;
         try {
             this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(FoodExtraOperation.class);
-            this.operation.insert(foodExtra);
+            this.operation = this.session.getMapper(CustomMenuOperation.class);
+            this.operation.add(customMenuFood);
             this.session.commit();
             myMessage = new MyMessage(true);
         } catch (Exception ex) {
@@ -61,29 +57,12 @@ public class FoodExtraDaoImpl implements FoodExtraDao {
     }
 
     @Override
-    public FoodExtra getFoodExtra(int id) {
-        FoodExtra foodExtra = null;
-        try {
-            this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(FoodExtraOperation.class);
-            foodExtra = this.operation.get(id);
-            this.session.commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            this.session.rollback();
-        } finally {
-            this.session.close();
-        }
-        return foodExtra;
-    }
-
-    @Override
-    public MyMessage updateFoodExtra(FoodExtra foodExtra) {
+    public MyMessage update(CustomMenuFood customMenuFood) {
         MyMessage myMessage = null;
         try {
             this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(FoodExtraOperation.class);
-            this.operation.update(foodExtra);
+            this.operation = this.session.getMapper(CustomMenuOperation.class);
+            this.operation.update(customMenuFood);
             this.session.commit();
             myMessage = new MyMessage(true);
         } catch (Exception ex) {
@@ -97,12 +76,12 @@ public class FoodExtraDaoImpl implements FoodExtraDao {
     }
 
     @Override
-    public MyMessage deleteFoodExtra(int id) {
+    public MyMessage delete(int mmenu_foodid) {
         MyMessage myMessage = null;
         try {
             this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(FoodExtraOperation.class);
-            this.operation.delete(id);
+            this.operation = this.session.getMapper(CustomMenuOperation.class);
+            this.operation.delete(mmenu_foodid);
             this.session.commit();
             myMessage = new MyMessage(true);
         } catch (Exception ex) {
