@@ -61,7 +61,7 @@ public class EasyOrderImpl implements EasyOrderService {
 
         //OrderDAO
         Order order = orderDao.getOrder(intOrderID);
-        DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = format.format(order.getCreate_time());
 
         return new EasyOrderVO(foodList, sumPrice, time);

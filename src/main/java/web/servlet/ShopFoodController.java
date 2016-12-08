@@ -2,10 +2,7 @@ package web.servlet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import web.biz.ShopFoodService;
 import web.biz.ShopOrderService;
@@ -91,7 +88,7 @@ public class ShopFoodController {
             method = RequestMethod.POST
     )
     @ResponseBody
-    public String addType(@RequestParam(value = "name") String name, @RequestParam(value = "pic") MultipartFile pic) {
+    public String addType(@RequestParam(value = "name") String name, @RequestBody MultipartFile pic) {
         MyMessage myMessage = service.addType(name, pic);
         if (myMessage.isSuccess()) {
             return MyResponse.success();

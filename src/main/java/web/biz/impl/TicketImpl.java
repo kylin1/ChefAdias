@@ -36,7 +36,7 @@ public class TicketImpl implements TicketService {
 
     @Override
     public TickInfoVO getTicketInfo(int userId) {
-        DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //UserTicketDAO
         List<UserTicket> ticketList = userTicketDao.getUserTicket(userId);
         //list size为1

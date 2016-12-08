@@ -72,7 +72,7 @@ public class OrderImpl implements OrderService {
         List<Order> orderList = orderDao.getOrderOfUser(userId);
         List<UserOrderItemVO> userOrderItemVOList = new ArrayList<>();
         for (Order order : orderList) {
-            DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             UserOrderItemVO vo = new UserOrderItemVO(order.getOrder_id() + "", order.getPrice(), format.format(order.getCreate_time()));
             userOrderItemVOList.add(vo);
         }
@@ -84,7 +84,7 @@ public class OrderImpl implements OrderService {
         //OrderDAO
         Order order = orderDao.getOrder(orderId);
         int intOrderID = order.getOrder_id();
-        DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = format.format(order.getCreate_time());
 
         //OrderItemDAO

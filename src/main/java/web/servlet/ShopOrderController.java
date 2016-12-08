@@ -51,6 +51,9 @@ public class ShopOrderController {
         int intOrderID = Integer.parseInt(orderID);
 
         ShopOrderVO shopOrderVO = service.getOrder(intOrderID);
+        if (shopOrderVO == null) {
+            return MyResponse.failure(ErrorCode.SERVER, "failure in obtaining order detail");
+        }
         Map<String, Object> shopOrderMap = BeanTool.bean2Map(shopOrderVO);
         if (shopOrderMap != null) {
             return MyResponse.success(shopOrderMap);

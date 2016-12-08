@@ -30,16 +30,12 @@ import java.util.List;
  */
 @Service
 public class ShopOrderImpl implements ShopOrderService {
-
     @Autowired
     UserDao userDao;
-
     @Autowired
     OrderDao orderDao;
-
     @Autowired
     OrderItemDao orderItemDao;
-
     @Autowired
     FoodDao foodDao;
 
@@ -47,6 +43,9 @@ public class ShopOrderImpl implements ShopOrderService {
     public ShopOrderVO getOrder(int orderID) {
         //OrderDAO
         Order order = orderDao.getOrder(orderID);
+        if (order == null) {
+            return null;
+        }
         int userID = order.getUser_id();
 
         //UserDAO
@@ -73,7 +72,7 @@ public class ShopOrderImpl implements ShopOrderService {
         } else {
             typeString = "在线付款";
         }
-        DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         return new ShopOrderVO(
                 username,
@@ -87,13 +86,13 @@ public class ShopOrderImpl implements ShopOrderService {
 
     @Override
     public List<ShopOrderItemVO> getOrderList(String dateStr) {
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMdd"),
-                sdf2 = new SimpleDateFormat("YYYY-MM-dd");
-        Date today = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"),
+                sdf2 = new SimpleDateFormat("yyyy-MM-dd");
         List<ShopOrderItemVO> shopOrderItemVOList = new ArrayList<>();
         try {
-            today = sdf.parse(dateStr);
+            Date today = sdf.parse(dateStr);
             Calendar ca = Calendar.getInstance();
+            ca.setTime(today);
             ca.add(Calendar.DATE, 1);
             Date tomorrow = ca.getTime();
             List<Order> orderList = orderDao.getOrderInDay(sdf2.format(today), sdf2.format(tomorrow));
@@ -114,7 +113,7 @@ public class ShopOrderImpl implements ShopOrderService {
                 } else {
                     typeString = "在线付款";
                 }
-                DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 ShopOrderItemVO shopOrderItemVO = new ShopOrderItemVO(orderID + "", username, format.format(time), addr, isFinish, typeString, price);
                 shopOrderItemVOList.add(shopOrderItemVO);
             }
