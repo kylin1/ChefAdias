@@ -28,8 +28,8 @@ public class OrderItemDaoImplTest {
         OrderItemDaoImpl itemDao = new OrderItemDaoImpl();
         OrderItem item = new OrderItem();
         item.setOrder_id(1);
-        item.setFoodid(1);
-        item.setNum(3);
+        item.setFood_id(1);
+        item.setFood_num(3);
         itemDao.addOrderItem(item);
 
     }

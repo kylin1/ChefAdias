@@ -14,7 +14,6 @@ import web.model.po.User;
 import web.model.vo.FoodItemVO;
 import web.model.vo.ShopOrderItemVO;
 import web.model.vo.ShopOrderVO;
-import web.model.vo.ShopUserVO;
 import web.tools.MyMessage;
 
 import java.math.BigDecimal;
@@ -61,8 +60,8 @@ public class ShopOrderImpl implements ShopOrderService {
         List<FoodItemVO> foodItemVOList = new ArrayList<>();
         BigDecimal sum = new BigDecimal(0);
         for (OrderItem orderItem : orderItemList) {
-            Food food = foodDao.getFood(orderItem.getFoodid());
-            FoodItemVO vo = new FoodItemVO(orderItem.getFoodid() + "", food.getName(), food.getPrice(), orderItem.getNum());
+            Food food = foodDao.getFood(orderItem.getFood_id());
+            FoodItemVO vo = new FoodItemVO(orderItem.getFood_id() + "", food.getName(), food.getPrice(), orderItem.getFood_num());
             foodItemVOList.add(vo);
             sum = sum.add(food.getPrice());
         }

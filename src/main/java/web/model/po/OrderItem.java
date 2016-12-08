@@ -1,21 +1,32 @@
 package web.model.po;
 
-import java.math.BigDecimal;
-
 /**
  * Created by kylin on 04/12/2016.
  * All rights reserved.
  */
 public class OrderItem {
 
+    private int id;
+
     //属于的订单ID
     private int order_id;
 
     //食物 ID
-    private int foodid;
+    private int food_id;
 
     //数量
-    private int num;
+    private int food_num;
+
+    public OrderItem() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getOrder_id() {
         return order_id;
@@ -25,19 +36,19 @@ public class OrderItem {
         this.order_id = order_id;
     }
 
-    public int getFoodid() {
-        return foodid;
+    public int getFood_id() {
+        return food_id;
     }
 
-    public void setFoodid(int foodid) {
-        this.foodid = foodid;
+    public void setFood_id(int food_id) {
+        this.food_id = food_id;
     }
 
-    public int getNum() {
-        return num;
+    public int getFood_num() {
+        return food_num;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setFood_num(int food_num) {
+        this.food_num = food_num;
     }
 }

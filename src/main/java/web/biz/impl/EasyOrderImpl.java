@@ -51,10 +51,10 @@ public class EasyOrderImpl implements EasyOrderService {
         BigDecimal sumPrice = new BigDecimal(0);
         List<FoodItemVO> foodList = new ArrayList<>();
         for (OrderItem orderItem : orderItemList) {
-            Food food = foodDao.getFood(orderItem.getFoodid());
+            Food food = foodDao.getFood(orderItem.getFood_id());
             FoodItemVO foodItemVO =
-                    new FoodItemVO(orderItem.getFoodid() + "", food.getName(),
-                            food.getPrice(), orderItem.getNum());
+                    new FoodItemVO(orderItem.getFood_id() + "", food.getName(),
+                            food.getPrice(), orderItem.getFood_num());
             sumPrice = sumPrice.add(food.getPrice());
             foodList.add(foodItemVO);
         }
