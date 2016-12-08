@@ -106,7 +106,7 @@ public class ShopFoodController {
         String typeID = request.getParameter("typeid");
         int intTypeID = Integer.parseInt(typeID);
 
-        MyMessage myMessage = service.deleteFood(intTypeID);
+        MyMessage myMessage = service.deleteType(intTypeID);
         if (myMessage.isSuccess()) {
             return MyResponse.success();
         } else {

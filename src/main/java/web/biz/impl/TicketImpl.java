@@ -36,13 +36,17 @@ public class TicketImpl implements TicketService {
 
     @Override
     public TickInfoVO getTicketInfo(int userId) {
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),
+                sdf = new SimpleDateFormat("yyyy-MM-dd");
         //UserTicketDAO
         List<UserTicket> ticketList = userTicketDao.getUserTicket(userId);
+        if (ticketList == null || ticketList.size() == 0) {
+            return null;
+        }
         //list size为1
         UserTicket userTicket = ticketList.get(0);
         Date expireTime = userTicket.getExpire_time();
-        String expire_time = format.format(expireTime);
+        String expire_time = sdf.format(expireTime);
         int tickID = userTicket.getTicket_id();
 
         //TicketDAO

@@ -36,8 +36,12 @@ public class TicketController {
     public String getTickInfo(HttpServletRequest request) {
         String userID = request.getParameter("userid");
         int intUserID = Integer.parseInt(userID);
-
-        return MyResponse.success(BeanTool.bean2Map(service.getTicketInfo(intUserID)));
+        TickInfoVO tickInfoVO = service.getTicketInfo(intUserID);
+        if (tickInfoVO != null) {
+            return MyResponse.success(BeanTool.bean2Map(tickInfoVO));
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to load tick info");
+        }
     }
 
     @RequestMapping(

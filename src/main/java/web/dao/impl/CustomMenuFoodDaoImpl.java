@@ -16,7 +16,7 @@ import java.util.List;
  * All rights reserved.
  */
 @Transactional
-@Repository("customMenuDao")
+@Repository("customMenuFoodDao")
 public class CustomMenuFoodDaoImpl implements CustomMenuFoodDao {
 
     SqlSession session;
