@@ -71,7 +71,6 @@ CONSTRAINT `food_list_ibfk_2` FOREIGN KEY (`id`)
 drop table if exists `easy_order`;
 create table `easy_order`(
 	`id` int(11) not null auto_increment,
-	`id` int(11) not null,
 	`user_id` int(11) not null,
 	primary key(`id`),
 

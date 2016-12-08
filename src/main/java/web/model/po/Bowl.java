@@ -6,12 +6,22 @@ package web.model.po;
  */
 public class Bowl {
 
+    private int id;
+
     private int user_id;
 
     private int is_return;
 
     public int getUser_id() {
         return user_id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setUser_id(int user_id) {

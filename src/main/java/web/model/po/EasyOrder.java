@@ -1,7 +1,5 @@
 package web.model.po;
 
-import java.util.List;
-
 /**
  * Created by kylin on 04/12/2016.
  * Modified by AlanDelip on 05/12/2016.
