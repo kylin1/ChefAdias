@@ -45,7 +45,7 @@ public class ShopUserImpl implements ShopUserService {
             String expireTime = null;
             if (tickets.size() != 0) {
                 UserTicket ticket = tickets.get(0);
-                DateFormat format = new SimpleDateFormat("YYYYMMdd");
+                DateFormat format = new SimpleDateFormat("yyyyMMdd");
                 expireTime = format.format(ticket.getExpire_time());
             }
 
@@ -87,9 +87,14 @@ public class ShopUserImpl implements ShopUserService {
     @Override
     public MyMessage setBowl(int userID, int state) {
         List<Bowl> bowlList = bowlDao.getBowlOfUser(userID);
-        Bowl bowl = bowlList.get(0);
-        bowl.setIs_return(state);
+        if (bowlList != null && bowlList.size() != 0) {
+            Bowl bowl = bowlList.get(0);
+            bowl.setIs_return(state);
+            return bowlDao.updateBowl(bowl);
+        } else {
+            return new MyMessage(false);
+        }
 
-        return bowlDao.updateBowl(bowl);
+
     }
 }
