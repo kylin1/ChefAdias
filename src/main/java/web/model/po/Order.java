@@ -10,7 +10,7 @@ import java.util.Date;
 public class Order {
 
     //订单ID
-    private int order_id;
+    private int id;
 
     //用户 ID
     private int user_id;
@@ -34,12 +34,12 @@ public class Order {
     private int pay_type;
 
 
-    public int getOrder_id() {
-        return order_id;
+    public int getId() {
+        return id;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUser_id() {

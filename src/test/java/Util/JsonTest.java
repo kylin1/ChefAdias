@@ -1,7 +1,6 @@
 package Util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.junit.Test;
 import web.biz.impl.UserImpl;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
@@ -25,7 +24,7 @@ import java.util.Map;
  * All rights reserved.
  */
 public class JsonTest {
-    @Test
+//    @Test
     public void testJson() throws JsonProcessingException {
         FoodDao dishDao = new FoodDaoImpl();
         String result = MyResponse.success(dishDao.getAllFood());
@@ -33,7 +32,7 @@ public class JsonTest {
 
     }
 
-    @Test
+//    @Test
     public void testList2JsonList() {
         FoodItemVO foodItemVO1 = new FoodItemVO("1", "food1", new BigDecimal(1), 1),
                 foodItemVO2 = new FoodItemVO("2", "food2", new BigDecimal(2), 1);
@@ -44,7 +43,7 @@ public class JsonTest {
         System.out.println(MyResponse.success(foodListVOItem));
     }
 
-    @Test
+//    @Test
     public void testJsonList2List() {
         String input = "[{\"foodid\":\"2\",\"num\":1}," +
                 "{\"foodid\":\"3\",\"num\":1}," +
@@ -60,7 +59,7 @@ public class JsonTest {
     }
 
 
-    @Test
+//    @Test
     public void testJsonFail() throws JsonProcessingException {
         FoodDao dishDao = new FoodDaoImpl();
         String result = MyResponse.failure("0001", "not found", dishDao.getAllFood());
@@ -68,7 +67,7 @@ public class JsonTest {
 
     }
 
-    @Test
+//    @Test
     public void testLogin() {
         Map<String, String> result = new HashMap<>();
         result.put("userid", "123");
@@ -79,7 +78,7 @@ public class JsonTest {
     }
 
 
-    @Test
+//    @Test
     public void testRegister2() throws WrongInputException, NotFoundException, DataConflictException {
         UserImpl userService = new UserImpl();
         userService.setUserDao(new UserDaoImpl());
@@ -89,7 +88,7 @@ public class JsonTest {
 
     }
 
-    @Test
+//    @Test
     public void testBeanTool() {
         FoodItemVO foodItemVO1 = new FoodItemVO("1", "food1", new BigDecimal(1), 1),
                 foodItemVO2 = new FoodItemVO("2", "food2", new BigDecimal(2), 1);
@@ -106,7 +105,7 @@ public class JsonTest {
         }
     }
 
-    @Test
+//    @Test
     public void testBeanConverter() {
         ShopUserExtraVO shopUserExtraVO = new ShopUserExtraVO(1, "1", new BigDecimal(1), "a", "102");
         ShopUserVO shopUserVO = new ShopUserVO("1", "alan", "x.jpg", shopUserExtraVO);

@@ -23,7 +23,7 @@ public class OrderItemDaoImplTest {
     }
 
 
-    @Test
+//    @Test
     public void add() throws ClassNotFoundException {
         OrderItemDaoImpl itemDao = new OrderItemDaoImpl();
         OrderItem item = new OrderItem();
