@@ -101,7 +101,13 @@ public class OrderImpl implements OrderService {
             Food food = foodDao.getFood(orderItem.getFood_id());
             FoodItemVO vo = new FoodItemVO(orderItem.getFood_id() + "", food.getName(), food.getPrice(), orderItem.getFood_num());
             foodItemVOList.add(vo);
-            sum = sum.add(food.getPrice());
+
+            //计算一个OrderItem食物的价格:数量*单价
+            int foodNum = orderItem.getFood_num();
+            BigDecimal foodPrice = food.getPrice();
+            BigDecimal bigFoodNum = new BigDecimal(foodNum);
+            BigDecimal onePrice = foodPrice.multiply(bigFoodNum);
+            sum = sum.add(onePrice);
         }
 
         return new UserOrderVO(foodItemVOList, sum, time);

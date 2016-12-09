@@ -1,11 +1,13 @@
 package biz;
 
+import org.junit.Test;
 import web.biz.impl.OrderImpl;
 import web.dao.impl.FoodDaoImpl;
 import web.dao.impl.OrderDaoImpl;
 import web.dao.impl.OrderItemDaoImpl;
 import web.model.vo.AddOrderVO;
 import web.model.vo.OrderItemVO;
+import web.model.vo.UserOrderVO;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -49,4 +51,9 @@ public class OrderTest {
         service.addOrder(addOrderVO);
     }
 
+    @Test
+    public void testGet(){
+        UserOrderVO vo = service.getOrder(14);
+        System.out.println(vo.getPrice());
+    }
 }
