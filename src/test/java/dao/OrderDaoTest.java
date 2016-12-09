@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.impl.OrderDaoImpl;
 import web.model.po.Order;
 import web.tools.CheckClass;
@@ -33,7 +32,7 @@ public class OrderDaoTest {
         }
     }
 
-    @Test
+//    @Test
     public void getOrder() throws ClassNotFoundException {
         OrderDaoImpl dao = new OrderDaoImpl();
         Order order = dao.getOrder(1);
@@ -55,6 +54,8 @@ public class OrderDaoTest {
         order.setBowl_info(1);
         order.setPay_type(1);
         dao.addOrder(order);
+
+        System.out.println(order.getId());
     }
 
 }

@@ -28,6 +28,7 @@ import java.util.List;
  */
 @Service
 public class EasyOrderImpl implements EasyOrderService {
+
     @Autowired
     EasyOrderDao easyOrderDao;
     @Autowired
@@ -73,5 +74,21 @@ public class EasyOrderImpl implements EasyOrderService {
         easyOrder.setOrder_id(orderID);
         easyOrder.setUser_id(userID);
         return easyOrderDao.addEasyOrder(easyOrder);
+    }
+
+    public void setEasyOrderDao(EasyOrderDao easyOrderDao) {
+        this.easyOrderDao = easyOrderDao;
+    }
+
+    public void setOrderItemDao(OrderItemDao orderItemDao) {
+        this.orderItemDao = orderItemDao;
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
+
+    public void setFoodDao(FoodDao foodDao) {
+        this.foodDao = foodDao;
     }
 }
