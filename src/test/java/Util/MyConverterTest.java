@@ -1,6 +1,5 @@
 package Util;
 
-import org.junit.Test;
 import web.tools.MyConverter;
 
 /**
@@ -9,7 +8,7 @@ import web.tools.MyConverter;
  */
 public class MyConverterTest {
 
-    @Test
+//    @Test
     public void test(){
         System.out.println(MyConverter.getDate("2015-12-02 12:12:12"));
     }

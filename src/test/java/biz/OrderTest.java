@@ -1,6 +1,5 @@
 package biz;
 
-import org.junit.Test;
 import web.biz.impl.OrderImpl;
 import web.dao.impl.FoodDaoImpl;
 import web.dao.impl.OrderDaoImpl;
@@ -51,7 +50,7 @@ public class OrderTest {
         service.addOrder(addOrderVO);
     }
 
-    @Test
+//    @Test
     public void testGet(){
         UserOrderVO vo = service.getOrder(14);
         System.out.println(vo.getPrice());

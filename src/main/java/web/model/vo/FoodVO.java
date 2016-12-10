@@ -1,6 +1,7 @@
 package web.model.vo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 在一个食物的种类下面
@@ -17,13 +18,16 @@ public class FoodVO {
     int good_num;
     int bad_num;
 
-    public FoodVO(String foodid, String name, String pic, BigDecimal price, int good_num, int bad_num) {
+    List<FoodVO> extraFood;
+
+    public FoodVO(String foodid, String name, String pic, BigDecimal price, int good_num, int bad_num, List<FoodVO> extraFood) {
         this.foodid = foodid;
         this.name = name;
         this.pic = pic;
         this.price = price;
         this.good_num = good_num;
         this.bad_num = bad_num;
+        this.extraFood = extraFood;
     }
 
     public String getFoodid() {
@@ -72,5 +76,13 @@ public class FoodVO {
 
     public void setBad_num(int bad_num) {
         this.bad_num = bad_num;
+    }
+
+    public List<FoodVO> getExtraFood() {
+        return extraFood;
+    }
+
+    public void setExtraFood(List<FoodVO> extraFood) {
+        this.extraFood = extraFood;
     }
 }

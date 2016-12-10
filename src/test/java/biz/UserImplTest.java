@@ -1,6 +1,5 @@
 package biz;
 
-import org.junit.Test;
 import web.biz.impl.UserImpl;
 import web.dao.UserDao;
 import web.dao.impl.UserDaoImpl;
@@ -24,7 +23,7 @@ public class UserImplTest {
         this.service.setUserDao(dao);
     }
 
-    @Test
+//    @Test
     public void login() {
         try {
             UserVO user = this.service.login("888@163.com", "123123");

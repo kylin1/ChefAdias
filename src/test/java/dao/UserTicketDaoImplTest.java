@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.impl.UserTicketDaoImpl;
 import web.model.po.UserTicket;
 import web.tools.CheckClass;
@@ -23,7 +22,7 @@ public class UserTicketDaoImplTest {
         }
     }
 
-    @Test
+//    @Test
     public void test2() throws ClassNotFoundException {
         UserTicketDaoImpl dao = new UserTicketDaoImpl();
         UserTicket ticket = new UserTicket();

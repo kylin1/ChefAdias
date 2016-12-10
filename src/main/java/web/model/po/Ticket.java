@@ -20,6 +20,16 @@ public class Ticket {
     // 每日上限
     private BigDecimal daily_upper;
 
+    private BigDecimal price;
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public int getExpire_day() {
         return expire_day;
     }

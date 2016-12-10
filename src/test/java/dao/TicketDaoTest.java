@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.TicketDao;
 import web.dao.impl.TicketDaoImpl;
 import web.model.po.Ticket;
@@ -17,7 +16,7 @@ public class TicketDaoTest {
 
     private TicketDao dao = new TicketDaoImpl();
 
-    @Test
+//    @Test
     public void get() throws ClassNotFoundException {
         List<Ticket> list = dao.getAllTicket();
         String result = MyResponse.success(list);

@@ -11,7 +11,7 @@ public class ShopFoodTest {
 
     private ShopFoodImpl shopFood = new ShopFoodImpl();
 
-    @Test
+//    @Test
     public void updateType(){
 
     }
