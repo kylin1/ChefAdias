@@ -9,9 +9,9 @@ import web.model.po.Food;
 import web.model.po.FoodType;
 import web.model.exceptions.ErrorCode;
 import web.model.exceptions.NotFoundException;
-import web.model.vo.FoodInfoVO;
-import web.model.vo.FoodTypeVO;
 import web.model.vo.FoodVO;
+import web.model.vo.FoodTypeBasicVO;
+import web.model.vo.FoodTypeVO;
 import web.tools.MyMessage;
 
 import java.util.ArrayList;
@@ -27,35 +27,36 @@ public class DishImpl implements DishService {
     private FoodTypeDao foodTypeDao;
 
     @Override
-    public List<Food> getAllDish() {
-        return foodDao.getAllFood();
+    public List<FoodVO> getAllDish() {
+        List<Food> foods =  foodDao.getAllFood();
+        return null;
     }
 
     @Override
-    public List<FoodTypeVO> getMenuCategory() {
+    public List<FoodTypeBasicVO> getMenuCategory() {
         List<FoodType> foodTypes = foodTypeDao.getAllFoodType();
-        List<FoodTypeVO> foodTypeList = new ArrayList<>();
+        List<FoodTypeBasicVO> foodTypeList = new ArrayList<>();
         for (FoodType foodType : foodTypes) {
             int num = foodDao.getFoodOfType(foodType.getId()).size();
-            FoodTypeVO vo = new FoodTypeVO(foodType.getId() + "", foodType.getPicture(), foodType.getName(), num);
+            FoodTypeBasicVO vo = new FoodTypeBasicVO(foodType.getId() + "", foodType.getPicture(), foodType.getName(), num);
             foodTypeList.add(vo);
         }
         return foodTypeList;
     }
 
     @Override
-    public FoodVO getDishInType(int typeID) throws NotFoundException {
+    public FoodTypeVO getDishInType(int typeID) throws NotFoundException {
         FoodType foodType = foodTypeDao.getFoodType(typeID);
         if (foodType == null) {
             throw new NotFoundException(ErrorCode.NO_TYPE_OF_FOOD);
         }
         List<Food> foodList = foodDao.getFoodOfType(typeID);
-        List<FoodInfoVO> foodInfoList = new ArrayList<>();
+        List<FoodVO> foodInfoList = new ArrayList<>();
         for (Food food : foodList) {
-            FoodInfoVO foodInfoVO = new FoodInfoVO(food.getId() + "", food.getName(), food.getPicture(), food.getPrice(), food.getLike(), food.getDislike());
-            foodInfoList.add(foodInfoVO);
+            FoodVO foodVO = new FoodVO(food.getId() + "", food.getName(), food.getPicture(), food.getPrice(), food.getLike(), food.getDislike());
+            foodInfoList.add(foodVO);
         }
-        return new FoodVO(foodType.getPicture(), foodType.getName(), foodList.size(), foodInfoList);
+        return new FoodTypeVO(foodType.getPicture(), foodType.getName(), foodList.size(), foodInfoList);
     }
 
     @Override

@@ -1,24 +1,29 @@
 package web.model.vo;
 
-import java.util.List;
-
 /**
- * 一个菜品种类的信息
- * 和里面包含的菜品信息
+ * 菜品种类VO
  *
  * Created by Alan on 2016/12/7.
  */
-public class FoodTypeVO {
+public class FoodTypeBasicVO {
+    String menuid;
     String pic;
     String name;
     int num;
-    List<FoodVO> list;
 
-    public FoodTypeVO(String pic, String name, int num, List<FoodVO> list) {
+    public FoodTypeBasicVO(String menuid, String pic, String name, int num) {
+        this.menuid = menuid;
         this.pic = pic;
         this.name = name;
         this.num = num;
-        this.list = list;
+    }
+
+    public String getMenuid() {
+        return menuid;
+    }
+
+    public void setMenuid(String menuid) {
+        this.menuid = menuid;
     }
 
     public String getPic() {
@@ -43,13 +48,5 @@ public class FoodTypeVO {
 
     public void setNum(int num) {
         this.num = num;
-    }
-
-    public List<FoodVO> getList() {
-        return list;
-    }
-
-    public void setList(List<FoodVO> list) {
-        this.list = list;
     }
 }
