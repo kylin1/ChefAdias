@@ -1,6 +1,5 @@
 package web.biz.impl;
 
-import org.apache.ibatis.annotations.Arg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -100,6 +99,7 @@ public class ShopFoodImpl implements ShopFoodService {
         }
         foodType.setName(name);
 
-        return foodTypeDao.addFoodType(foodType);
+        return foodTypeDao.updateFoodType(foodType);
     }
+
 }

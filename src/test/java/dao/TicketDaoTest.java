@@ -4,7 +4,7 @@ import org.junit.Test;
 import web.dao.TicketDao;
 import web.dao.impl.TicketDaoImpl;
 import web.model.po.Ticket;
-import web.tools.CheckClass;
+import web.tools.MyResponse;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,12 +17,14 @@ public class TicketDaoTest {
 
     private TicketDao dao = new TicketDaoImpl();
 
-//    @Test
+    @Test
     public void get() throws ClassNotFoundException {
         List<Ticket> list = dao.getAllTicket();
-        for (Ticket ticket:list){
-            CheckClass.checkObject("Ticket",ticket);
-        }
+        String result = MyResponse.success(list);
+        System.out.printf(result);
+//        for (Ticket ticket:list){
+//            CheckClass.checkObject("Ticket",ticket);
+//        }
     }
 
 //    @Test
