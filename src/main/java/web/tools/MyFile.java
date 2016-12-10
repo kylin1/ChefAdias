@@ -12,7 +12,9 @@ import java.util.UUID;
  */
 public class MyFile {
 
-    private static final String IMG_FOLDER = "/data/wwwroot/default/images/";
+    private static final String LOCAL_FOLDER = "/data/wwwroot/default/images/";
+
+    private static final String HTTP_FOLDER = "http://139.196.179.145/images/";
 
 //    private static final String LOCAL_IMG_FOLDER = "/Users/kylin/Desktop/";
 
@@ -20,7 +22,7 @@ public class MyFile {
      * 保存文件到本地
      *
      * @param file
-     * @return
+     * @return 本地路径
      */
     public static String saveFile(MultipartFile file) throws IOException {
 
@@ -38,11 +40,13 @@ public class MyFile {
             String fileName = filePrefix + "." + fileSuffix;
 
             //保存文件的路径
-            String savedFile = IMG_FOLDER + fileName;
+            String savedFile = LOCAL_FOLDER + fileName;
 
             //保存到硬盘
             file.transferTo(new File(savedFile));
-            return savedFile;
+
+            //返回给前端的HTTP路径
+            return HTTP_FOLDER + fileName;
         }
         return "save file failed";
     }
