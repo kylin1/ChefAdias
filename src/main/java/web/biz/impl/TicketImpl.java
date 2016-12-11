@@ -66,7 +66,7 @@ public class TicketImpl implements TicketService {
         for (Order order : orderList) {
             dailySum = dailySum.add(order.getPrice());
         }
-        return new TickInfoVO(dailyUpper.subtract(dailySum), expire_time);
+        return new TickInfoVO(ticket.getId(),dailyUpper.subtract(dailySum), expire_time);
     }
 
     @Override
