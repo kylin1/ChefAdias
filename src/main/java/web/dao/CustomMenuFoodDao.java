@@ -14,7 +14,7 @@ import java.util.List;
 public interface CustomMenuFoodDao {
 
     /**
-     * 获取自定义菜单价格
+     * 获取自定义菜单食物项目
      *
      * @return
      */

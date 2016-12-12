@@ -1,6 +1,5 @@
 package web.dao;
 
-import web.model.po.CustomMenu;
 import web.model.po.CustomMenuList;
 import web.tools.MyMessage;
 
@@ -21,14 +20,6 @@ public interface CustomMenuListDao {
      * @return
      */
     MyMessage addCustomMenuList(CustomMenuList list);
-
-    /**
-     * 获取一个用户的自定义菜单内容
-     *
-     * @param userId 用户ID
-     * @return
-     */
-    List<CustomMenu> getCustomMenuOfUser(int userId);
 
     /**
      * 获取一个menu id下面对应的menu list项目

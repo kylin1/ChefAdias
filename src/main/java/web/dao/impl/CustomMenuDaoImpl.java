@@ -9,6 +9,8 @@ import web.dao.util.MybatisUtils;
 import web.model.po.CustomMenu;
 import web.tools.MyMessage;
 
+import java.util.List;
+
 /**
  * Created by kylin on 08/12/2016.
  * All rights reserved.
@@ -39,6 +41,11 @@ public class CustomMenuDaoImpl implements CustomMenuDao {
             this.session.close();
         }
         return myMessage;
+    }
+
+    @Override
+    public List<CustomMenu> getCustomMenuOfUser(int userId) {
+        return null;
     }
 
     @Override

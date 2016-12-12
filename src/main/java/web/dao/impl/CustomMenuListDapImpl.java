@@ -18,11 +18,6 @@ public class CustomMenuListDapImpl implements CustomMenuListDao {
     }
 
     @Override
-    public List<CustomMenu> getCustomMenuOfUser(int userId) {
-        return null;
-    }
-
-    @Override
     public List<CustomMenuList> getMenuListOfMenu(int menuId) {
         return null;
     }
