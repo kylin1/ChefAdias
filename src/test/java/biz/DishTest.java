@@ -40,18 +40,4 @@ public class DishTest {
         System.out.println( MyResponse.success(foodVOS));
 
     }
-
-//    @Test
-    public void add(){
-        Food food = new Food();
-        food.setDescription("test");
-        food.setDislike(11);
-        food.setLike(2);
-        food.setName("test name");
-        food.setPicture("pic");
-        food.setPrice(new BigDecimal("12.3"));
-        food.setType_id(2);
-        dishManage.addDish(food);
-    }
-
 }

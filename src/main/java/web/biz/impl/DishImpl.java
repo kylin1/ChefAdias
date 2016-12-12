@@ -64,15 +64,6 @@ public class DishImpl implements DishService {
         return new FoodTypeVO(foodType.getPicture(), foodType.getName(), foodList.size(), foodInfoList);
     }
 
-    @Override
-    public MyMessage addDish(Food food) {
-        MyMessage myMessage = foodDao.addFood(food);
-        //获取新数据的ID
-        int newId = food.getId();
-        System.out.println(newId);
-        return myMessage;
-    }
-
     /**
      * 获取一个食物附属的其他食物
      *

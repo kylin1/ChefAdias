@@ -50,8 +50,7 @@ public class ShopFoodImpl implements ShopFoodService {
         food.setPicture(newPath);
 
         MyMessage myMessage = foodDao.addFood(food);
-        String foodID = myMessage.getMessage();
-        int intFoodID = Integer.parseInt(foodID);
+        int intFoodID = food.getId();
 
         FoodExtra foodExtra = new FoodExtra();
         for (String extraID : foodIDList) {

@@ -2,6 +2,8 @@ package biz;
 
 import org.junit.Test;
 import web.biz.impl.ShopFoodImpl;
+import web.dao.FoodDao;
+import web.model.po.Food;
 
 /**
  * Created by kylin on 10/12/2016.
@@ -11,9 +13,8 @@ public class ShopFoodTest {
 
     private ShopFoodImpl shopFood = new ShopFoodImpl();
 
-//    @Test
-    public void updateType(){
+    //    @Test
+    public void updateType() {
 
     }
-
 }

@@ -6,11 +6,9 @@
 package web.biz;
 
 import web.model.exceptions.NotFoundException;
-import web.model.po.Food;
-import web.model.vo.FoodVO;
 import web.model.vo.FoodTypeBasicVO;
 import web.model.vo.FoodTypeVO;
-import web.tools.MyMessage;
+import web.model.vo.FoodVO;
 
 import java.util.List;
 
@@ -39,7 +37,5 @@ public interface DishService {
      * @throws NotFoundException
      */
     FoodTypeVO getDishInType(int type) throws NotFoundException;
-
-    MyMessage addDish(Food food);
 
 }
