@@ -1,9 +1,6 @@
 package web.dao.opearion;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import web.model.po.Food;
 
 import java.util.List;
@@ -26,6 +23,7 @@ public interface FoodOperation {
     //like 是关键字,坑!
     @Insert({"insert into food(name,picture,price,type_id,`description`,`like`,dislike)" +
             " values(#{name},#{picture},#{price},#{type_id},#{description},#{like},#{dislike})"})
+    @Options(useGeneratedKeys = true) //自动返回插入的ID
     void save(Food food);
 
     @Update({"update `food` set `type_id`=#{type_id}, `price`=#{price}, `picture`=#{picture}, " +

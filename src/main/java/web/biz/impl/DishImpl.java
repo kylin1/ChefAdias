@@ -66,7 +66,11 @@ public class DishImpl implements DishService {
 
     @Override
     public MyMessage addDish(Food food) {
-        return foodDao.addFood(food);
+        MyMessage myMessage = foodDao.addFood(food);
+        //获取新数据的ID
+        int newId = food.getId();
+        System.out.println(newId);
+        return myMessage;
     }
 
     /**
