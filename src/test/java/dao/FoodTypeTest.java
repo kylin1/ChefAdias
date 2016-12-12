@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.FoodTypeDao;
 import web.dao.impl.FoodTypeDaoImpl;
 import web.model.po.FoodType;
@@ -41,7 +40,7 @@ public class FoodTypeTest {
         this.dao.updateFoodType(type);
     }
 
-    @Test
+//    @Test
     public void delete() throws ClassNotFoundException {
         this.dao.deleteFoodType(5);
     }

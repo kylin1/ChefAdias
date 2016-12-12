@@ -5,11 +5,11 @@
 
 package web.biz;
 
-import web.model.po.Food;
-import web.model.po.FoodType;
 import web.model.exceptions.NotFoundException;
-import web.model.vo.FoodTypeVO;
+import web.model.po.Food;
 import web.model.vo.FoodVO;
+import web.model.vo.FoodTypeBasicVO;
+import web.model.vo.FoodTypeVO;
 import web.tools.MyMessage;
 
 import java.util.List;
@@ -22,14 +22,14 @@ public interface DishService {
      *
      * @return
      */
-    List<FoodTypeVO> getMenuCategory();
+    List<FoodTypeBasicVO> getMenuCategory();
 
     /**
      * 获取所有菜单列表
      *
      * @return
      */
-    List<Food> getAllDish();
+    List<FoodVO> getAllDish();
 
     /**
      * 获取一个种类的菜单列表
@@ -38,7 +38,7 @@ public interface DishService {
      * @return
      * @throws NotFoundException
      */
-    FoodVO getDishInType(int type) throws NotFoundException;
+    FoodTypeVO getDishInType(int type) throws NotFoundException;
 
     MyMessage addDish(Food food);
 

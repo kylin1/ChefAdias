@@ -1,27 +1,15 @@
 package biz;
 
-import org.junit.Test;
-import web.biz.ShopOrderService;
-import web.biz.impl.ShopOrderImpl;
-import web.model.po.OrderItem;
-import web.model.vo.ShopOrderItemVO;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 /**
  * Created by Alan on 2016/12/7.
  */
 public class ShopTest {
-    @Test
+//    @Test
     public void testUserList() {
 
     }
 
-    @Test
+//    @Test
     public void testGetOrderList() {
 //        ShopOrderService shopOrder = new ShopOrderImpl();
 //        List<ShopOrderItemVO> orderList = shopOrder.getOrderList("20161208");

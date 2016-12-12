@@ -14,10 +14,5 @@
         </environment>
     </environments>
 
-    <!--<mappers>-->
-        <!--<mapper resource="web/dao/util/mapping/userMapper.xml"/>-->
-    <!--</mappers>-->
-
-
 
 </configuration>

@@ -47,6 +47,9 @@ public class OrderImpl implements OrderService {
         order.setTicket_info(addOrderVO.getTicket_info());
         MyMessage orderMessage = orderDao.addOrder(order);
 
+        //获取插入的OrderPO id
+        int orderId = order.getId();
+
         //OrderItemDAO
         List<OrderItemVO> orderItemList = addOrderVO.getFood_list();
         for (OrderItemVO orderItemVO : orderItemList) {
@@ -55,7 +58,10 @@ public class OrderImpl implements OrderService {
             Food food = foodDao.getFood(intFoodID);
             int num = orderItemVO.getNum();
 
+            //订单包含的菜品信息
             OrderItem orderItem = new OrderItem();
+            //菜品信息指向父亲order
+            orderItem.setOrder_id(orderId);
             orderItem.setFood_id(intFoodID);
             orderItem.setFood_num(num);
             MyMessage orderItemMessage = orderItemDao.addOrderItem(orderItem);
@@ -95,7 +101,13 @@ public class OrderImpl implements OrderService {
             Food food = foodDao.getFood(orderItem.getFood_id());
             FoodItemVO vo = new FoodItemVO(orderItem.getFood_id() + "", food.getName(), food.getPrice(), orderItem.getFood_num());
             foodItemVOList.add(vo);
-            sum = sum.add(food.getPrice());
+
+            //计算一个OrderItem食物的价格:数量*单价
+            int foodNum = orderItem.getFood_num();
+            BigDecimal foodPrice = food.getPrice();
+            BigDecimal bigFoodNum = new BigDecimal(foodNum);
+            BigDecimal onePrice = foodPrice.multiply(bigFoodNum);
+            sum = sum.add(onePrice);
         }
 
         return new UserOrderVO(foodItemVOList, sum, time);
@@ -110,5 +122,17 @@ public class OrderImpl implements OrderService {
             food.setLike(food.getLike() + 1);
         }
         return foodDao.updateFood(food);
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
+
+    public void setOrderItemDao(OrderItemDao orderItemDao) {
+        this.orderItemDao = orderItemDao;
+    }
+
+    public void setFoodDao(FoodDao foodDao) {
+        this.foodDao = foodDao;
     }
 }

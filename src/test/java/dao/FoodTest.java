@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.FoodDao;
 import web.dao.impl.FoodDaoImpl;
 import web.model.po.Food;
@@ -17,7 +16,7 @@ public class FoodTest {
 
     private FoodDao dishDao = new FoodDaoImpl();
 
-    @Test
+//    @Test
     public void testAll(){
 //        for(int i = 1;i<=4;i++){
             Food food = new Food();
@@ -35,7 +34,7 @@ public class FoodTest {
 //        }
     }
 
-    @Test
+//    @Test
     public void getAllFood() throws ClassNotFoundException {
 //        List<Food> list = dishDao.getFoodOfType(2);
         List<Food> list = dishDao.getAllFood();

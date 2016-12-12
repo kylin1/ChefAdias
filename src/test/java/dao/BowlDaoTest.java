@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.BowlDao;
 import web.dao.impl.BowlDaoImpl;
 import web.model.po.Bowl;
@@ -32,7 +31,7 @@ public class BowlDaoTest {
         dao.updateBowl(bowl);
     }
 
-    @Test
+//    @Test
     public void get() throws ClassNotFoundException {
         List<Bowl> bowlList = dao.getBowlOfUser(1);
         System.out.println(bowlList.size());

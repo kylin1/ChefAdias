@@ -58,11 +58,18 @@ public class ShopOrderImpl implements ShopOrderService {
         List<OrderItem> orderItemList = orderItemDao.getOrderItemOfOrder(orderID);
         List<FoodItemVO> foodItemVOList = new ArrayList<>();
         BigDecimal sum = new BigDecimal(0);
+
         for (OrderItem orderItem : orderItemList) {
             Food food = foodDao.getFood(orderItem.getFood_id());
             FoodItemVO vo = new FoodItemVO(orderItem.getFood_id() + "", food.getName(), food.getPrice(), orderItem.getFood_num());
             foodItemVOList.add(vo);
-            sum = sum.add(food.getPrice());
+
+            //计算一个OrderItem食物的价格:数量*单价
+            int foodNum = orderItem.getFood_num();
+            BigDecimal foodPrice = food.getPrice();
+            BigDecimal bigFoodNum = new BigDecimal(foodNum);
+            BigDecimal onePrice = foodPrice.multiply(bigFoodNum);
+            sum = sum.add(onePrice);
         }
 
         int type = order.getPay_type();

@@ -78,9 +78,9 @@ public class UserImpl implements UserService {
         try {
             User user = getUser(userId);
             //保存文件到服务器
-            String newPath = MyFile.saveFile(newAvatar);
+            String localPath = MyFile.saveFile(newAvatar);
             //更新头像路径并保存
-            user.setAvatar(newPath);
+            user.setAvatar(localPath);
             userDao.updateUser(user);
             return true;
         } catch (IOException e) {

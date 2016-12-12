@@ -1,9 +1,6 @@
 package web.dao.opearion;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import web.model.po.Order;
 
 import java.util.List;
@@ -18,6 +15,7 @@ public interface OrderOperation {
             "`bowl_info`, `user_id`, `create_time`) " +
             " values (#{is_finish},#{ticket_info},#{price},#{pay_type}," +
             "#{bowl_info},#{user_id},#{create_time})"})
+    @Options(useGeneratedKeys = true) //自动返回插入的ID
     void save(Order order);
 
     @Select({"select * from `order` where user_id = #{userID}"})

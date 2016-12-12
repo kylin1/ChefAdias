@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class OrderItemDaoImplTest {
 
-    @Test
+//    @Test
     public void testAll() throws ClassNotFoundException {
         OrderItemDaoImpl itemDao = new OrderItemDaoImpl();
         List<OrderItem> list = itemDao.getOrderItemOfOrder(1);

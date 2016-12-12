@@ -11,12 +11,10 @@ import web.model.po.Ticket;
 import web.model.po.UserTicket;
 import web.model.vo.TickInfoVO;
 import web.tools.MyMessage;
-import web.tools.MyResponse;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +31,11 @@ public class TicketImpl implements TicketService {
     private OrderDao orderDao;
     @Autowired
     private UserTicketDao userTicketDao;
+
+    @Override
+    public List<Ticket> getTicketList() {
+        return this.ticketDao.getAllTicket();
+    }
 
     @Override
     public TickInfoVO getTicketInfo(int userId) {
@@ -63,7 +66,7 @@ public class TicketImpl implements TicketService {
         for (Order order : orderList) {
             dailySum = dailySum.add(order.getPrice());
         }
-        return new TickInfoVO(dailyUpper.subtract(dailySum), expire_time);
+        return new TickInfoVO(ticket.getId(),dailyUpper.subtract(dailySum), expire_time);
     }
 
     @Override
