@@ -25,7 +25,7 @@ public interface CustomMenuListDao {
      * 获取一个menu id下面对应的menu list项目
      * 以便获取menu里面的食物+食物数目
      *
-     * @param menuId 自定义菜单ID
+     * @param menuId 自定义菜单 id
      * @return
      */
     List<CustomMenuList> getMenuListOfMenu(int menuId);
@@ -37,4 +37,12 @@ public interface CustomMenuListDao {
      * @return
      */
     MyMessage deleteCustomMenuList(int id);
+
+    /**
+     * 更新自定义菜单列表项目
+     *
+     * @param list
+     * @return
+     */
+    MyMessage updateCustomMenuList(CustomMenuList list);
 }

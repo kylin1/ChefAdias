@@ -3,35 +3,34 @@ package web.dao.impl;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import web.dao.CustomMenuDao;
-import web.dao.opearion.CustomMenuOperation;
+import web.dao.CustomMenuListDao;
+import web.dao.opearion.CustomMenuListOperation;
 import web.dao.util.MybatisUtils;
-import web.model.po.CustomMenu;
+import web.model.po.CustomMenuList;
 import web.tools.MyMessage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by kylin on 08/12/2016.
+ * Created by kylin on 12/12/2016.
  * All rights reserved.
  */
-
 @Transactional
-@Repository("customMenuDao")
-public class CustomMenuDaoImpl implements CustomMenuDao {
+@Repository("customMenuListDao")
+public class CustomMenuListDaoImpl implements CustomMenuListDao {
 
     SqlSession session;
 
-    CustomMenuOperation operation;
+    CustomMenuListOperation operation;
 
     @Override
-    public MyMessage addCustomMenu(CustomMenu customMenu) {
+    public MyMessage addCustomMenuList(CustomMenuList list) {
         MyMessage myMessage = null;
         try {
             this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(CustomMenuOperation.class);
-            this.operation.insert(customMenu);
+            this.operation = this.session.getMapper(CustomMenuListOperation.class);
+            this.operation.insert(list);
             this.session.commit();
             myMessage = new MyMessage(true);
         } catch (Exception ex) {
@@ -45,12 +44,12 @@ public class CustomMenuDaoImpl implements CustomMenuDao {
     }
 
     @Override
-    public List<CustomMenu> getCustomMenuOfUser(int userId) {
-        List<CustomMenu> result = new ArrayList<>();
+    public List<CustomMenuList> getMenuListOfMenu(int menuId) {
+        List<CustomMenuList> result = new ArrayList<>();
         try {
             this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(CustomMenuOperation.class);
-            result = this.operation.getCustomMenuOfUser(userId);
+            this.operation = this.session.getMapper(CustomMenuListOperation.class);
+            result = this.operation.getMenuListOfMenu(menuId);
             this.session.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -62,11 +61,11 @@ public class CustomMenuDaoImpl implements CustomMenuDao {
     }
 
     @Override
-    public MyMessage deleteCustomMenu(int id) {
+    public MyMessage deleteCustomMenuList(int id) {
         MyMessage myMessage = null;
         try {
             this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(CustomMenuOperation.class);
+            this.operation = this.session.getMapper(CustomMenuListOperation.class);
             this.operation.delete(id);
             this.session.commit();
             myMessage = new MyMessage(true);
@@ -81,12 +80,12 @@ public class CustomMenuDaoImpl implements CustomMenuDao {
     }
 
     @Override
-    public MyMessage updateCustomMenu(CustomMenu customMenu) {
+    public MyMessage updateCustomMenuList(CustomMenuList list) {
         MyMessage myMessage = null;
         try {
             this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(CustomMenuOperation.class);
-            this.operation.update(customMenu);
+            this.operation = this.session.getMapper(CustomMenuListOperation.class);
+            this.operation.update(list);
             this.session.commit();
             myMessage = new MyMessage(true);
         } catch (Exception ex) {
@@ -98,21 +97,4 @@ public class CustomMenuDaoImpl implements CustomMenuDao {
         }
         return myMessage;
     }
-
-    private CustomMenu getCustomMenu(int id) {
-        CustomMenu customMenu = null;
-        try {
-            this.session = MybatisUtils.getSession();
-            this.operation = this.session.getMapper(CustomMenuOperation.class);
-            customMenu = this.operation.get(id);
-            this.session.commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            this.session.rollback();
-        } finally {
-            this.session.close();
-        }
-        return customMenu;
-    }
-
 }

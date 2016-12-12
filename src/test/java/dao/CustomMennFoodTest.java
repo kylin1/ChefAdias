@@ -1,11 +1,13 @@
 package dao;
 
+import org.junit.Test;
 import web.dao.CustomMenuFoodDao;
 import web.dao.impl.CustomMenuFoodDaoImpl;
 import web.model.po.CustomMenuFood;
 import web.tools.CheckClass;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by kylin on 08/12/2016.
@@ -15,10 +17,11 @@ public class CustomMennFoodTest {
 
     private CustomMenuFoodDao dao = new CustomMenuFoodDaoImpl();
 
-//    @Test
+    @Test
     public void get() throws ClassNotFoundException {
-        CustomMenuFood customMenuFood = dao.get(1);
-        CheckClass.checkObject("CustomMenuFood", customMenuFood);
+        List<CustomMenuFood> list = dao.getCustomMenuFood();
+        for (CustomMenuFood customMenuFood : list)
+            CheckClass.checkObject("CustomMenuFood", customMenuFood);
     }
 
 //    @Test
@@ -29,26 +32,28 @@ public class CustomMennFoodTest {
 //        }
 //    }
 
-//    @Test
+    @Test
     public void add() {
         CustomMenuFood food = new CustomMenuFood();
         food.setName("test");
         food.setPrice(new BigDecimal("55.5"));
         food.setType(5);
+        food.setPicture("pic ");
         dao.add(food);
     }
 
-//    @Test
+    @Test
     public void update() {
-        CustomMenuFood food = dao.get(5);
+        CustomMenuFood food = dao.get(14);
         food.setName("test234");
         food.setPrice(new BigDecimal("43.5"));
         food.setType(6);
+        food.setPicture("pic 2");
         dao.update(food);
     }
 
-//    @Test
+    @Test
     public void delete() {
-        dao.delete(5);
+        dao.delete(14);
     }
 }

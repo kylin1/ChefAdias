@@ -36,4 +36,12 @@ public interface CustomMenuDao {
      */
     MyMessage deleteCustomMenu(int id);
 
+    /**
+     * 更新自定义菜单
+     *
+     * @param customMenu
+     * @return
+     */
+    MyMessage updateCustomMenu(CustomMenu customMenu);
+
 }
