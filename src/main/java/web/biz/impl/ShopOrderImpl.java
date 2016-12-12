@@ -74,10 +74,11 @@ public class ShopOrderImpl implements ShopOrderService {
 
         int type = order.getPay_type();
         String typeString = "";
+        // TODO change to english
         if (type == 0) {
-            typeString = "货到付款";
+            typeString = "cash on delivery ";
         } else {
-            typeString = "在线付款";
+            typeString = "pay online";
         }
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 

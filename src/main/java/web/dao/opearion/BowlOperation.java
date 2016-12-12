@@ -16,9 +16,9 @@ public interface BowlOperation {
     @Select({"select * from `bowl` where `user_id` = #{userId}"})
     List<Bowl> getBowlOfUser(int userId);
 
-    @Insert({"insert into `Chef`.`bowl` ( `user_id`, `is_return`) values ( #{user_id}, #{is_return})"})
+    @Insert({"insert into `bowl` ( `user_id`, `is_return`) values ( #{user_id}, #{is_return})"})
     void insert(Bowl bowl);
 
-    @Update({"update `Chef`.`bowl` set `is_return`=#{is_return} where `user_id`=#{user_id} "})
+    @Update({"update `bowl` set `is_return`=#{is_return} where `user_id`=#{user_id} "})
     void update(Bowl bowl);
 }

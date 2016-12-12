@@ -1,9 +1,11 @@
 package dao;
 
+import org.junit.Test;
 import web.dao.BowlDao;
 import web.dao.impl.BowlDaoImpl;
 import web.model.po.Bowl;
 import web.tools.CheckClass;
+import web.tools.MyMessage;
 
 import java.util.List;
 
@@ -23,12 +25,13 @@ public class BowlDaoTest {
         dao.addBowl(bowl);
     }
 
-//    @Test
+    @Test
     public void update(){
         Bowl bowl = new Bowl();
         bowl.setUser_id(3);
         bowl.setIs_return(1);
-        dao.updateBowl(bowl);
+        MyMessage re = dao.updateBowl(bowl);
+        System.out.println(re.isSuccess());
     }
 
 //    @Test

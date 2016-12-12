@@ -94,7 +94,9 @@ public class ShopUserImpl implements ShopUserService {
         } else {
             return new MyMessage(false);
         }
+    }
 
-
+    public void setBowlDao(BowlDao bowlDao) {
+        this.bowlDao = bowlDao;
     }
 }
