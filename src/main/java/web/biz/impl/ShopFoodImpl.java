@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import web.biz.ShopFoodService;
 import web.dao.FoodDao;
+import web.dao.FoodExtraDao;
 import web.dao.FoodTypeDao;
 import web.model.po.Food;
+import web.model.po.FoodExtra;
 import web.model.po.FoodType;
 import web.tools.MyFile;
 import web.tools.MyMessage;
@@ -27,6 +29,9 @@ public class ShopFoodImpl implements ShopFoodService {
     @Autowired
     private FoodTypeDao foodTypeDao;
 
+    @Autowired
+    private FoodExtraDao foodExtraDao;
+
     @Override
     public MyMessage addFood(String name, MultipartFile pic, int typeID, BigDecimal price, List<String> foodIDList, String description) {
         Food food = new Food();
@@ -43,9 +48,19 @@ public class ShopFoodImpl implements ShopFoodService {
             e.printStackTrace();
         }
         food.setPicture(newPath);
-//TODO  缺少添加额外菜单的接口
-//        foodDao.addFood()
-        return null;
+
+        MyMessage myMessage = foodDao.addFood(food);
+        String foodID = myMessage.getMessage();
+        int intFoodID = Integer.parseInt(foodID);
+
+        FoodExtra foodExtra = new FoodExtra();
+        for (String extraID : foodIDList) {
+            int intExtraID = Integer.parseInt(extraID);
+            foodExtra.setExtra_food_id(intExtraID);
+            foodExtra.setFood_id(intFoodID);
+            foodExtraDao.addExtraFood(foodExtra);
+        }
+        return myMessage;
     }
 
     @Override
@@ -66,8 +81,17 @@ public class ShopFoodImpl implements ShopFoodService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //TODO 缺少添加extraList的接口
-        return foodDao.updateFood(food);
+        MyMessage myMessage = foodDao.updateFood(food);
+
+        for (String extraID : foodIDList) {
+            FoodExtra foodExtra = new FoodExtra();
+            foodExtra.setFood_id(foodID);
+
+            int intExtraID = Integer.parseInt(extraID);
+            foodExtra.setExtra_food_id(intExtraID);
+            foodExtraDao.updateFoodExtra(foodExtra);
+        }
+        return myMessage;
     }
 
     @Override
@@ -101,5 +125,4 @@ public class ShopFoodImpl implements ShopFoodService {
 
         return foodTypeDao.updateFoodType(foodType);
     }
-
 }
