@@ -13,27 +13,11 @@ public class CustomMenuDaoImplTest {
     private CustomMenuDaoImpl dao = new CustomMenuDaoImpl();
 
 //    @Test
-    public void get() throws ClassNotFoundException {
-        CustomMenu menu = dao.getCustomMenu(3);
-        CheckClass.checkObject("CustomMenu",menu);
-    }
-
-//    @Test
     public void add(){
         CustomMenu menu = new CustomMenu();
         menu.setUser_id(2);
         menu.setName("test");
-        menu.setMeal_id(2);
-        menu.setMeal_num(2);
-        menu.setMeat_id(2);
-        menu.setMeat_num(2);
-        menu.setVegetable_id(2);
-        menu.setVegetable_num(2);
-        menu.setSnack_id(2);
-        menu.setSnack_num(2);
-        menu.setSauce_id(2);
-        menu.setSauce_num(2);
-        menu.setFlavor_id(2);
+
         dao.addCustomMenu(menu);
 
     }

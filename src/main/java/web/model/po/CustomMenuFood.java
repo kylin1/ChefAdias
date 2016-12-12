@@ -17,6 +17,9 @@ public class CustomMenuFood {
     //分类菜名
     private String name;
 
+    //图片
+    private String picture;
+
     //价格
     private BigDecimal price;
 
@@ -50,5 +53,13 @@ public class CustomMenuFood {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

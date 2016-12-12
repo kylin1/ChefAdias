@@ -11,19 +11,12 @@ public interface CustomMenuDao {
 
     /**
      * 添加自定义菜单
+     * 在customMenu中会自动set新的ID
      *
      * @param customMenu
      * @return
      */
     MyMessage addCustomMenu(CustomMenu customMenu);
-
-    /**
-     * 获取自定义菜单内容
-     *
-     * @param id
-     * @return
-     */
-    CustomMenu getCustomMenu(int id);
 
     /**
      * 删除自定义菜单

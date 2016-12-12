@@ -20,11 +20,12 @@ public interface CustomMenuFoodOperation {
     @Select({"select * from `custom_menu_food` where id=#{mmenu_foodid}"})
     CustomMenuFood get(int mmenu_foodid);
 
-    @Insert({"insert into `custom_menu_food` ( `type`, `name`, `price`) " +
-            "values ( #{type}, #{name}, #{price})"})
+    @Insert({"insert into `custom_menu_food` ( `type`, `name`, `price`, `picture`) " +
+            "values ( #{type}, #{name}, #{price}, #{picture})"})
     void add(CustomMenuFood customMenuFood);
 
-    @Update({"update `custom_menu_food` set `type`=#{type}, `name`=#{name}, `price`=#{price} " +
+    @Update({"update `custom_menu_food` set `type`=#{type}, `name`=#{name}, " +
+            "`price`=#{price}, `picture`=#{picture} " +
             " where `id`=#{id} "})
     void update(CustomMenuFood customMenuFood);
 
