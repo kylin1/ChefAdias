@@ -38,7 +38,7 @@ public class FoodExtraTest {
         dao.addExtraFood(foodExtra);
     }
 
-    @Test
+//    @Test
     public void update() {
         FoodExtra foodExtra = dao.getFoodExtra(2);
         foodExtra.setFood_id(5);
