@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.impl.CustomMenuListDaoImpl;
 import web.model.po.CustomMenuList;
 import web.tools.CheckClass;
@@ -15,7 +14,7 @@ public class CustomMenuListDaoTest {
 
     private CustomMenuListDaoImpl dao = new CustomMenuListDaoImpl();
 
-    @Test
+//    @Test
     public void add(){
         CustomMenuList list = new CustomMenuList();
         list.setMenu_id(1);
@@ -24,7 +23,7 @@ public class CustomMenuListDaoTest {
         dao.addCustomMenuList(list);
     }
 
-    @Test
+//    @Test
     public void get() throws ClassNotFoundException {
         List<CustomMenuList> lists = dao.getMenuListOfMenu(2);
         for (CustomMenuList menu:lists){
@@ -32,7 +31,7 @@ public class CustomMenuListDaoTest {
         }
     }
 
-    @Test
+//    @Test
     public void update(){
         CustomMenuList list = new CustomMenuList();
         list.setId(1);
@@ -42,7 +41,7 @@ public class CustomMenuListDaoTest {
         dao.updateCustomMenuList(list);
     }
 
-    @Test
+//    @Test
     public void delete(){
         dao.deleteCustomMenuList(1);
     }

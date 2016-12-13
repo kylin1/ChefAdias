@@ -24,7 +24,7 @@ public class ShopFoodTest {
         shopFood.setFoodTypeDao(new FoodTypeDaoImpl());
     }
 
-    @Test
+//    @Test
     public void updateType() {
         List<String> exlist = new ArrayList<>();
         exlist.add("2");

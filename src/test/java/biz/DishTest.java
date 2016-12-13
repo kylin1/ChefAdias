@@ -1,7 +1,6 @@
 package biz;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.junit.Test;
 import web.biz.impl.DishImpl;
 import web.dao.impl.FoodDaoImpl;
 import web.dao.impl.FoodExtraDaoImpl;
@@ -28,7 +27,7 @@ public class DishTest {
         dishManage.setFoodExtraDao(new FoodExtraDaoImpl());
     }
 
-    @Test
+//    @Test
     public void test() throws JsonProcessingException, NotFoundException {
         Food mainFood = new Food();
         mainFood.setId(1);

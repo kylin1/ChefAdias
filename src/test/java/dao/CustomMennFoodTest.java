@@ -17,7 +17,7 @@ public class CustomMennFoodTest {
 
     private CustomMenuFoodDao dao = new CustomMenuFoodDaoImpl();
 
-    @Test
+//    @Test
     public void get() throws ClassNotFoundException {
         List<CustomMenuFood> list = dao.getCustomMenuFood();
         for (CustomMenuFood customMenuFood : list)

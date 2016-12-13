@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.BowlDao;
 import web.dao.impl.BowlDaoImpl;
 import web.model.po.Bowl;
@@ -25,7 +24,7 @@ public class BowlDaoTest {
         dao.addBowl(bowl);
     }
 
-    @Test
+//    @Test
     public void update(){
         Bowl bowl = new Bowl();
         bowl.setUser_id(3);

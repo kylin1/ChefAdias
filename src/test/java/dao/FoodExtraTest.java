@@ -22,7 +22,7 @@ public class FoodExtraTest {
         CheckClass.checkObject("FoodExtra",foodExtra);
     }
 
-    @Test
+//    @Test
     public void getAll() throws ClassNotFoundException {
         List<FoodExtra> list = dao.getExtraOfMainFood(2);
         for (FoodExtra foodExtra:list){

@@ -1,6 +1,5 @@
 package biz;
 
-import org.junit.Test;
 import web.biz.impl.ShopUserImpl;
 import web.dao.impl.BowlDaoImpl;
 
@@ -17,7 +16,7 @@ public class ShopUserTest {
 
     }
 
-    @Test
+//    @Test
     public void test(){
         service.setBowl(1,1);
     }
