@@ -1,6 +1,7 @@
 package biz;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.junit.Test;
 import web.biz.impl.DishImpl;
 import web.dao.impl.FoodDaoImpl;
 import web.dao.impl.FoodExtraDaoImpl;
@@ -10,7 +11,6 @@ import web.model.po.Food;
 import web.model.vo.FoodVO;
 import web.tools.MyResponse;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -21,23 +21,25 @@ public class DishTest {
 
     private DishImpl dishManage = new DishImpl();
 
+
     public DishTest(){
         dishManage.setFoodTypeDao(new FoodTypeDaoImpl());
         dishManage.setFoodDao(new FoodDaoImpl());
         dishManage.setFoodExtraDao(new FoodExtraDaoImpl());
     }
 
-//    @Test
+    @Test
     public void test() throws JsonProcessingException, NotFoundException {
+        Food mainFood = new Food();
+        mainFood.setId(1);
 
-
-        List<FoodVO> foodVOS = dishManage.getAllDish();
+        List<FoodVO> foodVOS = dishManage.getExtraFoodList(mainFood);
         for (FoodVO foodVO:foodVOS){
             System.out.print(foodVO.getFoodid()+" ");
-            System.out.println(foodVO.getExtraFood().size());
         }
 
         System.out.println( MyResponse.success(foodVOS));
 
     }
+
 }

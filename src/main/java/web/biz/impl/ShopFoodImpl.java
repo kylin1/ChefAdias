@@ -7,6 +7,8 @@ import web.biz.ShopFoodService;
 import web.dao.FoodDao;
 import web.dao.FoodExtraDao;
 import web.dao.FoodTypeDao;
+import web.model.exceptions.ErrorCode;
+import web.model.exceptions.ServerException;
 import web.model.po.Food;
 import web.model.po.FoodExtra;
 import web.model.po.FoodType;
@@ -33,7 +35,7 @@ public class ShopFoodImpl implements ShopFoodService {
     private FoodExtraDao foodExtraDao;
 
     @Override
-    public MyMessage addFood(String name, int typeID, BigDecimal price, List<String> foodIDList, String description) {
+    public int addFood(String name, int typeID, BigDecimal price, List<String> foodIDList, String description) throws ServerException {
         Food food = new Food();
         food.setName(name);
         food.setType_id(typeID);
@@ -52,7 +54,11 @@ public class ShopFoodImpl implements ShopFoodService {
             foodExtra.setFood_id(intFoodID);
             foodExtraDao.addExtraFood(foodExtra);
         }
-        return myMessage;
+
+        if(myMessage.isSuccess())
+            return intFoodID;
+        else
+            throw new ServerException(ErrorCode.SERVER);
     }
 
     @Override
@@ -82,13 +88,24 @@ public class ShopFoodImpl implements ShopFoodService {
         food.setDescription(description);
         MyMessage myMessage = foodDao.updateFood(food);
 
+        // TODO 新的extra需要与旧的对比/删除/添加
+
+        // old extra food of this food
+        List<FoodExtra> oldExtraList = this.foodExtraDao.getExtraOfMainFood(foodID);
+        for (FoodExtra oldExtra:oldExtraList){
+            int id = oldExtra.getId();
+            // delete old ones
+            this.foodExtraDao.deleteFoodExtra(id);
+        }
+
+        // new extra food of this food
         for (String extraID : foodIDList) {
             FoodExtra foodExtra = new FoodExtra();
             foodExtra.setFood_id(foodID);
-
             int intExtraID = Integer.parseInt(extraID);
             foodExtra.setExtra_food_id(intExtraID);
-            foodExtraDao.updateFoodExtra(foodExtra);
+            // add new ones
+            foodExtraDao.addExtraFood(foodExtra);
         }
         return myMessage;
     }
@@ -123,5 +140,17 @@ public class ShopFoodImpl implements ShopFoodService {
         foodType.setName(name);
 
         return foodTypeDao.updateFoodType(foodType);
+    }
+
+    public void setFoodDao(FoodDao foodDao) {
+        this.foodDao = foodDao;
+    }
+
+    public void setFoodTypeDao(FoodTypeDao foodTypeDao) {
+        this.foodTypeDao = foodTypeDao;
+    }
+
+    public void setFoodExtraDao(FoodExtraDao foodExtraDao) {
+        this.foodExtraDao = foodExtraDao;
     }
 }

@@ -4,15 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import web.biz.ShopFoodService;
 import web.model.exceptions.ErrorCode;
+import web.model.exceptions.ServerException;
 import web.model.vo.AddFoodVO;
 import web.model.vo.ModFoodVO;
-import web.tools.*;
+import web.tools.MyConverter;
+import web.tools.MyMessage;
+import web.tools.MyResponse;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * 商户增删改查食物模块
@@ -31,18 +32,22 @@ public class ShopFoodController {
     @ResponseBody
     public String addFood(@RequestBody AddFoodVO addFoodVO) {
 
-        MyMessage myMessage =
-                service.addFood(
-                        addFoodVO.getName(),
-                        Integer.parseInt(addFoodVO.getTypeid()),
-                        addFoodVO.getPrice(),
-                        addFoodVO.getExtra(),
-                        addFoodVO.getDescription());
-        if (myMessage.isSuccess()) {
-            return MyResponse.success();
-        } else {
+        try {
+            int foodid =
+                    service.addFood(
+                            addFoodVO.getName(),
+                            Integer.parseInt(addFoodVO.getTypeid()),
+                            addFoodVO.getPrice(),
+                            addFoodVO.getExtra(),
+                            addFoodVO.getDescription());
+
+            return MyResponse.success(foodid);
+
+        } catch (ServerException e) {
             return MyResponse.failure(ErrorCode.SERVER, "fail to add food");
+
         }
+
     }
 
     @RequestMapping(

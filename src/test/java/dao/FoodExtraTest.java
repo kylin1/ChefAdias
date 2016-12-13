@@ -1,5 +1,6 @@
 package dao;
 
+import org.junit.Test;
 import web.dao.FoodExtraDao;
 import web.dao.impl.FoodExtraDaoImpl;
 import web.model.po.FoodExtra;
@@ -17,13 +18,13 @@ public class FoodExtraTest {
 
 //    @Test
     public void get() throws ClassNotFoundException {
-        FoodExtra foodExtra = dao.getFoodExtra(1);
+        FoodExtra foodExtra = dao.getFoodExtra(2);
         CheckClass.checkObject("FoodExtra",foodExtra);
     }
 
-//    @Test
+    @Test
     public void getAll() throws ClassNotFoundException {
-        List<FoodExtra> list = dao.getExtraOfMainFood(1);
+        List<FoodExtra> list = dao.getExtraOfMainFood(2);
         for (FoodExtra foodExtra:list){
             CheckClass.checkObject("FoodExtra",foodExtra);
         }
@@ -37,7 +38,7 @@ public class FoodExtraTest {
         dao.addExtraFood(foodExtra);
     }
 
-//    @Test
+    @Test
     public void update() {
         FoodExtra foodExtra = dao.getFoodExtra(2);
         foodExtra.setFood_id(5);

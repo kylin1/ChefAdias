@@ -14,7 +14,6 @@ import web.model.po.FoodType;
 import web.model.vo.FoodTypeBasicVO;
 import web.model.vo.FoodTypeVO;
 import web.model.vo.FoodVO;
-import web.tools.MyMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +69,7 @@ public class DishImpl implements DishService {
      * @param mainFood 主要食物
      * @return 附属于主要食物的额外食物
      */
-    private List<FoodVO> getExtraFoodList(Food mainFood) {
+    public List<FoodVO> getExtraFoodList(Food mainFood) {
         List<FoodVO> resultList = new ArrayList<>();
 
         //获取主要食物的附加食物信息

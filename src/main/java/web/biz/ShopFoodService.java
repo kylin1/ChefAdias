@@ -1,6 +1,7 @@
 package web.biz;
 
 import org.springframework.web.multipart.MultipartFile;
+import web.model.exceptions.ServerException;
 import web.tools.MyMessage;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.List;
 public interface ShopFoodService {
     /**
      * 商家上传食物情况
+     * 返回新的ID
      *
      * @param name        食物名
      * @param typeID      食物类别ID
@@ -20,7 +22,7 @@ public interface ShopFoodService {
      * @param description 简介
      * @return MyMessage
      */
-    MyMessage addFood(String name, int typeID, BigDecimal price, List<String> foodIDList, String description);
+    int addFood(String name, int typeID, BigDecimal price, List<String> foodIDList, String description) throws ServerException;
 
     /**
      * 上传食物的图片
