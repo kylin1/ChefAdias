@@ -14,14 +14,22 @@ public interface ShopFoodService {
      * 商家上传食物情况
      *
      * @param name        食物名
-     * @param pic         食物图片
      * @param typeID      食物类别ID
      * @param price       食物单价
      * @param foodIDList  额外食物ID列表
      * @param description 简介
      * @return MyMessage
      */
-    MyMessage addFood(String name, MultipartFile pic, int typeID, BigDecimal price, List<String> foodIDList, String description);
+    MyMessage addFood(String name, int typeID, BigDecimal price, List<String> foodIDList, String description);
+
+    /**
+     * 上传食物的图片
+     *
+     * @param foodID 食物ID
+     * @param pic    食物图片
+     * @return MyMessage
+     */
+    MyMessage addFoodPic(int foodID, MultipartFile pic);
 
     /**
      * 商家删除食物
@@ -36,13 +44,12 @@ public interface ShopFoodService {
      *
      * @param foodID      食物ID
      * @param name        食物名
-     * @param pic         食物图片
      * @param price       食物单价
      * @param foodIDList  额外食物ID列表
      * @param description 介绍
      * @return MyMessage
      */
-    MyMessage modFood(int foodID, String name, MultipartFile pic, BigDecimal price, List<String> foodIDList, String description);
+    MyMessage modFood(int foodID, String name, BigDecimal price, List<String> foodIDList, String description);
 
     /**
      * 创建分类

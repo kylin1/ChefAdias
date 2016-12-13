@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import web.biz.ShopFoodService;
-import web.biz.ShopOrderService;
 import web.model.exceptions.ErrorCode;
+import web.model.vo.AddFoodVO;
+import web.model.vo.ModFoodVO;
 import web.tools.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -28,20 +29,33 @@ public class ShopFoodController {
             method = RequestMethod.POST
     )
     @ResponseBody
-    public String addFood(@RequestParam(value = "name") String name,
-                          @RequestParam(value = "pic") MultipartFile pic,
-                          @RequestParam(value = "typeid") String typeID,
-                          @RequestParam(value = "price") String price,
-                          @RequestParam(value = "description") String description,
-                          @RequestParam(value = "extra") String foodIDJsonList) {
+    public String addFood(@RequestBody AddFoodVO addFoodVO) {
 
-        JsonListConverter<String> jsonListConverter = new JsonListConverter<>();
-        List<String> foodIDList = jsonListConverter.getList(foodIDJsonList, String.class);
-        MyMessage myMessage = service.addFood(name, pic, Integer.parseInt(typeID), MyConverter.getBigDecimal(price), foodIDList, description);
+        MyMessage myMessage =
+                service.addFood(
+                        addFoodVO.getName(),
+                        Integer.parseInt(addFoodVO.getTypeid()),
+                        addFoodVO.getPrice(),
+                        addFoodVO.getExtra(),
+                        addFoodVO.getDescription());
         if (myMessage.isSuccess()) {
             return MyResponse.success();
         } else {
             return MyResponse.failure(ErrorCode.SERVER, "fail to add food");
+        }
+    }
+
+    @RequestMapping(
+            value = "uploadFoodPic",
+            method = RequestMethod.POST
+    )
+    @ResponseBody
+    public String uploadFoodPic(@RequestParam(value = "pic") MultipartFile pic, @RequestParam(value = "foodid") String foodID) {
+        MyMessage myMessage = service.addFoodPic(MyConverter.getInt(foodID), pic);
+        if (myMessage.isSuccess()) {
+            return MyResponse.success();
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to upload food picture");
         }
     }
 
@@ -67,15 +81,14 @@ public class ShopFoodController {
             method = RequestMethod.POST
     )
     @ResponseBody
-    public String modFood(@RequestParam(value = "foodid") String foodID,
-                          @RequestParam(value = "name") String name,
-                          @RequestParam(value = "pic") MultipartFile pic,
-                          @RequestParam(value = "price") String price,
-                          @RequestParam(value = "description") String description,
-                          @RequestParam(value = "extra") String foodIDJsonList) {
-        JsonListConverter<String> jsonListConverter = new JsonListConverter<>();
-        List<String> foodIDList = jsonListConverter.getList(foodIDJsonList, String.class);
-        MyMessage myMessage = service.modFood(Integer.parseInt(foodID), name, pic, MyConverter.getBigDecimal(price), foodIDList, description);
+    public String modFood(@RequestBody ModFoodVO modFoodVO) {
+        MyMessage myMessage =
+                service.modFood(
+                        Integer.parseInt(modFoodVO.getFoodid()),
+                        modFoodVO.getName(),
+                        modFoodVO.getPrice(),
+                        modFoodVO.getExtra(),
+                        modFoodVO.getDescription());
         if (myMessage.isSuccess()) {
             return MyResponse.success();
         } else {

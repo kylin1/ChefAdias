@@ -33,7 +33,7 @@ public class ShopFoodImpl implements ShopFoodService {
     private FoodExtraDao foodExtraDao;
 
     @Override
-    public MyMessage addFood(String name, MultipartFile pic, int typeID, BigDecimal price, List<String> foodIDList, String description) {
+    public MyMessage addFood(String name, int typeID, BigDecimal price, List<String> foodIDList, String description) {
         Food food = new Food();
         food.setName(name);
         food.setType_id(typeID);
@@ -41,13 +41,6 @@ public class ShopFoodImpl implements ShopFoodService {
         food.setLike(0);
         food.setDislike(0);
         food.setDescription(description);
-        String newPath = "";
-        try {
-            newPath = MyFile.saveFile(pic);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        food.setPicture(newPath);
 
         MyMessage myMessage = foodDao.addFood(food);
         int intFoodID = food.getId();
@@ -63,23 +56,30 @@ public class ShopFoodImpl implements ShopFoodService {
     }
 
     @Override
+    public MyMessage addFoodPic(int foodID, MultipartFile pic) {
+        Food food = foodDao.getFood(foodID);
+        String newPath = "";
+        try {
+            newPath = MyFile.saveFile(pic);
+            food.setPicture(newPath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return foodDao.updateFood(food);
+    }
+
+    @Override
     public MyMessage deleteFood(int foodID) {
         return foodDao.deleteFood(foodID);
     }
 
     @Override
-    public MyMessage modFood(int foodID, String name, MultipartFile pic, BigDecimal price, List<String> foodIDList, String description) {
+    public MyMessage modFood(int foodID, String name, BigDecimal price, List<String> foodIDList, String description) {
         Food food = foodDao.getFood(foodID);
         food.setName(name);
         food.setPrice(price);
         food.setDescription(description);
-        String newPath = null;
-        try {
-            newPath = MyFile.saveFile(pic);
-            food.setPicture(newPath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         MyMessage myMessage = foodDao.updateFood(food);
 
         for (String extraID : foodIDList) {
