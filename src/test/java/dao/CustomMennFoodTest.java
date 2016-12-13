@@ -32,7 +32,7 @@ public class CustomMennFoodTest {
 //        }
 //    }
 
-    @Test
+//    @Test
     public void add() {
         CustomMenuFood food = new CustomMenuFood();
         food.setName("test");
@@ -42,7 +42,7 @@ public class CustomMennFoodTest {
         dao.add(food);
     }
 
-    @Test
+//    @Test
     public void update() {
         CustomMenuFood food = dao.get(14);
         food.setName("test234");
@@ -52,7 +52,7 @@ public class CustomMennFoodTest {
         dao.update(food);
     }
 
-    @Test
+//    @Test
     public void delete() {
         dao.delete(14);
     }
