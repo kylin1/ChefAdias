@@ -7,13 +7,23 @@ import java.math.BigDecimal;
  */
 public class CustMenuInfoVO {
     int type;
+    String foodid;
     String name;
     BigDecimal price;
 
-    public CustMenuInfoVO(int type, String name, BigDecimal price) {
+    public CustMenuInfoVO(int type, String foodid, String name, BigDecimal price) {
         this.type = type;
+        this.foodid = foodid;
         this.name = name;
         this.price = price;
+    }
+
+    public String getFoodid() {
+        return foodid;
+    }
+
+    public void setFoodid(String foodid) {
+        this.foodid = foodid;
     }
 
     public int getType() {

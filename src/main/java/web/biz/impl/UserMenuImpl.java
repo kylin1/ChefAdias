@@ -6,6 +6,9 @@ import web.biz.UserCustMenuService;
 import web.dao.CustomMenuDao;
 import web.dao.CustomMenuFoodDao;
 import web.dao.CustomMenuListDao;
+import web.dao.impl.CustomMenuDaoImpl;
+import web.dao.impl.CustomMenuFoodDaoImpl;
+import web.dao.impl.CustomMenuListDaoImpl;
 import web.model.po.CustomMenu;
 import web.model.po.CustomMenuFood;
 import web.model.po.CustomMenuList;
@@ -13,6 +16,7 @@ import web.model.vo.AddCustMenuVO;
 import web.model.vo.CustMenuDetailVO;
 import web.model.vo.CustMenuInfoVO;
 import web.model.vo.CustMenuItemVO;
+import web.tools.MyConverter;
 import web.tools.MyMessage;
 
 import java.math.BigDecimal;
@@ -42,7 +46,7 @@ public class UserMenuImpl implements UserCustMenuService {
             for (CustomMenuList customItem : linkMenuList) {
                 int custFoodID = customItem.getFood_id();
                 CustomMenuFood menuFood = customMenuFoodDao.get(custFoodID);
-                sum = sum.add(menuFood.getPrice());
+                sum = sum.add(menuFood.getPrice().multiply(new BigDecimal(customItem.getNumber())));
             }
             CustMenuItemVO custMenuItemVO = new CustMenuItemVO(menuItem.getId() + "", menuItem.getName(), sum);
             menuVOList.add(custMenuItemVO);
@@ -55,7 +59,7 @@ public class UserMenuImpl implements UserCustMenuService {
         List<CustomMenuFood> menuFoodList = customMenuFoodDao.getCustomMenuFood();
         List<CustMenuInfoVO> menuInfoList = new ArrayList<>();
         for (CustomMenuFood foodItem : menuFoodList) {
-            CustMenuInfoVO menuInfoVO = new CustMenuInfoVO(foodItem.getType(), foodItem.getName(), foodItem.getPrice());
+            CustMenuInfoVO menuInfoVO = new CustMenuInfoVO(foodItem.getType(), foodItem.getId() + "", foodItem.getName(), foodItem.getPrice());
             menuInfoList.add(menuInfoVO);
         }
         return menuInfoList;
@@ -113,9 +117,61 @@ public class UserMenuImpl implements UserCustMenuService {
     @Override
     public MyMessage addMMenu(AddCustMenuVO addMMenuVO) {
         CustomMenu customMenu = new CustomMenu();
-        customMenu.setFlavor(addMMenuVO.getFlavor());
-
+        CustomMenuFood flavor = customMenuFoodDao.get(MyConverter.getInt(addMMenuVO.getFlavorid()));
+        customMenu.setFlavor(flavor.getName());
+        customMenu.setName(addMMenuVO.getName());
+        customMenu.setUser_id(MyConverter.getInt(addMMenuVO.getUserid()));
         MyMessage myMessage = customMenuDao.addCustomMenu(customMenu);
-        return null;
+        int menuID = customMenu.getId();
+
+        CustomMenuList mealMenuList = new CustomMenuList();
+        mealMenuList.setFood_id(MyConverter.getInt(addMMenuVO.getMealid()));
+        mealMenuList.setNumber(addMMenuVO.getMeal_num());
+        mealMenuList.setMenu_id(menuID);
+        customMenuListDao.addCustomMenuList(mealMenuList);
+
+        CustomMenuList meatMenuList = new CustomMenuList();
+        meatMenuList.setFood_id(MyConverter.getInt(addMMenuVO.getMeatid()));
+        meatMenuList.setNumber(addMMenuVO.getMeat_num());
+        meatMenuList.setMenu_id(menuID);
+        customMenuListDao.addCustomMenuList(meatMenuList);
+
+        CustomMenuList vegetableMenuList = new CustomMenuList();
+        vegetableMenuList.setFood_id(MyConverter.getInt(addMMenuVO.getVegetableid()));
+        vegetableMenuList.setNumber(addMMenuVO.getVegetable_num());
+        vegetableMenuList.setMenu_id(menuID);
+        customMenuListDao.addCustomMenuList(vegetableMenuList);
+
+        CustomMenuList sauceMenuList = new CustomMenuList();
+        sauceMenuList.setFood_id(MyConverter.getInt(addMMenuVO.getSauceid()));
+        sauceMenuList.setNumber(addMMenuVO.getSauce_num());
+        sauceMenuList.setMenu_id(menuID);
+        customMenuListDao.addCustomMenuList(sauceMenuList);
+
+        CustomMenuList snackMenuList = new CustomMenuList();
+        snackMenuList.setFood_id(MyConverter.getInt(addMMenuVO.getSnackid()));
+        snackMenuList.setNumber(addMMenuVO.getSnack_num());
+        snackMenuList.setMenu_id(menuID);
+        customMenuListDao.addCustomMenuList(snackMenuList);
+
+        CustomMenuList flavorMenuList = new CustomMenuList();
+        flavorMenuList.setFood_id(MyConverter.getInt(addMMenuVO.getFlavorid()));
+        flavorMenuList.setNumber(1);
+        flavorMenuList.setMenu_id(menuID);
+        customMenuListDao.addCustomMenuList(flavorMenuList);
+
+        return myMessage;
+    }
+
+    public void setCustomMenuDao(CustomMenuDao customMenuDao) {
+        this.customMenuDao = customMenuDao;
+    }
+
+    public void setCustomMenuFoodDao(CustomMenuFoodDao customMenuFoodDao) {
+        this.customMenuFoodDao = customMenuFoodDao;
+    }
+
+    public void setCustomMenuListDao(CustomMenuListDao customMenuListDao) {
+        this.customMenuListDao = customMenuListDao;
     }
 }

@@ -48,4 +48,12 @@ public interface OrderService {
      */
     MyMessage comment(int foodID, int comment);
 
+    /**
+     * 自定义菜单下单
+     *
+     * @param userID
+     * @param mmenuID
+     * @return
+     */
+    MyMessage addMOrder(int userID, int mmenuID);
 }

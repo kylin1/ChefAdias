@@ -9,6 +9,7 @@ import web.model.exceptions.NotFoundException;
 import web.model.vo.FoodTypeBasicVO;
 import web.model.vo.FoodTypeVO;
 import web.model.vo.FoodVO;
+import web.tools.MyMessage;
 
 import java.util.List;
 

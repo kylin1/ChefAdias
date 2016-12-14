@@ -6,32 +6,32 @@ package web.model.vo;
 public class AddCustMenuVO {
     String userid;
     String name;
-    String meal;
+    String mealid;
     int meal_num;
-    String vegetable;
+    String vegetableid;
     int vegetable_num;
-    String meat;
+    String meatid;
     int meat_num;
-    String snack;
+    String snackid;
     int snack_num;
-    String sauce;
+    String sauceid;
     int sauce_num;
-    String flavor;
+    String flavorid;
 
-    public AddCustMenuVO(String userid, String name, String meal, int meal_num, String vegetable, int vegetable_num, String meat, int meat_num, String snack, int snack_num, String sauce, int sauce_num, String flavor) {
+    public AddCustMenuVO(String userid, String name, String mealid, int meal_num, String vegetableid, int vegetable_num, String meatid, int meat_num, String snackid, int snack_num, String sauceid, int sauce_num, String flavorid) {
         this.userid = userid;
         this.name = name;
-        this.meal = meal;
+        this.mealid = mealid;
         this.meal_num = meal_num;
-        this.vegetable = vegetable;
+        this.vegetableid = vegetableid;
         this.vegetable_num = vegetable_num;
-        this.meat = meat;
+        this.meatid = meatid;
         this.meat_num = meat_num;
-        this.snack = snack;
+        this.snackid = snackid;
         this.snack_num = snack_num;
-        this.sauce = sauce;
+        this.sauceid = sauceid;
         this.sauce_num = sauce_num;
-        this.flavor = flavor;
+        this.flavorid = flavorid;
     }
 
     public String getUserid() {
@@ -50,12 +50,12 @@ public class AddCustMenuVO {
         this.name = name;
     }
 
-    public String getMeal() {
-        return meal;
+    public String getMealid() {
+        return mealid;
     }
 
-    public void setMeal(String meal) {
-        this.meal = meal;
+    public void setMealid(String mealid) {
+        this.mealid = mealid;
     }
 
     public int getMeal_num() {
@@ -66,12 +66,12 @@ public class AddCustMenuVO {
         this.meal_num = meal_num;
     }
 
-    public String getVegetable() {
-        return vegetable;
+    public String getVegetableid() {
+        return vegetableid;
     }
 
-    public void setVegetable(String vegetable) {
-        this.vegetable = vegetable;
+    public void setVegetableid(String vegetableid) {
+        this.vegetableid = vegetableid;
     }
 
     public int getVegetable_num() {
@@ -82,12 +82,12 @@ public class AddCustMenuVO {
         this.vegetable_num = vegetable_num;
     }
 
-    public String getMeat() {
-        return meat;
+    public String getMeatid() {
+        return meatid;
     }
 
-    public void setMeat(String meat) {
-        this.meat = meat;
+    public void setMeatid(String meatid) {
+        this.meatid = meatid;
     }
 
     public int getMeat_num() {
@@ -98,12 +98,12 @@ public class AddCustMenuVO {
         this.meat_num = meat_num;
     }
 
-    public String getSnack() {
-        return snack;
+    public String getSnackid() {
+        return snackid;
     }
 
-    public void setSnack(String snack) {
-        this.snack = snack;
+    public void setSnackid(String snackid) {
+        this.snackid = snackid;
     }
 
     public int getSnack_num() {
@@ -114,12 +114,12 @@ public class AddCustMenuVO {
         this.snack_num = snack_num;
     }
 
-    public String getSauce() {
-        return sauce;
+    public String getSauceid() {
+        return sauceid;
     }
 
-    public void setSauce(String sauce) {
-        this.sauce = sauce;
+    public void setSauceid(String sauceid) {
+        this.sauceid = sauceid;
     }
 
     public int getSauce_num() {
@@ -130,11 +130,11 @@ public class AddCustMenuVO {
         this.sauce_num = sauce_num;
     }
 
-    public String getFlavor() {
-        return flavor;
+    public String getFlavorid() {
+        return flavorid;
     }
 
-    public void setFlavor(String flavor) {
-        this.flavor = flavor;
+    public void setFlavorid(String flavorid) {
+        this.flavorid = flavorid;
     }
 }

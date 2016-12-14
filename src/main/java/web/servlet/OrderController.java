@@ -39,23 +39,6 @@ public class OrderController {
     )
     @ResponseBody
     public String addOrder(@RequestBody AddOrderVO addOrderVO) {
-//        String userid = request.getParameter("userid");
-//        String time = request.getParameter("time");
-//        String food_list = request.getParameter("food_list");
-//        String price = request.getParameter("price");
-//        String ticket_info = request.getParameter("ticket_info");
-//        String bowl_info = request.getParameter("bowl_info");
-//        String pay_type = request.getParameter("pay_type");
-
-        //类型转换
-//            int intUserId = MyConverter.getInt(userid);
-//            BigDecimal decimalPrice = MyConverter.getBigDecimal(price);
-//            JsonListConverter<OrderItemVO> jsonListConverter = new JsonListConverter<>();
-//            List<OrderItemVO> orderItemList = jsonListConverter.getList(food_list, OrderItemVO.class);
-//            int useTicket = MyConverter.getInt(ticket_info);
-//            int useBowl = MyConverter.getInt(bowl_info);
-//            int payType = MyConverter.getInt(pay_type);
-//
         //新增订单
         MyMessage myMessage = service.addOrder(addOrderVO);
         if (myMessage.isSuccess()) {
@@ -108,6 +91,22 @@ public class OrderController {
             return MyResponse.success();
         } else {
             return MyResponse.failure(ErrorCode.SERVER, "fail to comment");
+        }
+    }
+
+    @RequestMapping(
+            value = {"addMOrder"},
+            method = {RequestMethod.GET}
+    )
+    @ResponseBody
+    public String addMOrder(HttpServletRequest request) {
+        String menuID = request.getParameter("mmenuid");
+        String userID = request.getParameter("userid");
+        MyMessage myMessage = service.addMOrder(MyConverter.getInt(userID), MyConverter.getInt(menuID));
+        if (myMessage.isSuccess()) {
+            return MyResponse.success();
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to add custom order");
         }
     }
 }

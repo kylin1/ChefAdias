@@ -6,6 +6,7 @@ import web.biz.OrderService;
 import web.dao.FoodDao;
 import web.dao.OrderDao;
 import web.dao.OrderItemDao;
+import web.model.po.CustomMenuFood;
 import web.model.po.Food;
 import web.model.po.Order;
 import web.model.po.OrderItem;
@@ -122,6 +123,11 @@ public class OrderImpl implements OrderService {
             food.setLike(food.getLike() + 1);
         }
         return foodDao.updateFood(food);
+    }
+
+    @Override
+    public MyMessage addMOrder(int userID, int mmenuID) {
+        return null;
     }
 
     public void setOrderDao(OrderDao orderDao) {
