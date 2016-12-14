@@ -74,7 +74,6 @@ public class ShopOrderImpl implements ShopOrderService {
 
         int type = order.getPay_type();
         String typeString = "";
-        // TODO change to english
         if (type == 0) {
             typeString = "cash on delivery ";
         } else {

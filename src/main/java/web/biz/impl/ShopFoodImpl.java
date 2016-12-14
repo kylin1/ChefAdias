@@ -55,7 +55,7 @@ public class ShopFoodImpl implements ShopFoodService {
             foodExtraDao.addExtraFood(foodExtra);
         }
 
-        if(myMessage.isSuccess())
+        if (myMessage.isSuccess())
             return intFoodID;
         else
             throw new ServerException(ErrorCode.SERVER);
@@ -88,11 +88,9 @@ public class ShopFoodImpl implements ShopFoodService {
         food.setDescription(description);
         MyMessage myMessage = foodDao.updateFood(food);
 
-        // TODO 新的extra需要与旧的对比/删除/添加
-
         // old extra food of this food
         List<FoodExtra> oldExtraList = this.foodExtraDao.getExtraOfMainFood(foodID);
-        for (FoodExtra oldExtra:oldExtraList){
+        for (FoodExtra oldExtra : oldExtraList) {
             int id = oldExtra.getId();
             // delete old ones
             this.foodExtraDao.deleteFoodExtra(id);
