@@ -9,13 +9,23 @@ public class CustMenuInfoVO {
     int type;
     String foodid;
     String name;
+    String pic;
     BigDecimal price;
 
-    public CustMenuInfoVO(int type, String foodid, String name, BigDecimal price) {
+    public CustMenuInfoVO(int type, String foodid, String name, String pic, BigDecimal price) {
         this.type = type;
         this.foodid = foodid;
         this.name = name;
+        this.pic = pic;
         this.price = price;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public String getFoodid() {

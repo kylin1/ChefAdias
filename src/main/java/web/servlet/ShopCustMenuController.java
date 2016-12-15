@@ -4,14 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import web.biz.CustOrderItemVO;
 import web.biz.CustomerMenuService;
 import web.model.exceptions.ErrorCode;
+import web.model.vo.CustOrderInfoVO;
 import web.tools.MyConverter;
 import web.tools.MyResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by kylin on 11/12/2016.
@@ -29,19 +34,62 @@ public class ShopCustMenuController {
             method = RequestMethod.POST
     )
     @ResponseBody
-    public String addMMenu(HttpServletRequest request){
+    public String addMMenu(HttpServletRequest request) {
         String strType = request.getParameter("type");
         String strName = request.getParameter("name");
         String strPrice = request.getParameter("price");
 
         int type = MyConverter.getInt(strType);
         BigDecimal price = new BigDecimal(strPrice);
-        boolean result = this.customerMenuService.addMMenu(type,strName,price);
+        int foodID = customerMenuService.addMMenu(type, strName, price);
 
-        if(result){
+        if (foodID != -1) {
+            return MyResponse.success(foodID);
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "add mmenu failed");
+        }
+    }
+
+    @RequestMapping(
+            value = "uploadCustFoodPic",
+            method = RequestMethod.POST
+    )
+    @ResponseBody
+    public String uploadCustFoodPic(@RequestParam(value = "pic") MultipartFile pic, @RequestParam(value = "foodid") String foodID) {
+        boolean isSuccess = customerMenuService.uploadCustFoodPic(MyConverter.getInt(foodID), pic);
+        if (isSuccess) {
             return MyResponse.success();
-        }else{
-            return MyResponse.failure(ErrorCode.SERVER,"add mmenu failed");
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to upload pic");
+        }
+    }
+
+    @RequestMapping(
+            value = "getCustOrderList",
+            method = RequestMethod.GET
+    )
+    @ResponseBody
+    public String getCustOrderList() {
+        List<CustOrderItemVO> orderList = customerMenuService.getCustOrderList();
+        if (orderList != null) {
+            return MyResponse.success(orderList);
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to get custom order list");
+        }
+    }
+
+    @RequestMapping(
+            value = "getCustOrder",
+            method = RequestMethod.GET
+    )
+    @ResponseBody
+    public String getCustOrder(HttpServletRequest request) {
+        String orderID = request.getParameter("order_id");
+        CustOrderInfoVO orderInfo = customerMenuService.getCustOrder(MyConverter.getInt(orderID));
+        if (orderInfo != null) {
+            return MyResponse.success(orderInfo);
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to get custom order");
         }
     }
 
@@ -50,7 +98,7 @@ public class ShopCustMenuController {
             method = RequestMethod.POST
     )
     @ResponseBody
-    public String modMMenu(HttpServletRequest request){
+    public String modMMenu(HttpServletRequest request) {
         String strId = request.getParameter("mmenu_foodid");
         String strType = request.getParameter("type");
         String strName = request.getParameter("name");
@@ -59,12 +107,12 @@ public class ShopCustMenuController {
         int id = MyConverter.getInt(strId);
         int type = MyConverter.getInt(strType);
         BigDecimal price = new BigDecimal(strPrice);
-        boolean result = this.customerMenuService.modMMenu(id,type,strName,price);
+        boolean result = this.customerMenuService.modMMenu(id, type, strName, price);
 
-        if(result){
+        if (result) {
             return MyResponse.success();
-        }else{
-            return MyResponse.failure(ErrorCode.SERVER,"update mmenu failed");
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "update mmenu failed");
         }
     }
 
@@ -74,16 +122,16 @@ public class ShopCustMenuController {
             method = RequestMethod.GET
     )
     @ResponseBody
-    public String delMMenu(HttpServletRequest request){
+    public String delMMenu(HttpServletRequest request) {
         String strId = request.getParameter("mmenu_foodid");
 
         int id = MyConverter.getInt(strId);
         boolean result = this.customerMenuService.deleteMMenu(id);
 
-        if(result){
+        if (result) {
             return MyResponse.success();
-        }else{
-            return MyResponse.failure(ErrorCode.SERVER,"delete mmenu failed");
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "delete mmenu failed");
         }
     }
 }

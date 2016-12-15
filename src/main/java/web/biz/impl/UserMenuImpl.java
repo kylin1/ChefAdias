@@ -60,7 +60,7 @@ public class UserMenuImpl implements UserCustMenuService {
         List<CustomMenuFood> menuFoodList = customMenuFoodDao.getCustomMenuFood();
         List<CustMenuInfoVO> menuInfoList = new ArrayList<>();
         for (CustomMenuFood foodItem : menuFoodList) {
-            CustMenuInfoVO menuInfoVO = new CustMenuInfoVO(foodItem.getType(), foodItem.getId() + "", foodItem.getName(), foodItem.getPrice());
+            CustMenuInfoVO menuInfoVO = new CustMenuInfoVO(foodItem.getType(), foodItem.getId() + "", foodItem.getName(), foodItem.getPicture(), foodItem.getPrice());
             menuInfoList.add(menuInfoVO);
         }
         return menuInfoList;
