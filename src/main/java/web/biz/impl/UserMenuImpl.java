@@ -21,6 +21,7 @@ import web.tools.MyMessage;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -121,6 +122,7 @@ public class UserMenuImpl implements UserCustMenuService {
         customMenu.setFlavor(flavor.getName());
         customMenu.setName(addMMenuVO.getName());
         customMenu.setUser_id(MyConverter.getInt(addMMenuVO.getUserid()));
+        customMenu.setTime(new Date());
         MyMessage myMessage = customMenuDao.addCustomMenu(customMenu);
         int menuID = customMenu.getId();
 

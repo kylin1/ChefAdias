@@ -1,6 +1,7 @@
 package biz;
 
 import com.google.gson.Gson;
+import org.junit.Test;
 import web.biz.impl.CustomerMenuImpl;
 import web.biz.impl.OrderImpl;
 import web.biz.impl.UserMenuImpl;
@@ -32,44 +33,44 @@ public class CustomerMenuImplTest {
         userMenu.setCustomMenuListDao(new CustomMenuListDaoImpl());
     }
 
-//    @Test
+    //    @Test
     public void add() {
         this.service.addMMenu(1, "test", new BigDecimal("12"));
     }
 
 
-//    @Test
+    //    @Test
     public void update() {
         this.service.modMMenu(14, 2, "test2", new BigDecimal("22"));
     }
 
-//    @Test
+    //    @Test
     public void delete() {
         this.service.deleteMMenu(14);
     }
 
-//    @Test
+    //    @Test
     public void getMList() {
         List<CustMenuItemVO> menuList = userMenu.getMList(1);
         Gson gson = new Gson();
         System.out.println(gson.toJson(menuList));
     }
 
-//    @Test
+    //    @Test
     public void getMMenuInfo() {
         List<CustMenuInfoVO> infoList = userMenu.getMMenuInfo();
         Gson gson = new Gson();
         System.out.println(gson.toJson(infoList));
     }
 
-//    @Test
+    //    @Test
     public void getMMenu() {
         CustMenuDetailVO detailVO = userMenu.getMMenu(1);
         Gson gson = new Gson();
         System.out.println(gson.toJson(detailVO));
     }
 
-//    @Test
+    @Test
     public void addMMenu() {
         AddCustMenuVO addCustMenuVO = new AddCustMenuVO(
                 "1",
@@ -89,12 +90,12 @@ public class CustomerMenuImplTest {
         userMenu.addMMenu(addCustMenuVO);
     }
 
-//    @Test
+    //    @Test
     public void deleteMMenu() {
         userMenu.deleteMMenu(3);
     }
 
-//    @Test
+    //    @Test
     public void addMOrder() {
 
     }
