@@ -1,6 +1,5 @@
 package dao;
 
-import org.junit.Test;
 import web.dao.FoodExtraDao;
 import web.dao.impl.FoodExtraDaoImpl;
 import web.model.po.FoodExtra;

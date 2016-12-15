@@ -19,9 +19,6 @@ public class CustomMenu {
     //创建时间
     private Date time;
 
-    //酱料
-    private String sauce;
-
     //风味
     private String flavor;
 
@@ -55,14 +52,6 @@ public class CustomMenu {
 
     public void setTime(Date time) {
         this.time = time;
-    }
-
-    public String getSauce() {
-        return sauce;
-    }
-
-    public void setSauce(String sauce) {
-        this.sauce = sauce;
     }
 
     public String getFlavor() {

@@ -11,8 +11,8 @@ import java.util.List;
  */
 public interface CustomMenuOperation {
 
-    @Insert({"insert into `custom_menu` ( `sauce`, `user_id`, `name`, `time`, `flavor`) " +
-            "values ( #{sauce}, #{user_id}, #{name}, #{time}, #{flavor})"})
+    @Insert({"insert into `custom_menu` ( `user_id`, `name`, `time`, `flavor`) " +
+            "values ( #{user_id}, #{name}, #{time}, #{flavor})"})
     @Options(useGeneratedKeys = true)
     void insert(CustomMenu customMenu);
 
@@ -25,7 +25,7 @@ public interface CustomMenuOperation {
     @Delete({"delete from `custom_menu` where id = #{id} "})
     void delete(int id);
 
-    @Update({"update `custom_menu` set `sauce`=#{sauce}, `user_id`=#{user_id}, " +
+    @Update({"update `custom_menu` set `user_id`=#{user_id}, " +
             " `name`=#{name}, `time`=#{time}, `flavor`=#{flavor} " +
             " where `id`=#{id} "})
     void update(CustomMenu customMenu);

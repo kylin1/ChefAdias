@@ -19,7 +19,6 @@ public class CustomMenuDaoImplTest {
     public void add(){
         CustomMenu menu = new CustomMenu();
         menu.setUser_id(2);
-        menu.setSauce("test");
         menu.setFlavor("test");
         menu.setName("test");
         menu.setTime(new Date());
@@ -44,7 +43,6 @@ public class CustomMenuDaoImplTest {
         CustomMenu menu = new CustomMenu();
         menu.setId(1);
         menu.setUser_id(2);
-        menu.setSauce("test");
         menu.setFlavor("test");
         menu.setName("test");
         menu.setTime(new Date());
