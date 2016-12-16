@@ -8,7 +8,7 @@ public class CustomMenuList {
 
     private int id;
 
-    //自定义食物列表
+    //自定义食物列表ID
     private int menu_id;
 
     //食物

@@ -95,7 +95,7 @@ public class CustomerMenuImplTest {
         userMenu.deleteMMenu(3);
     }
 
-    //    @Test
+        @Test
     public void addMOrder() {
     }
 }
