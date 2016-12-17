@@ -28,6 +28,15 @@ public interface CustomMenuDao {
      */
     List<CustomMenu> getCustomMenuOfUser(int userId);
 
+
+    /**
+     * 根据ID获取自定义菜单
+     *
+     * @param id
+     * @return
+     */
+    CustomMenu getMenuByID(int id);
+
     /**
      * 删除自定义菜单
      *

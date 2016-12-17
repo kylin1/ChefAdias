@@ -61,6 +61,7 @@ public class CustomMenuDaoImpl implements CustomMenuDao {
         return result;
     }
 
+
     @Override
     public MyMessage deleteCustomMenu(int id) {
         MyMessage myMessage = null;
@@ -99,12 +100,13 @@ public class CustomMenuDaoImpl implements CustomMenuDao {
         return myMessage;
     }
 
-    private CustomMenu getCustomMenu(int id) {
-        CustomMenu customMenu = null;
+    @Override
+    public CustomMenu getMenuByID(int id) {
+        CustomMenu result = null;
         try {
             this.session = MybatisUtils.getSession();
             this.operation = this.session.getMapper(CustomMenuOperation.class);
-            customMenu = this.operation.get(id);
+            result = this.operation.get(id);
             this.session.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -112,7 +114,7 @@ public class CustomMenuDaoImpl implements CustomMenuDao {
         } finally {
             this.session.close();
         }
-        return customMenu;
+        return result;
     }
 
 }
