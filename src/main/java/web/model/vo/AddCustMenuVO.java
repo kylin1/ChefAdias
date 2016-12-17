@@ -24,6 +24,10 @@ public class AddCustMenuVO {
 
     String flavorid;
 
+
+    public AddCustMenuVO() {
+    }
+
     public AddCustMenuVO(String userid, String name, String mealid, int meal_num, String vegetableid, int vegetable_num, String meatid, int meat_num, String snackid, int snack_num, String sauceid, int sauce_num, String flavorid) {
         this.userid = userid;
         this.name = name;
