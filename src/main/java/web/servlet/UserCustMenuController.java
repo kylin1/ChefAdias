@@ -77,6 +77,7 @@ public class UserCustMenuController {
             value = "addMMenu",
             method = RequestMethod.POST
     )
+    @ResponseBody
     public String addMMenu(@RequestBody AddCustMenuVO addCustMenuVO) {
         MyMessage myMessage = service.addMMenu(addCustMenuVO);
         if (myMessage.isSuccess()) {
