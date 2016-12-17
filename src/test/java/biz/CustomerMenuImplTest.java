@@ -1,7 +1,6 @@
 package biz;
 
 import com.google.gson.Gson;
-import org.junit.Test;
 import web.biz.impl.CustomerMenuImpl;
 import web.biz.impl.OrderImpl;
 import web.biz.impl.UserMenuImpl;
@@ -70,7 +69,7 @@ public class CustomerMenuImplTest {
         System.out.println(gson.toJson(detailVO));
     }
 
-    @Test
+//    @Test
     public void addMMenu() {
         AddCustMenuVO addCustMenuVO = new AddCustMenuVO(
                 "1",
@@ -95,7 +94,7 @@ public class CustomerMenuImplTest {
         userMenu.deleteMMenu(3);
     }
 
-        @Test
+//        @Test
     public void addMOrder() {
     }
 }

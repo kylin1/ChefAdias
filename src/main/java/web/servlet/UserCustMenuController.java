@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import web.biz.CustomerMenuService;
 import web.biz.UserCustMenuService;
 import web.model.exceptions.ErrorCode;
 import web.model.vo.AddCustMenuVO;
@@ -78,6 +77,7 @@ public class UserCustMenuController {
             method = RequestMethod.POST
     )
     public String addMMenu(@RequestBody AddCustMenuVO addCustMenuVO) {
+        System.out.println(addCustMenuVO.getName());
         MyMessage myMessage = service.addMMenu(addCustMenuVO);
         if (myMessage.isSuccess()) {
             return MyResponse.success();
