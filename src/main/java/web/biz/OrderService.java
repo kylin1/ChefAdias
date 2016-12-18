@@ -52,8 +52,9 @@ public interface OrderService {
      * 自定义菜单下单
      *
      * @param userID
+     * @param payType
      * @param mmenuID
      * @return
      */
-    MyMessage addMOrder(int userID, int mmenuID);
+    MyMessage addMOrder(int userID, int payType, int mmenuID);
 }

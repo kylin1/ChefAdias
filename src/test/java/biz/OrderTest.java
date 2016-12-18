@@ -1,9 +1,8 @@
 package biz;
 
+import org.junit.Test;
 import web.biz.impl.OrderImpl;
-import web.dao.impl.FoodDaoImpl;
-import web.dao.impl.OrderDaoImpl;
-import web.dao.impl.OrderItemDaoImpl;
+import web.dao.impl.*;
 import web.model.vo.AddOrderVO;
 import web.model.vo.OrderItemVO;
 import web.model.vo.UserOrderVO;
@@ -24,9 +23,12 @@ public class OrderTest {
         service.setOrderItemDao(new OrderItemDaoImpl());
         service.setOrderDao(new OrderDaoImpl());
         service.setFoodDao(new FoodDaoImpl());
+        service.setCustomMenuFoodDao(new CustomMenuFoodDaoImpl());
+        service.setCustomMenuListDao(new CustomMenuListDaoImpl());
+        service.setCustomOrderDao(new CustomOrderDaoImpl());
     }
 
-//    @Test
+    //    @Test
     public void testAdd() {
         AddOrderVO addOrderVO = new AddOrderVO();
         addOrderVO.setBowl_info(1);
@@ -50,9 +52,14 @@ public class OrderTest {
         service.addOrder(addOrderVO);
     }
 
-//    @Test
-    public void testGet(){
+    //    @Test
+    public void testGet() {
         UserOrderVO vo = service.getOrder(14);
         System.out.println(vo.getPrice());
+    }
+
+    @Test
+    public void testAddMOrder() {
+        service.addMOrder(1, 1, 1);
     }
 }

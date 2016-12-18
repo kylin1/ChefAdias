@@ -100,9 +100,10 @@ public class OrderController {
     )
     @ResponseBody
     public String addMOrder(HttpServletRequest request) {
-        String menuID = request.getParameter("mmenuid");
         String userID = request.getParameter("userid");
-        MyMessage myMessage = service.addMOrder(MyConverter.getInt(userID), MyConverter.getInt(menuID));
+        String menuID = request.getParameter("mmenuid");
+        String payType = request.getParameter("pay_type");
+        MyMessage myMessage = service.addMOrder(MyConverter.getInt(userID), MyConverter.getInt(payType), MyConverter.getInt(menuID));
         if (myMessage.isSuccess()) {
             return MyResponse.success();
         } else {

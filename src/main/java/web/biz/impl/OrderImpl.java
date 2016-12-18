@@ -3,13 +3,8 @@ package web.biz.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.biz.OrderService;
-import web.dao.FoodDao;
-import web.dao.OrderDao;
-import web.dao.OrderItemDao;
-import web.model.po.CustomMenuFood;
-import web.model.po.Food;
-import web.model.po.Order;
-import web.model.po.OrderItem;
+import web.dao.*;
+import web.model.po.*;
 import web.model.vo.*;
 import web.tools.MyConverter;
 import web.tools.MyMessage;
@@ -18,6 +13,7 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,6 +30,15 @@ public class OrderImpl implements OrderService {
 
     @Autowired
     private FoodDao foodDao;
+
+    @Autowired
+    private CustomOrderDao customOrderDao;
+
+    @Autowired
+    private CustomMenuListDao customMenuListDao;
+
+    @Autowired
+    private CustomMenuFoodDao customMenuFoodDao;
 
     @Override
     public MyMessage addOrder(AddOrderVO addOrderVO) {
@@ -126,8 +131,32 @@ public class OrderImpl implements OrderService {
     }
 
     @Override
-    public MyMessage addMOrder(int userID, int mmenuID) {
-        return null;
+    public MyMessage addMOrder(int userID, int payType, int mmenuID) {
+        List<CustomMenuList> menuList = customMenuListDao.getMenuListOfMenu(mmenuID);
+        BigDecimal sum = new BigDecimal(0);
+        for (CustomMenuList menuItem : menuList) {
+            int foodID = menuItem.getFood_id();
+            CustomMenuFood food = customMenuFoodDao.get(foodID);
+            sum = sum.add(food.getPrice().multiply(new BigDecimal(menuItem.getNumber())));
+        }
+        Date createTime = new Date();
+
+        Order order = new Order();
+        order.setIs_finish(0);
+        order.setPay_type(payType);
+        order.setTicket_info(0);
+        order.setPrice(sum);
+        order.setUser_id(userID);
+        order.setCreate_time(createTime);
+        orderDao.addOrder(order);
+
+        CustomOrder customOrder = new CustomOrder();
+        customOrder.setCreate_time(createTime);
+        customOrder.setMenu_id(mmenuID);
+        customOrder.setIs_finish(0);
+        customOrder.setPay_type(payType);
+        customOrder.setTicket_info(0);
+        return customOrderDao.addOrder(customOrder);
     }
 
     public void setOrderDao(OrderDao orderDao) {
@@ -140,5 +169,17 @@ public class OrderImpl implements OrderService {
 
     public void setFoodDao(FoodDao foodDao) {
         this.foodDao = foodDao;
+    }
+
+    public void setCustomOrderDao(CustomOrderDao customOrderDao) {
+        this.customOrderDao = customOrderDao;
+    }
+
+    public void setCustomMenuListDao(CustomMenuListDao customMenuListDao) {
+        this.customMenuListDao = customMenuListDao;
+    }
+
+    public void setCustomMenuFoodDao(CustomMenuFoodDao customMenuFoodDao) {
+        this.customMenuFoodDao = customMenuFoodDao;
     }
 }
