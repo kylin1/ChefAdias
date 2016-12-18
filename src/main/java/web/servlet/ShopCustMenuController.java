@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import web.biz.CustOrderItemVO;
+import web.biz.CustOrderVO;
 import web.biz.CustomerMenuService;
 import web.model.exceptions.ErrorCode;
 import web.model.vo.CustOrderInfoVO;
@@ -16,6 +16,9 @@ import web.tools.MyResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -69,8 +72,15 @@ public class ShopCustMenuController {
             method = RequestMethod.GET
     )
     @ResponseBody
-    public String getCustOrderList() {
-        List<CustOrderItemVO> orderList = customerMenuService.getCustOrderList();
+    public String getCustOrderList(HttpServletRequest request) {
+        String date = request.getParameter("date");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        List<CustOrderVO> orderList = null;
+        try {
+            orderList = customerMenuService.getCustOrderList(format.parse(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         if (orderList != null) {
             return MyResponse.success(orderList);
         } else {

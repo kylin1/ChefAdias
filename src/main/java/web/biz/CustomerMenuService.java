@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 import web.model.vo.CustOrderInfoVO;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,9 +55,10 @@ public interface CustomerMenuService {
     /**
      * 获取自定义菜单订单列表
      *
+     * @param date
      * @return
      */
-    List<CustOrderItemVO> getCustOrderList();
+    List<CustOrderVO> getCustOrderList(Date date);
 
     /**
      * 获取自定义菜单订单详情

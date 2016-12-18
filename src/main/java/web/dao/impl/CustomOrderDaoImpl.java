@@ -1,6 +1,8 @@
 package web.dao.impl;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import web.dao.CustomOrderDao;
 import web.dao.opearion.CustomOrderOperation;
 import web.dao.util.MybatisUtils;
@@ -14,6 +16,8 @@ import java.util.List;
  * Created by kylin on 16/12/2016.
  * All rights reserved.
  */
+@Transactional
+@Repository("customOrderDao")
 public class CustomOrderDaoImpl implements CustomOrderDao {
 
     SqlSession session;

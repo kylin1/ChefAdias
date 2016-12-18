@@ -3,16 +3,22 @@ package web.biz.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import web.biz.CustOrderItemVO;
+import web.biz.CustOrderVO;
 import web.biz.CustomerMenuService;
+import web.dao.CustomMenuDao;
 import web.dao.CustomMenuFoodDao;
+import web.dao.CustomOrderDao;
 import web.model.po.CustomMenuFood;
+import web.model.po.CustomOrder;
 import web.model.vo.CustOrderInfoVO;
 import web.tools.MyFile;
 import web.tools.MyMessage;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +30,12 @@ public class CustomerMenuImpl implements CustomerMenuService {
 
     @Autowired
     private CustomMenuFoodDao foodDao;
+
+    @Autowired
+    private CustomOrderDao orderDao;
+
+    @Autowired
+    private CustomMenuDao menuDao;
 
     @Override
     public int addMMenu(int type, String name, BigDecimal price) {
@@ -73,8 +85,22 @@ public class CustomerMenuImpl implements CustomerMenuService {
     }
 
     @Override
-    public List<CustOrderItemVO> getCustOrderList() {
-        //TODO 获取自定义菜单订单列表
+    public List<CustOrderVO> getCustOrderList(Date date) {
+        List<CustOrderVO> custOrderList = new ArrayList<>();
+        Calendar ca = Calendar.getInstance();
+        ca.setTime(date);
+        ca.add(Calendar.DATE, 1);
+        Date tomorrow = ca.getTime();
+        List<CustomOrder> orderList = orderDao.getOrderInDay(date.toString(), tomorrow.toString());
+        for (CustomOrder order : orderList) {
+            int orderID = order.getId();
+            Date time = order.getCreate_time();
+            int isFinish = order.getIs_finish();
+
+            int menuID = order.getMenu_id();
+            menuDao.getCustomMenuOfUser(menuID);
+            
+        }
         return null;
     }
 

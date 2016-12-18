@@ -5,23 +5,27 @@ import java.math.BigDecimal;
 /**
  * Created by Alan on 2016/12/15.
  */
-public class CustOrderItemVO {
+public class CustOrderVO {
     String order_id;
     String time;
     String username;
     String phone;
     String addr;
+    int isfinish;
+    String type;
     BigDecimal price;
 
-    public CustOrderItemVO() {
+    public CustOrderVO() {
     }
 
-    public CustOrderItemVO(String order_id, String time, String username, String phone, String addr, BigDecimal price) {
+    public CustOrderVO(String order_id, String time, String username, String phone, String addr, int isfinish, String type, BigDecimal price) {
         this.order_id = order_id;
         this.time = time;
         this.username = username;
         this.phone = phone;
         this.addr = addr;
+        this.isfinish = isfinish;
+        this.type = type;
         this.price = price;
     }
 
@@ -63,6 +67,22 @@ public class CustOrderItemVO {
 
     public void setAddr(String addr) {
         this.addr = addr;
+    }
+
+    public int getIsfinish() {
+        return isfinish;
+    }
+
+    public void setIsfinish(int isfinish) {
+        this.isfinish = isfinish;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public BigDecimal getPrice() {
