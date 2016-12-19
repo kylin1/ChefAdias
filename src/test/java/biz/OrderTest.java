@@ -1,6 +1,5 @@
 package biz;
 
-import org.junit.Test;
 import web.biz.impl.OrderImpl;
 import web.dao.impl.*;
 import web.model.vo.AddOrderVO;
@@ -58,7 +57,7 @@ public class OrderTest {
         System.out.println(vo.getPrice());
     }
 
-    @Test
+//    @Test
     public void testAddMOrder() {
         service.addMOrder(1, 1, 1);
     }
