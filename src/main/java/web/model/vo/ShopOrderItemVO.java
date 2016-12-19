@@ -12,17 +12,27 @@ public class ShopOrderItemVO {
     private String time;
     private String addr;
     private int isfinish;
+    private int iscust;
     private String type;
     private BigDecimal price;
 
-    public ShopOrderItemVO(String orderid, String username, String time, String addr, int isfinish, String type, BigDecimal price) {
+    public ShopOrderItemVO(String orderid, String username, String time, String addr, int isfinish, int iscust, String type, BigDecimal price) {
         this.orderid = orderid;
         this.username = username;
         this.time = time;
         this.addr = addr;
         this.isfinish = isfinish;
+        this.iscust = iscust;
         this.type = type;
         this.price = price;
+    }
+
+    public int getIscust() {
+        return iscust;
+    }
+
+    public void setIscust(int iscust) {
+        this.iscust = iscust;
     }
 
     public String getOrderid() {

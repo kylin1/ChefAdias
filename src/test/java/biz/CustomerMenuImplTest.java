@@ -1,6 +1,7 @@
 package biz;
 
 import com.google.gson.Gson;
+import org.junit.Test;
 import web.biz.impl.CustomerMenuImpl;
 import web.biz.impl.OrderImpl;
 import web.biz.impl.UserMenuImpl;
@@ -103,13 +104,13 @@ public class CustomerMenuImplTest {
         userMenu.deleteMMenu(3);
     }
 
-//    @Test
+    //    @Test
     public void getMOrderList() {
         Gson gson = new Gson();
         System.out.println(gson.toJson(userMenu.getMList(2)));
     }
 
-//    @Test
+    //    @Test
     public void getCustomOrderList() {
         Gson gson = new Gson();
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -120,13 +121,13 @@ public class CustomerMenuImplTest {
         }
     }
 
-//    @Test
+    //    @Test
     public void getMOrder() {
         Gson gson = new Gson();
         System.out.println(gson.toJson(userMenu.getMMenu(1)));
     }
 
-//    @Test
+    //    @Test
     public void getCustList() {
         CustomOrderDao dao = new CustomOrderDaoImpl();
         List<CustomOrder> orderList = dao.getOrderInDay("2016-12-17", "2016-12-18");

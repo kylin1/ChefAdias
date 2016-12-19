@@ -10,11 +10,21 @@ public class UserOrderItemVO {
     private String orderid;
     private BigDecimal price;
     private String time;
+    private int iscust;
 
-    public UserOrderItemVO(String orderid, BigDecimal price, String time) {
+    public UserOrderItemVO(String orderid, BigDecimal price, String time, int iscust) {
         this.orderid = orderid;
         this.price = price;
         this.time = time;
+        this.iscust = iscust;
+    }
+
+    public int getIscust() {
+        return iscust;
+    }
+
+    public void setIscust(int iscust) {
+        this.iscust = iscust;
     }
 
     public String getOrderid() {

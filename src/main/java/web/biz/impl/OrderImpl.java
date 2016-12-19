@@ -51,6 +51,7 @@ public class OrderImpl implements OrderService {
         order.setPrice(addOrderVO.getPrice());
         order.setPay_type(addOrderVO.getPay_type());
         order.setTicket_info(addOrderVO.getTicket_info());
+        order.setIscust(0);
         MyMessage orderMessage = orderDao.addOrder(order);
 
         //获取插入的OrderPO id
@@ -85,7 +86,7 @@ public class OrderImpl implements OrderService {
         List<UserOrderItemVO> userOrderItemVOList = new ArrayList<>();
         for (Order order : orderList) {
             DateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-            UserOrderItemVO vo = new UserOrderItemVO(order.getId() + "", order.getPrice(), format.format(order.getCreate_time()));
+            UserOrderItemVO vo = new UserOrderItemVO(order.getId() + "", order.getPrice(), format.format(order.getCreate_time()), order.getIscust());
             userOrderItemVOList.add(vo);
         }
         return userOrderItemVOList;
@@ -148,6 +149,7 @@ public class OrderImpl implements OrderService {
         order.setPrice(sum);
         order.setUser_id(userID);
         order.setCreate_time(createTime);
+        order.setIscust(1);
         orderDao.addOrder(order);
 
         CustomOrder customOrder = new CustomOrder();

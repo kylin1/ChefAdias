@@ -121,7 +121,7 @@ public class ShopOrderImpl implements ShopOrderService {
                     typeString = "在线付款";
                 }
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                ShopOrderItemVO shopOrderItemVO = new ShopOrderItemVO(orderID + "", username, format.format(time), addr, isFinish, typeString, price);
+                ShopOrderItemVO shopOrderItemVO = new ShopOrderItemVO(orderID + "", username, format.format(time), addr, isFinish, order.getIscust(), typeString, price);
                 shopOrderItemVOList.add(shopOrderItemVO);
             }
 
