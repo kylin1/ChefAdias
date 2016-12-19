@@ -92,16 +92,16 @@ public class CustomerMenuImpl implements CustomerMenuService {
 
     @Override
     public List<CustOrderVO> getCustOrderList(Date date) {
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         List<CustOrderVO> custOrderList = new ArrayList<>();
         Calendar ca = Calendar.getInstance();
         ca.setTime(date);
         ca.add(Calendar.DATE, 1);
         Date tomorrow = ca.getTime();
-        List<CustomOrder> orderList = orderDao.getOrderInDay(date.toString(), tomorrow.toString());
+        List<CustomOrder> orderList = orderDao.getOrderInDay(sdf.format(date), sdf.format(tomorrow));
         for (CustomOrder order : orderList) {
             int orderID = order.getId();
             Date time = order.getCreate_time();
-            DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             int isFinish = order.getIs_finish();
             int menuID = order.getMenu_id();
             int payType = order.getPay_type();
@@ -153,5 +153,21 @@ public class CustomerMenuImpl implements CustomerMenuService {
 
     public void setFoodDao(CustomMenuFoodDao foodDao) {
         this.foodDao = foodDao;
+    }
+
+    public void setMenuListDao(CustomMenuListDao customMenuListDao) {
+        this.menuListDao = customMenuListDao;
+    }
+
+    public void setOrderDao(CustomOrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
+
+    public void setMenuDao(CustomMenuDao customMenuDao) {
+        this.menuDao = customMenuDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 }

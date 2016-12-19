@@ -2,18 +2,23 @@ package biz;
 
 import com.google.gson.Gson;
 import org.junit.Test;
+import web.biz.CustomerMenuService;
 import web.biz.impl.CustomerMenuImpl;
 import web.biz.impl.OrderImpl;
 import web.biz.impl.UserMenuImpl;
-import web.dao.impl.CustomMenuDaoImpl;
-import web.dao.impl.CustomMenuFoodDaoImpl;
-import web.dao.impl.CustomMenuListDaoImpl;
+import web.dao.CustomOrderDao;
+import web.dao.impl.*;
+import web.model.po.CustomOrder;
 import web.model.vo.AddCustMenuVO;
 import web.model.vo.CustMenuDetailVO;
 import web.model.vo.CustMenuInfoVO;
 import web.model.vo.CustMenuItemVO;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,12 +30,18 @@ public class CustomerMenuImplTest {
     private CustomerMenuImpl service = new CustomerMenuImpl();
     private UserMenuImpl userMenu = new UserMenuImpl();
     private OrderImpl orderImpl = new OrderImpl();
+    private CustomerMenuImpl customerMenu = new CustomerMenuImpl();
 
     public CustomerMenuImplTest() {
         this.service.setFoodDao(new CustomMenuFoodDaoImpl());
         userMenu.setCustomMenuDao(new CustomMenuDaoImpl());
         userMenu.setCustomMenuFoodDao(new CustomMenuFoodDaoImpl());
         userMenu.setCustomMenuListDao(new CustomMenuListDaoImpl());
+        customerMenu.setFoodDao(new CustomMenuFoodDaoImpl());
+        customerMenu.setMenuDao(new CustomMenuDaoImpl());
+        customerMenu.setMenuListDao(new CustomMenuListDaoImpl());
+        customerMenu.setOrderDao(new CustomOrderDaoImpl());
+        customerMenu.setUserDao(new UserDaoImpl());
     }
 
     //    @Test
@@ -97,5 +108,32 @@ public class CustomerMenuImplTest {
 
 //    @Test
     public void getMOrderList() {
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(userMenu.getMList(2)));
     }
+
+    @Test
+    public void getCustomOrderList() {
+        Gson gson = new Gson();
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            System.out.println(gson.toJson(customerMenu.getCustOrderList(sdf.parse("2016-12-17"))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getMOrder() {
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(userMenu.getMMenu(1)));
+    }
+
+    @Test
+    public void getCustList() {
+        CustomOrderDao dao = new CustomOrderDaoImpl();
+        List<CustomOrder> orderList = dao.getOrderInDay("2016-12-17", "2016-12-18");
+        System.out.println(orderList.size());
+    }
+
 }
