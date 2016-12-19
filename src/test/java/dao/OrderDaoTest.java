@@ -53,6 +53,7 @@ public class OrderDaoTest {
         order.setTicket_info(1);
         order.setBowl_info(1);
         order.setPay_type(1);
+        order.setIscust(1);
         dao.addOrder(order);
 
         System.out.println(order.getId());
