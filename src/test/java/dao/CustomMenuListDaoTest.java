@@ -1,5 +1,6 @@
 package dao;
 
+import org.junit.Test;
 import web.dao.impl.CustomMenuListDaoImpl;
 import web.model.po.CustomMenuList;
 import web.tools.CheckClass;
@@ -23,7 +24,7 @@ public class CustomMenuListDaoTest {
         dao.addCustomMenuList(list);
     }
 
-//    @Test
+    @Test
     public void get() throws ClassNotFoundException {
         List<CustomMenuList> lists = dao.getMenuListOfMenu(2);
         for (CustomMenuList menu:lists){

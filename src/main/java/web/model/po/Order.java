@@ -33,6 +33,9 @@ public class Order {
     //0 货到付款 1 在线付款
     private int pay_type;
 
+    //是否是自定义菜单的订单
+    private int iscust;
+
 
     public int getId() {
         return id;
@@ -96,5 +99,13 @@ public class Order {
 
     public void setPay_type(int pay_type) {
         this.pay_type = pay_type;
+    }
+
+    public int getIscust() {
+        return iscust;
+    }
+
+    public void setIscust(int iscust) {
+        this.iscust = iscust;
     }
 }

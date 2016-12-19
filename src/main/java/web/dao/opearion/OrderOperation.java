@@ -12,9 +12,9 @@ import java.util.List;
 public interface OrderOperation {
 
     @Insert({"insert into `order` ( `is_finish`, `ticket_info`, `price`, `pay_type`, " +
-            "`bowl_info`, `user_id`, `create_time`) " +
+            "`bowl_info`, `user_id`, `create_time`, `iscust`) " +
             " values (#{is_finish},#{ticket_info},#{price},#{pay_type}," +
-            "#{bowl_info},#{user_id},#{create_time})"})
+            "#{bowl_info},#{user_id},#{create_time},#{iscust})"})
     @Options(useGeneratedKeys = true)
         //自动返回插入的ID
     void save(Order order);
