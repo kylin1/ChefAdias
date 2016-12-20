@@ -6,9 +6,8 @@ import java.util.List;
 /**
  * 在一个食物的种类下面
  * 一个菜品的基本信息
- *
+ * <p>
  * Created by Alan on 2016/12/7.
- *
  */
 public class FoodVO {
     String foodid;
@@ -17,16 +16,27 @@ public class FoodVO {
     BigDecimal price;
     int good_num;
     int bad_num;
+    String description;
 
     List<FoodVO> extraFood;
 
-    public FoodVO(String foodid, String name, String pic, BigDecimal price, int good_num, int bad_num, List<FoodVO> extraFood) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public FoodVO(String foodid, String name, String pic, BigDecimal price, int good_num, int bad_num, String description, List<FoodVO> extraFood) {
         this.foodid = foodid;
         this.name = name;
         this.pic = pic;
+
         this.price = price;
         this.good_num = good_num;
         this.bad_num = bad_num;
+        this.description = description;
         this.extraFood = extraFood;
     }
 

@@ -77,11 +77,11 @@ public class DishImpl implements DishService {
         List<FoodExtra> extraList = this.foodExtraDao.getExtraOfMainFood(mainId);
 
         //对于一个食物包含的额外食物
-        for (FoodExtra extra : extraList){
+        for (FoodExtra extra : extraList) {
             int extraId = extra.getExtra_food_id();
             Food food = foodDao.getFood(extraId);
             FoodVO extraFoodVO = new FoodVO(food.getId() + "", food.getName(), food.getPicture(),
-                    food.getPrice(), food.getLike(), food.getDislike(),null);
+                    food.getPrice(), food.getLike(), food.getDislike(), food.getDescription(), null);
             resultList.add(extraFoodVO);
         }
 
@@ -100,7 +100,7 @@ public class DishImpl implements DishService {
         for (Food food : foodList) {
             //对于每一个PO需要获取它额外的附加食物信息
             FoodVO foodVO = new FoodVO(food.getId() + "", food.getName(), food.getPicture(),
-                    food.getPrice(), food.getLike(), food.getDislike(), this.getExtraFoodList(food));
+                    food.getPrice(), food.getLike(), food.getDislike(), food.getDescription(), this.getExtraFoodList(food));
             foodInfoList.add(foodVO);
         }
         return foodInfoList;
