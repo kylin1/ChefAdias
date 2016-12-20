@@ -145,7 +145,7 @@ public class CustomerMenuImpl implements CustomerMenuService {
         int userID = menu.getUser_id();
         User user = userDao.getUser(userID);
 
-        return new CustOrderInfoVO(sdf.format(order.getCreate_time()), user.getUsername(), user.getPhone(), user.getAddress(), order.getIs_finish(), sum, foodList);
+        return new CustOrderInfoVO(sdf.format(order.getCreate_time()), user.getUsername(), user.getPhone(), user.getAddress(), order.getIs_finish(), order.getPay_type(), sum, foodList);
     }
 
     public void setFoodDao(CustomMenuFoodDao foodDao) {

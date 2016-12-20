@@ -98,7 +98,7 @@ public class ShopCustMenuController {
         CustOrderInfoVO orderInfo = customerMenuService.getCustOrder(MyConverter.getInt(orderID));
         if (orderInfo != null) {
             return MyResponse.success(orderInfo);
-        } else {
+        } else { 
             return MyResponse.failure(ErrorCode.SERVER, "fail to get custom order");
         }
     }
