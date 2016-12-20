@@ -13,10 +13,10 @@ public class ShopOrderItemVO {
     private String addr;
     private int isfinish;
     private int iscust;
-    private String type;
+    private int type;
     private BigDecimal price;
 
-    public ShopOrderItemVO(String orderid, String username, String time, String addr, int isfinish, int iscust, String type, BigDecimal price) {
+    public ShopOrderItemVO(String orderid, String username, String time, String addr, int isfinish, int iscust, int type, BigDecimal price) {
         this.orderid = orderid;
         this.username = username;
         this.time = time;
@@ -75,11 +75,11 @@ public class ShopOrderItemVO {
         this.isfinish = isfinish;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 

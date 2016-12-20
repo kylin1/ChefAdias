@@ -11,19 +11,29 @@ public class CustOrderInfoVO {
     String username;
     String phone;
     String addr;
+    int isfinish;
     BigDecimal price;
     List<CustFoodListItemVO> custfood_list;
 
     public CustOrderInfoVO() {
     }
 
-    public CustOrderInfoVO(String time, String username, String phone, String addr, BigDecimal price, List<CustFoodListItemVO> custfood_list) {
+    public CustOrderInfoVO(String time, String username, String phone, String addr, int isfinish, BigDecimal price, List<CustFoodListItemVO> custfood_list) {
         this.time = time;
         this.username = username;
         this.phone = phone;
         this.addr = addr;
+        this.isfinish = isfinish;
         this.price = price;
         this.custfood_list = custfood_list;
+    }
+
+    public int getIsfinish() {
+        return isfinish;
+    }
+
+    public void setIsfinish(int isfinish) {
+        this.isfinish = isfinish;
     }
 
     public String getTime() {

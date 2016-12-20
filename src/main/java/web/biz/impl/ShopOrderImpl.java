@@ -71,22 +71,15 @@ public class ShopOrderImpl implements ShopOrderService {
             BigDecimal onePrice = foodPrice.multiply(bigFoodNum);
             sum = sum.add(onePrice);
         }
-
         int type = order.getPay_type();
-        String typeString = "";
-        if (type == 0) {
-            typeString = "cash on delivery ";
-        } else {
-            typeString = "pay online";
-        }
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return new ShopOrderVO(
                 username,
                 format.format(order.getCreate_time()),
                 addr, phone,
                 order.getIs_finish(),
-                typeString,
+                type,
                 sum,
                 foodItemVOList);
     }
@@ -114,14 +107,8 @@ public class ShopOrderImpl implements ShopOrderService {
                 String addr = user.getAddress();
                 int isFinish = order.getIs_finish();
                 int type = order.getPay_type();
-                String typeString = "";
-                if (type == 0) {
-                    typeString = "货到付款";
-                } else {
-                    typeString = "在线付款";
-                }
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                ShopOrderItemVO shopOrderItemVO = new ShopOrderItemVO(orderID + "", username, format.format(time), addr, isFinish, order.getIscust(), typeString, price);
+                ShopOrderItemVO shopOrderItemVO = new ShopOrderItemVO(orderID + "", username, format.format(time), addr, isFinish, order.getIscust(), type, price);
                 shopOrderItemVOList.add(shopOrderItemVO);
             }
 

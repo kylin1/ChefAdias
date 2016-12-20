@@ -105,10 +105,6 @@ public class CustomerMenuImpl implements CustomerMenuService {
             int isFinish = order.getIs_finish();
             int menuID = order.getMenu_id();
             int payType = order.getPay_type();
-            String payTypeStr = "未送达";
-            if (payType == 1) {
-                payTypeStr = "已送达";
-            }
 
             List<CustomMenuList> menuList = menuListDao.getMenuListOfMenu(menuID);
             BigDecimal sum = new BigDecimal(0);
@@ -121,7 +117,7 @@ public class CustomerMenuImpl implements CustomerMenuService {
             int userID = menu.getUser_id();
             User user = userDao.getUser(userID);
 
-            CustOrderVO custOrderVO = new CustOrderVO(orderID + "", sdf.format(time), user.getUsername(), user.getPhone(), user.getAddress(), isFinish, payTypeStr, sum);
+            CustOrderVO custOrderVO = new CustOrderVO(orderID + "", sdf.format(time), user.getUsername(), user.getPhone(), user.getAddress(), isFinish, payType, sum);
             custOrderList.add(custOrderVO);
         }
         return custOrderList;
@@ -148,7 +144,7 @@ public class CustomerMenuImpl implements CustomerMenuService {
         int userID = menu.getUser_id();
         User user = userDao.getUser(userID);
 
-        return new CustOrderInfoVO(sdf.format(order.getCreate_time()), user.getUsername(), user.getPhone(), user.getAddress(), sum, foodList);
+        return new CustOrderInfoVO(sdf.format(order.getCreate_time()), user.getUsername(), user.getPhone(), user.getAddress(), order.getIs_finish(), sum, foodList);
     }
 
     public void setFoodDao(CustomMenuFoodDao foodDao) {

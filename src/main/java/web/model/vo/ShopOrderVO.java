@@ -14,11 +14,11 @@ public class ShopOrderVO {
     private String addr;
     private String phone;
     private int isfinish;
-    private String type;
+    private int type;
     private BigDecimal price;
     private List<FoodItemVO> food_list;
 
-    public ShopOrderVO(String username, String time, String addr, String phone, int isfinish, String type, BigDecimal price, List<FoodItemVO> food_list) {
+    public ShopOrderVO(String username, String time, String addr, String phone, int isfinish, int type, BigDecimal price, List<FoodItemVO> food_list) {
         this.username = username;
         this.time = time;
         this.addr = addr;
@@ -69,11 +69,11 @@ public class ShopOrderVO {
         this.isfinish = isfinish;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
