@@ -1,9 +1,6 @@
 package web.dao.opearion;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import web.model.po.CustomMenuFood;
 
 import java.util.List;
@@ -22,6 +19,7 @@ public interface CustomMenuFoodOperation {
 
     @Insert({"insert into `custom_menu_food` ( `type`, `name`, `price`, `picture`) " +
             "values ( #{type}, #{name}, #{price}, #{picture})"})
+    @Options(useGeneratedKeys = true)
     void add(CustomMenuFood customMenuFood);
 
     @Update({"update `custom_menu_food` set `type`=#{type}, `name`=#{name}, " +

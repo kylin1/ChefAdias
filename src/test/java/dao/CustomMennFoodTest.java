@@ -32,7 +32,7 @@ public class CustomMennFoodTest {
 //        }
 //    }
 
-//    @Test
+    @Test
     public void add() {
         CustomMenuFood food = new CustomMenuFood();
         food.setName("test");
@@ -40,6 +40,7 @@ public class CustomMennFoodTest {
         food.setType(5);
         food.setPicture("pic ");
         dao.add(food);
+        System.out.println(food.getId());
     }
 
 //    @Test
