@@ -94,7 +94,7 @@ public class ShopCustMenuController {
     )
     @ResponseBody
     public String getCustOrder(HttpServletRequest request) {
-        String orderID = request.getParameter("order_id");
+        String orderID = request.getParameter("orderid");
         CustOrderInfoVO orderInfo = customerMenuService.getCustOrder(MyConverter.getInt(orderID));
         if (orderInfo != null) {
             return MyResponse.success(orderInfo);

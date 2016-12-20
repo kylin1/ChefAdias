@@ -6,7 +6,7 @@ import java.math.BigDecimal;
  * Created by Alan on 2016/12/15.
  */
 public class CustOrderVO {
-    String order_id;
+    String orderid;
     String time;
     String username;
     String phone;
@@ -18,8 +18,8 @@ public class CustOrderVO {
     public CustOrderVO() {
     }
 
-    public CustOrderVO(String order_id, String time, String username, String phone, String addr, int isfinish, int type, BigDecimal price) {
-        this.order_id = order_id;
+    public CustOrderVO(String orderid, String time, String username, String phone, String addr, int isfinish, int type, BigDecimal price) {
+        this.orderid = orderid;
         this.time = time;
         this.username = username;
         this.phone = phone;
@@ -29,12 +29,12 @@ public class CustOrderVO {
         this.price = price;
     }
 
-    public String getOrder_id() {
-        return order_id;
+    public String getOrderid() {
+        return orderid;
     }
 
-    public void setOrder_id(String order_id) {
-        this.order_id = order_id;
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
     }
 
     public String getTime() {
