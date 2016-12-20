@@ -2,6 +2,7 @@ package web.biz;
 
 import org.springframework.web.multipart.MultipartFile;
 import web.model.vo.CustOrderInfoVO;
+import web.tools.MyMessage;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -67,5 +68,14 @@ public interface CustomerMenuService {
      * @return
      */
     CustOrderInfoVO getCustOrder(int orderID);
+
+    /**
+     * 设置自定义订单的状态
+     *
+     * @param orderID
+     * @param state
+     * @return
+     */
+    MyMessage setCustState(int orderID, int state);
 
 }

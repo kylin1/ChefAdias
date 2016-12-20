@@ -148,6 +148,15 @@ public class CustomerMenuImpl implements CustomerMenuService {
         return new CustOrderInfoVO(sdf.format(order.getCreate_time()), user.getUsername(), user.getPhone(), user.getAddress(), order.getIs_finish(), order.getPay_type(), sum, foodList);
     }
 
+    @Override
+    public MyMessage setCustState(int orderID, int state) {
+        boolean isArrival = false;
+        if (state == 1) {
+            isArrival = true;
+        }
+        return orderDao.setState(orderID, isArrival);
+    }
+
     public void setFoodDao(CustomMenuFoodDao foodDao) {
         this.foodDao = foodDao;
     }

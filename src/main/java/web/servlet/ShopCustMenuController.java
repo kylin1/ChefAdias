@@ -2,16 +2,14 @@ package web.servlet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import web.biz.CustOrderVO;
 import web.biz.CustomerMenuService;
 import web.model.exceptions.ErrorCode;
 import web.model.vo.CustOrderInfoVO;
 import web.tools.MyConverter;
+import web.tools.MyMessage;
 import web.tools.MyResponse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -98,7 +96,7 @@ public class ShopCustMenuController {
         CustOrderInfoVO orderInfo = customerMenuService.getCustOrder(MyConverter.getInt(orderID));
         if (orderInfo != null) {
             return MyResponse.success(orderInfo);
-        } else { 
+        } else {
             return MyResponse.failure(ErrorCode.SERVER, "fail to get custom order");
         }
     }
@@ -144,4 +142,22 @@ public class ShopCustMenuController {
             return MyResponse.failure(ErrorCode.SERVER, "delete mmenu failed");
         }
     }
+
+    @RequestMapping(
+            value = "setCustState",
+            method = RequestMethod.GET
+    )
+    @ResponseBody
+    public String setCustState(HttpServletRequest request) {
+        String state = request.getParameter("state");
+        String orderID = request.getParameter("orderid");
+        MyMessage myMessage = customerMenuService.setCustState(MyConverter.getInt(orderID), MyConverter.getInt(state));
+        if (myMessage.isSuccess()) {
+            return MyResponse.success();
+        } else {
+            return MyResponse.failure(ErrorCode.SERVER, "fail to set custom state");
+        }
+
+    }
+
 }
