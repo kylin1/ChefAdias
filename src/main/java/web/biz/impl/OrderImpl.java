@@ -62,7 +62,6 @@ public class OrderImpl implements OrderService {
         for (OrderItemVO orderItemVO : orderItemList) {
             String foodID = orderItemVO.getFoodid();
             int intFoodID = Integer.parseInt(foodID);
-            Food food = foodDao.getFood(intFoodID);
             int num = orderItemVO.getNum();
 
             //订单包含的菜品信息

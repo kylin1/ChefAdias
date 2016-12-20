@@ -32,9 +32,9 @@ public class OrderTest {
     public void testAdd() {
         AddOrderVO addOrderVO = new AddOrderVO();
         addOrderVO.setBowl_info(1);
-        addOrderVO.setTime("2015-12-02 12:12:12");
+        addOrderVO.setTime("2016-12-20 12:12:12");
         addOrderVO.setPay_type(1);
-        addOrderVO.setPrice(new BigDecimal("22"));
+        addOrderVO.setPrice(new BigDecimal(14));
         addOrderVO.setTicket_info(1);
         List<OrderItemVO> itemVOList = new ArrayList<>();
         OrderItemVO item = new OrderItemVO();
@@ -43,7 +43,7 @@ public class OrderTest {
         itemVOList.add(item);
 
         OrderItemVO item2 = new OrderItemVO();
-        item2.setFoodid("2");
+        item2.setFoodid("12");
         item2.setNum(2);
         itemVOList.add(item2);
 

@@ -46,7 +46,7 @@ public class TicketImpl implements TicketService {
         if (ticketList == null || ticketList.size() == 0) {
             return null;
         }
-        //list size为1
+        // FIXME: 2016/12/20 list size暂时为1，以后可能会改动
         UserTicket userTicket = ticketList.get(0);
         Date expireTime = userTicket.getExpire_time();
         String expire_time = sdf.format(expireTime);
@@ -61,12 +61,12 @@ public class TicketImpl implements TicketService {
         Calendar ca = Calendar.getInstance();
         ca.add(Calendar.DATE, 1);
         Date tomorrow = ca.getTime();
-        List<Order> orderList = orderDao.getOrderInDay(userId, format.format(today), format.format(tomorrow));
+        List<Order> orderList = orderDao.getOrderInDay(userId, sdf.format(today), sdf.format(tomorrow));
         BigDecimal dailySum = new BigDecimal(0);
         for (Order order : orderList) {
             dailySum = dailySum.add(order.getPrice());
         }
-        return new TickInfoVO(ticket.getId(),dailyUpper.subtract(dailySum), expire_time);
+        return new TickInfoVO(ticket.getId(), dailyUpper.subtract(dailySum), expire_time);
     }
 
     @Override
@@ -81,5 +81,17 @@ public class TicketImpl implements TicketService {
         userTicket.setExpire_time(nextMonthDate);
 
         return userTicketDao.addUserTicket(userTicket);
+    }
+
+    public void setTicketDao(TicketDao ticketDao) {
+        this.ticketDao = ticketDao;
+    }
+
+    public void setUserTicketDao(UserTicketDao userTicketDao) {
+        this.userTicketDao = userTicketDao;
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
     }
 }
