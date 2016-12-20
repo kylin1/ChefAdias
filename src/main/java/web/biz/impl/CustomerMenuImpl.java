@@ -61,15 +61,16 @@ public class CustomerMenuImpl implements CustomerMenuService {
     public boolean uploadCustFoodPic(int foodID, MultipartFile pic) {
         CustomMenuFood food = foodDao.get(foodID);
         String newPath = "";
+        MyMessage myMessage = new MyMessage(false);
         try {
             newPath = MyFile.saveFile(pic);
             food.setPicture(newPath);
+            myMessage = foodDao.update(food);
 
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return myMessage.isSuccess();
     }
 
     @Override
