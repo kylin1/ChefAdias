@@ -1,5 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### SublimeText template
+
+target/
+!target/ChefAdia-1.0-SNAPSHOT.war
+
 # cache files for sublime text
 *.tmlanguage.cache
 *.tmPreferences.cache
@@ -34,7 +38,6 @@ GitHub.sublime-settings
 # User-specific stuff:
 *.iml
 .idea/
-target/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries
@@ -83,7 +86,6 @@ fabric.properties
 
 # Package Files #
 *.jar
-*.war
 *.ear
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
