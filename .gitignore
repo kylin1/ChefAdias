@@ -1,7 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### SublimeText template
 
-target/
 !target/ChefAdia-1.0-SNAPSHOT.war
 
 # cache files for sublime text
