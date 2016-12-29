@@ -64,7 +64,9 @@ public class TicketImpl implements TicketService {
         List<Order> orderList = orderDao.getOrderInDay(userId, sdf.format(today), sdf.format(tomorrow));
         BigDecimal dailySum = new BigDecimal(0);
         for (Order order : orderList) {
-            dailySum = dailySum.add(order.getPrice());
+            if (order.getTicket_info() == 1) {
+                dailySum = dailySum.add(order.getPrice());
+            }
         }
         return new TickInfoVO(ticket.getId(), dailyUpper.subtract(dailySum), expire_time);
     }

@@ -3,7 +3,7 @@ package web.biz.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import web.biz.CustOrderVO;
+import web.model.vo.CustOrderVO;
 import web.biz.CustomerMenuService;
 import web.dao.*;
 import web.model.po.*;

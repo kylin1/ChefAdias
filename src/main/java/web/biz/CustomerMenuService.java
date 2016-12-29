@@ -2,6 +2,7 @@ package web.biz;
 
 import org.springframework.web.multipart.MultipartFile;
 import web.model.vo.CustOrderInfoVO;
+import web.model.vo.CustOrderVO;
 import web.tools.MyMessage;
 
 import java.math.BigDecimal;
