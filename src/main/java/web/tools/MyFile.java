@@ -16,6 +16,8 @@ public class MyFile {
 
     private static final String HTTP_FOLDER = "http://139.196.179.145/images/";
 
+    private static final String HTTP_US_FOLDER = "http://47.89.194.197/images/";
+
 //    private static final String LOCAL_IMG_FOLDER = "/Users/kylin/Desktop/";
 
     /**
@@ -46,7 +48,7 @@ public class MyFile {
             file.transferTo(new File(savedFile));
 
             //返回给前端的HTTP路径
-            return HTTP_FOLDER + fileName;
+            return HTTP_US_FOLDER + fileName;
         }
         return "save file failed";
     }
