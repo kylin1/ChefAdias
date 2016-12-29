@@ -1,8 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### SublimeText template
 
-!target/ChefAdia-1.0-SNAPSHOT.war
-
 # cache files for sublime text
 *.tmlanguage.cache
 *.tmPreferences.cache
@@ -84,7 +82,7 @@ fabric.properties
 .mtj.tmp/
 
 # Package Files #
-/target
+
 *.jar
 *.war
 *.ear
