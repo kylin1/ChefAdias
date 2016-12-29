@@ -34,6 +34,7 @@ GitHub.sublime-settings
 
 # User-specific stuff:
 *.iml
+/target
 .idea/
 .idea/workspace.xml
 .idea/tasks.xml
